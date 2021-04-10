@@ -32,6 +32,17 @@ module.exports = function(_env, argv) {
           }
         },
         {
+          test: /\.s[ac]ss$/i,
+          use: [
+            // Creates `style` nodes from JS strings
+            "style-loader",
+            // Translates CSS into CommonJS
+            "css-loader",
+            // Compiles Sass to CSS
+            "sass-loader",
+          ],
+        },
+        {
           test: /\.css$/,
           use: [
             isProduction ? MiniCssExtractPlugin.loader : "style-loader",
@@ -127,7 +138,8 @@ module.exports = function(_env, argv) {
       compress: true,
       historyApiFallback: true,
       open: true,
-      overlay: true
+      overlay: true,
+      port: 3000
     }
   };
 };
