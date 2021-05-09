@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import "./scss/style.scss";
+import { BrowserRouter as Router } from 'react-router-dom'
+import './scss/style.scss';
+import Home from './pages'
 
 axios.post('http://localhost:8080/api/login', {
   email: 'admin@admin.com',
@@ -15,9 +17,9 @@ axios.post('http://localhost:8080/api/login', {
 
 function App() {
   return (
-    <div className="App">
-      {'Test page'}
-    </div>
+    <Router>
+      <Home/>
+    </Router>
   );
 }
 
