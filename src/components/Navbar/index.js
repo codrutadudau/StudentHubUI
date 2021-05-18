@@ -8,7 +8,6 @@ const Navbar = () => {
                <NavLogo>StudentHub</NavLogo>
             <NavButton>
                 <NavBtnLink to = 'signin'>Sign in</NavBtnLink>
-                <NavBtnLink to = 'signup'>Sign up</NavBtnLink>
             </NavButton>
            </NavbarContainer>
         </Nav>
