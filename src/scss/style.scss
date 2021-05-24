@@ -1,5 +1,6 @@
 @import './colors.scss';
 
+
 .auth {
   min-height: 100vh;
 
@@ -10,33 +11,5 @@
       background-color: $light-green !important;
       border-color: $light-green !important;
     }
-  }
-}
-
-
-
-
-.header {
-  background: $black;
-  height: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 16px;
-
-  &-container {
-    display: flex;
-    justify-content: space-between;
-    height: 80px;
-    width: 100%;
-    padding: 0 24px;
-  }
-
-  &-logo {
-    display: flex;
-    align-items: center;
-    justify-self: flex-start;
-    font-size: 24px;
-    color: $white;
   }
 }
