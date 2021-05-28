@@ -3,7 +3,14 @@ import { Container, Form, Button, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import { authApi } from '../api';
 
+import { useSelector, useDispatch } from 'react-redux';
+
 export default function Signin() {
+    const email = useSelector(state => state.authReducer.email);
+    console.log(email);
+
+    const dispatch = useDispatch();
+
     const [credentials, setCredentials] = useState({ 
         email: "",
         password: ""
@@ -11,6 +18,8 @@ export default function Signin() {
     
     const handleSubmit = e => {
         e.preventDefault();
+
+        dispatch({type: 'LOGIN_SUCCESS', payload: credentials})
         
         authApi.signIn(credentials.email, credentials.password);
     }

@@ -6,7 +6,7 @@ export const signIn = (email, password) => {
     return axios
         .post(API_URL + "/login", { email, password })
         .then(function (response) {
-            console.log(response);
+            sessionStorage.setItem('token', response.data);
         })
         .catch(function (error) {
             console.log(error);
