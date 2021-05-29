@@ -14,7 +14,7 @@ export default function HomePage() {
             <div className={`${className}-content`}>
                 <h1 className={`${className}-title`}>Welcome to StudentHub</h1>
                 <p className={`${className}-subtitle`}>This platform is created for the students currently enrolled at the Faculty of Computer Science, Iasi</p>
-                <p className={`${className}-subtitle`}><Link className={`${className}-subtitle-link`} to="/sign-up">Sign up</Link> to receive more information</p>
+                <p className={`${className}-subtitle`}><Link className={`${className}-subtitle-link btn`} to="/sign-up">Sign up</Link> to receive more information</p>
             </div>
         </div>
     );

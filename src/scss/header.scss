@@ -16,7 +16,7 @@
       justify-content: space-between;
       height: 40px;
       width: 100%;
-      padding: 0 15px;
+      padding: 0 25px;
     }
   
     &-logo {
@@ -24,7 +24,20 @@
       align-items: center;
       justify-self: flex-start;
       font-size: 24px;
-      color: $white;
-      cursor: pointer;
+      color: $white !important;
+      text-decoration: none;
+    }
+
+    &-tools {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &-signin {
+        background-color: $light-green !important;
+        padding: 0 10px !important;
+        font-size: 16px !important;
+        border-radius: 1rem !important;
+      }
     }
   }
