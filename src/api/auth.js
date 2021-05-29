@@ -10,4 +10,4 @@ export const signIn = (email, password) => {
 
             return response.data;
         });
-}
+};
