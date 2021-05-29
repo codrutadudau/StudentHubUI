@@ -6,8 +6,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { signIn } from '../actions/auth';
 
 export default function Signin() {
-    const email = useSelector(state => state.authReducer.email);
-    console.log(email);
+    const isLoggedIn = useSelector(state => state.authReducer.isLoggedIn);
+    console.log(isLoggedIn);
 
     const dispatch = useDispatch();
 
