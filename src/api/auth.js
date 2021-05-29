@@ -7,8 +7,7 @@ export const signIn = (email, password) => {
         .post(API_URL + "/login", { email, password })
         .then(function (response) {
             sessionStorage.setItem('token', response.data);
-        })
-        .catch(function (error) {
-            console.log(error);
+
+            return response.data;
         });
 }

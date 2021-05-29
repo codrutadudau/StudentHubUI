@@ -1,5 +1,6 @@
 // import actions + types
 import jwt_decode from "jwt-decode";
+import { LOGIN_SUCCESS, LOGIN_FAIL } from '../actions/types';
 
 const token = sessionStorage.getItem('token');
 const email = token ? jwt_decode(token).sub : '';
@@ -11,12 +12,18 @@ const initialState = email ?
 const authReducer = (state = initialState, action) => {
     const { type, payload } = action;
 
-    switch (action.type) {
-        case 'LOGIN_SUCCESS':
+    switch (type) {
+        case LOGIN_SUCCESS:
             return {
                 ...state,
                 isLoggedIn: true,
-                email: payload.email
+                email
+            };
+        case LOGIN_FAIL:
+            return {
+                ...state,
+                isLoggedIn: false,
+                email: null
             };
         default:
             return state;
