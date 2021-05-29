@@ -18,7 +18,10 @@ const persistConfig = {
 
 const store = createStore(
     persistReducer(persistConfig, rootReducer),
-    compose(applyMiddleware(thunk), composeWithDevTools())
+    compose(
+        applyMiddleware(thunk),
+        ...(window.__REDUX_DEVTOOLS_EXTENSION__ ? [window.__REDUX_DEVTOOLS_EXTENSION__()] : [])
+    )
 );
 
 ReactDOM.render(
