@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Container, Form, Button, Card } from 'react-bootstrap' 
 import { Link } from 'react-router-dom';
-import { authApi } from '../api';
-
 import { useSelector, useDispatch } from 'react-redux';
+
+import { signIn } from '../actions/auth';
 
 export default function Signin() {
     const email = useSelector(state => state.authReducer.email);
@@ -19,9 +19,7 @@ export default function Signin() {
     const handleSubmit = e => {
         e.preventDefault();
 
-        dispatch({type: 'LOGIN_SUCCESS', payload: credentials})
-        
-        authApi.signIn(credentials.email, credentials.password);
+        dispatch(signIn(credentials.email, credentials.password));
     }
     
     return (

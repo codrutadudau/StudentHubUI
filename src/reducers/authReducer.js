@@ -1,7 +1,7 @@
 // import actions + types
 import jwt_decode from "jwt-decode";
 
-const token = sessionStorage.getItem('token') ? '' : '';
+const token = sessionStorage.getItem('token');
 const email = token ? jwt_decode(token).sub : '';
 
 const initialState = email ? 
