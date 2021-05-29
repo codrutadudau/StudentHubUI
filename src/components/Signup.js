@@ -15,15 +15,15 @@ export default function Signup() {
                         <Form>
                             <Form.Group id="email">
                                 <Form.Label>Email</Form.Label>
-                                <Form.Control type="email" ref={emailRef} required></Form.Control>
+                                <Form.Control type="email" ref={emailRef} required/>
                             </Form.Group>
                             <Form.Group id="password">
                                 <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" ref={passwordRef} required></Form.Control>
+                                <Form.Control type="password" ref={passwordRef} required/>
                             </Form.Group>
                             <Form.Group id="password-confirm">
                                 <Form.Label>Password confirmation</Form.Label>
-                                <Form.Control type="password" ref={passwordConfirmRef} required></Form.Control>
+                                <Form.Control type="password" ref={passwordConfirmRef} required/>
                             </Form.Group>
                             <Button type="submit" className="w-100 mt-3 auth-inner-submit">Sign up</Button>
                         </Form>
