@@ -5,10 +5,10 @@ import '../scss/style.scss';
 import Dashboard from './Dashboard';
 import Header from './Header';
 import HomePage from './HomePage';
-import Login from './Signin';
+import Login from './Auth/Signin';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-import Signup from './Signup';
+import Signup from './Auth/Signup';
 
 function App() {
     const isLoggedIn = useSelector(state => state.authReducer.isLoggedIn);

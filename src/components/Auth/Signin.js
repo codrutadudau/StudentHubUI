@@ -3,7 +3,7 @@ import { Container, Form, Button, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { signIn } from '../actions/auth';
+import { signIn } from '../../actions/auth';
 
 export default function Signin() {
     const isLoggedIn = useSelector(state => state.authReducer.isLoggedIn);
