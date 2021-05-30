@@ -11,3 +11,11 @@ export const signIn = (email, password) => {
             return response.data;
         });
 };
+
+export const signUp = (firstName, lastName, email, password, passwordConfirm, phoneNumber) => {
+    return axios
+        .post(API_URL + "/signup", { firstName, lastName, email, password, passwordConfirm, phoneNumber })
+        .then(function (response) {
+            return response.data;
+        });
+};

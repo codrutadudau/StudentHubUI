@@ -29,7 +29,7 @@ export default function Signin() {
                     <Card.Body>
                         <h2 className="text-center mb-4">Sign in</h2>
                         <Form onSubmit={handleSubmit}>
-                            <Form.Group id="email">
+                            <Form.Group>
                                 <Form.Label>Email</Form.Label>
                                 <Form.Control
                                     type="email"
@@ -38,10 +38,11 @@ export default function Signin() {
                                         ...credentials,
                                         email: e.target.value})
                                     }
-                                    value={credentials.email} required
+                                    value={credentials.email}
+                                    required
                                 />
                             </Form.Group>
-                            <Form.Group id="password">
+                            <Form.Group>
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control
                                     type="password"
@@ -49,7 +50,8 @@ export default function Signin() {
                                         ...credentials,
                                         password: e.target.value})
                                     }
-                                    value={credentials.password} required
+                                    value={credentials.password}
+                                    required
                                 />
                             </Form.Group>
                             <Button type="submit" className="w-100 mt-3 auth-inner-submit">Sign in</Button>
