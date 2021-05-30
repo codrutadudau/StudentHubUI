@@ -1,4 +1,3 @@
-import jwt_decode from "jwt-decode";
 import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from '../actions/types';
 
 const token = sessionStorage.getItem('token');

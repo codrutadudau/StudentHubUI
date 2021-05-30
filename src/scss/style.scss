@@ -13,3 +13,17 @@
     }
   }
 }
+
+
+#root {
+  display: flex;
+  justify-content: center;
+}
+
+.page-content {
+    position: relative;
+    top: 40px;
+    height: calc(100vh - 40px);
+    width: 70%;
+    background: $white;
+}
