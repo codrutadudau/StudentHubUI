@@ -26,6 +26,9 @@ export default function Dashboard() {
     
     return (
         <div className="page-content">
+            <div className="btn btn-primary">
+                Add new quiz
+            </div>
             <table className={`table table-striped ${className}`}>
                 <thead>
                     <tr>

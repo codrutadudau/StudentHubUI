@@ -1,7 +1,8 @@
-import { GET_QUIZZES } from '../actions/types';
+import { GET_QUIZZES, GET_QUIZ } from '../actions/types';
 
 const initialState = {
-    quizzes: null
+    quizzes: null,
+    quiz: null
 };
 
 const quizReducer = (state = initialState, action) => {
@@ -12,6 +13,11 @@ const quizReducer = (state = initialState, action) => {
             return {
                 ...state,
                 quizzes: payload.quizzes
+            };
+        case GET_QUIZ:
+            return {
+                ...state,
+                quiz: payload.quiz
             };
         default:
             return state;
