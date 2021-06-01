@@ -9,6 +9,7 @@ import HomePage from './HomePage';
 import Login from './Auth/Signin';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
+import AdminRoute from './AdminRoute';
 import Signup from './Auth/Signup';
 import QuizDashboard from './Quiz/Dashboard';
 import QuestionDashboard from './Question/Dashboard';
@@ -16,10 +17,9 @@ import ProfileDetails from './Profile/Details';
 import QuizDetails from './Quiz/Details';
 import QuestionDetails from './Question/Details';
 import AnswerDetails from './Answer/Details';
+import AdminDashboard from './Admin/Dashboard';
 
 function App() {
-    const isLoggedIn = useSelector(state => state.authReducer.isLoggedIn);
-
     axios.interceptors.request.use(function (config) {
         const token = sessionStorage.getItem("token");
         config.headers.Authorization = `Bearer ${token}`;
@@ -41,6 +41,7 @@ function App() {
                 <PrivateRoute path="/quiz/:id" exact component={QuizDetails} />
                 <PrivateRoute path="/question/:id" exact component={QuestionDetails} />
                 <PrivateRoute path="/answer/:id" exact component={AnswerDetails} />
+                <AdminRoute path="/admin" component={AdminDashboard} />
             </Switch>
         </Router>
     );

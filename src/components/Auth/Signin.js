@@ -7,7 +7,6 @@ import { signIn } from '../../actions/auth';
 
 export default function Signin() {
     const isLoggedIn = useSelector(state => state.authReducer.isLoggedIn);
-    // console.log(isLoggedIn);
 
     const dispatch = useDispatch();
 

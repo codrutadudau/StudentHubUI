@@ -5,30 +5,27 @@ import map from 'lodash/map'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
 
-import { getAllQuizzes } from '../../actions/quiz';
+import { getAllUsers } from '../../actions/user';
 
 export default function Dashboard() {
     const dispatch = useDispatch();
     const history = useHistory();
-    
+
     useEffect(() => {
-        dispatch(getAllQuizzes());
+        dispatch(getAllUsers());
     }, []);
-    
+
     const handleClick = (e, id) => {
         e.preventDefault();
 
-        history.push('/quiz/' + id);
+        history.push('/user/' + id);
     };
 
-    const quizzes = useSelector(state => state.quizReducer.quizzes);
-    const className = "quiz-table";
-    
+    const users = useSelector(state => state.userReducer.users);
+    const className = "user-table";
+
     return (
         <div className="page-content">
-            <div className="btn btn-primary">
-                Add new quiz
-            </div>
             <table className={`table table-striped ${className}`}>
                 <thead>
                     <tr>
@@ -39,11 +36,11 @@ export default function Dashboard() {
                 </thead>
                 <tbody>
                     {
-                        map(quizzes, (quiz, value) => {
+                        map(users, (user, value) => {
                             return (
                                 <tr key={value}>
                                     <th scope="row">{value + 1}</th>
-                                    <td>{quiz.name}</td>
+                                    <td>{user.firstName} {user.lastName}</td>
                                     <td>
                                         <FontAwesomeIcon onClick={e => handleClick(e, value + 1)} className={`${className}-icon`} icon={faEdit} />
                                         <FontAwesomeIcon className={`${className}-icon`} icon={faTrash} />

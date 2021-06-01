@@ -5,8 +5,7 @@ import QuestionDashboard from './Question/Dashboard';
 export default function Dashboard() {
     return (
         <div>
-            <QuizDashboard />
-            <QuestionDashboard />
+            {'dashboard'}
         </div>
     );
 }
