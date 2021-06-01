@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import axios from 'axios';
 import '../scss/style.scss';
 import Dashboard from './Dashboard';
 import Header from './Header';
@@ -18,6 +19,13 @@ import AnswerDetails from './Answer/Details';
 
 function App() {
     const isLoggedIn = useSelector(state => state.authReducer.isLoggedIn);
+
+    axios.interceptors.request.use(function (config) {
+        const token = sessionStorage.getItem("token");
+        config.headers.Authorization = `Bearer ${token}`;
+
+        return config;
+    });
 
     return (
         <Router>
