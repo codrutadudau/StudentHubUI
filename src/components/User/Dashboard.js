@@ -75,6 +75,7 @@ export default function Dashboard() {
     ];
 
     return (
+        users &&
         <div className="page-content">
             <MUIDataTable
                 className="user-table"

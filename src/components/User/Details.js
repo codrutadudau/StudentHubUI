@@ -19,6 +19,7 @@ export default function Details() {
     const user = useSelector(state => state.userReducer.user);
     
     return (
+        user &&
         <div className="page-content">
             <Container className="d-flex justify-content-center profile">
                 <Card className="profile-info">
