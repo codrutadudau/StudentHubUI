@@ -11,6 +11,7 @@ import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import AdminRoute from './AdminRoute';
 import Signup from './Auth/Signup';
+import UserDashboard from './User/Dashboard';
 import QuizDashboard from './Quiz/Dashboard';
 import QuestionDashboard from './Question/Dashboard';
 import ProfileDetails from './Profile/Details';
@@ -36,6 +37,7 @@ function App() {
                 <PublicRoute path="/sign-up" component={Signup} restricted={true} />
                 <PrivateRoute path="/dashboard" exact component={Dashboard} />
                 <PrivateRoute path="/profile/:id" component={ProfileDetails} />
+                <PrivateRoute path="/users" exact component={UserDashboard} />
                 <PrivateRoute path="/quizzes" exact component={QuizDashboard} />
                 <PrivateRoute path="/questions" exact component={QuestionDashboard} />
                 <PrivateRoute path="/quiz/:id" exact component={QuizDetails} />
