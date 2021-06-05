@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { signIn } from '../../actions/auth';
+import { userMe } from '../../actions/user';
 
 export default function Signin() {
     const isLoggedIn = useSelector(state => state.authReducer.isLoggedIn);
@@ -18,7 +19,9 @@ export default function Signin() {
     const handleSubmit = e => {
         e.preventDefault();
 
-        dispatch(signIn(credentials.email, credentials.password));
+        dispatch(signIn(credentials.email, credentials.password)).then(() => {
+            dispatch(userMe());
+        });
     }
     
     return (

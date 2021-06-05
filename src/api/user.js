@@ -9,3 +9,7 @@ export const getAllUsers = () => {
 export const getUserById = (id) => {
     return axios.get(API_URL + "/users/" + id);
 };
+
+export const getUserMe = () => {
+    return axios.get(API_URL + "/users/me");
+};

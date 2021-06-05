@@ -1,7 +1,11 @@
-import { GET_USERS } from '../actions/types';
+import {
+    GET_USERS,
+    GET_ME_USER
+} from '../actions/types';
 
 const initialState = {
-    users: null
+    users: null,
+    me : null
 };
 
 const userReducer = (state = initialState, action) => {
@@ -12,6 +16,11 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: payload.users
+            };
+        case GET_ME_USER:
+            return {
+                ...state,
+                me: payload.me
             };
         default:
             return state;

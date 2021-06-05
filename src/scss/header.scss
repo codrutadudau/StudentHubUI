@@ -33,6 +33,58 @@
       align-items: center;
       justify-content: center;
 
+      .dropdown {
+        &-menu {
+          min-width: 100px;
+          border-radius: 0;
+          padding: 0;
+        }
+
+        &-item {
+          padding: 5px 15px;
+        }
+
+        button {
+          background-color: $black !important;
+          border-color: $black !important;
+          box-shadow: none !important;
+          width: 130px;
+          height: 40px;
+        }
+
+        .avatar {
+          position: absolute;
+          left: 3px;
+
+          img {
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+          }
+        }
+
+        .user-details {
+          display: block;
+          position: relative;
+          left: 30px;
+          text-align: left;
+
+          &-role,
+          &-name {
+            display: block;
+            font-size: 10px;
+          }
+
+          &-name {
+            font-size: 10px;
+          }
+
+          &-role {
+            font-size: 8px;
+          }
+        }
+      }
+
       &-signin {
         background-color: $light-green !important;
         padding: 0 10px !important;
