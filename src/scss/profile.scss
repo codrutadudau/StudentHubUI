@@ -1,0 +1,54 @@
+.profile {
+    align-items: flex-start;
+
+    &-info {
+        width: 30%;
+
+        &-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                display: block;
+                border-radius: 50%;
+                width: 100%;
+            }
+
+            &-text {
+                display: block;
+                text-align: center;
+                font-size: 14px;
+            }
+        }
+    }
+
+    &-data {
+        width: 70%;
+
+        &-card {
+
+            &-edit-profile {
+
+                label {
+                    width: 35%;
+                }
+
+                hr {
+                    margin: 3px 0;
+                }
+
+                .form-group {
+                    .form-control {
+                        display: inline-block;
+                        width: 65%;
+                        border: none;
+                        border-radius: 0;
+                    }
+                }
+            }
+
+        }
+    }
+}

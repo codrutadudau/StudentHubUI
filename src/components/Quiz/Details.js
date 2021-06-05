@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from "react-router";
+
 import { getQuizById } from '../../actions/quiz';
 
 export default function Details() {
@@ -20,6 +21,7 @@ export default function Details() {
     const quiz = useSelector(state => state.quizReducer.quiz);
 
     return (
+        quiz &&
         <>
             <div className="page-content">
                 Edit {quiz.name}

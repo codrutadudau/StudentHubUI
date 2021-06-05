@@ -9,4 +9,5 @@ export const GET_QUESTIONS = "GET_QUESTIONS";
 export const GET_QUIZ = "GET_QUIZ";
 
 export const GET_USERS = "GET_USERS";
+export const GET_USER = "GET_USER";
 export const GET_ME_USER = "GET_ME_USER";

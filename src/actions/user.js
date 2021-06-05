@@ -1,6 +1,7 @@
 import {
     GET_USERS,
-    GET_ME_USER
+    GET_ME_USER,
+    GET_USER
 } from "./types";
 
 import { userApi } from '../api';
@@ -11,6 +12,20 @@ export const getAllUsers = () => (dispatch) => {
             dispatch({
                 type: GET_USERS,
                 payload: { users: response.data },
+            });
+        })
+        .catch(error => {
+                const message = error.response.data.message;
+            }
+        );
+};
+
+export const getUserById = (id) => (dispatch) => {
+    return userApi.getUserById(id)
+        .then(response => {
+            dispatch({
+                type: GET_USER,
+                payload: { user: response.data },
             });
         })
         .catch(error => {

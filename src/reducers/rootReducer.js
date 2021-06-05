@@ -1,4 +1,3 @@
-  
 import { LOGOUT } from '../actions/types';
 import authReducer from './authReducer';
 import quizReducer from './quizReducer';

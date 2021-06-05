@@ -15,15 +15,15 @@ export default function Dashboard() {
         dispatch(getAllQuizzes());
     }, []);
     
+    const quizzes = useSelector(state => state.quizReducer.quizzes);
+
     const handleClick = (e, id) => {
         e.preventDefault();
 
         history.push('/quiz/' + id);
     };
 
-    const quizzes = useSelector(state => state.quizReducer.quizzes);
     const className = "quiz-table";
-    
     return (
         <div className="page-content">
             <div className="btn btn-primary">

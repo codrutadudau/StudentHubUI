@@ -35,7 +35,7 @@ function App() {
                 <PublicRoute path="/sign-in" component={Login} restricted={true} />
                 <PublicRoute path="/sign-up" component={Signup} restricted={true} />
                 <PrivateRoute path="/dashboard" exact component={Dashboard} />
-                <PrivateRoute path="/profile/edit/:id" exact component={ProfileDetails} />
+                <PrivateRoute path="/profile/:id" component={ProfileDetails} />
                 <PrivateRoute path="/quizzes" exact component={QuizDashboard} />
                 <PrivateRoute path="/questions" exact component={QuestionDashboard} />
                 <PrivateRoute path="/quiz/:id" exact component={QuizDetails} />

@@ -1,10 +1,12 @@
 import {
     GET_USERS,
+    GET_USER,
     GET_ME_USER
 } from '../actions/types';
 
 const initialState = {
     users: null,
+    user: null,
     me : null
 };
 
@@ -16,6 +18,11 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: payload.users
+            };
+        case GET_USER:
+            return {
+                ...state,
+                user: payload.user
             };
         case GET_ME_USER:
             return {
