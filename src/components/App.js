@@ -1,10 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import axios from 'axios';
-import '../scss/style.scss';
+import '../assets/scss/style.scss';
 import Dashboard from './Dashboard';
-import Header from './Header';
+import Header from './Header/Header';
 import HomePage from './HomePage';
 import Login from './Auth/Signin';
 import PrivateRoute from './PrivateRoute';

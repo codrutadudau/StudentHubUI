@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Video from '../videos/video.mp4';
-import '../scss/homepage.scss';
+import '../assets/scss/homepage.scss';
 
 export default function HomePage() {
     const className = 'homepage-container';

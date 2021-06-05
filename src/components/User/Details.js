@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import { Container, Form, Button, Card } from 'react-bootstrap';
 
 import mainLogo from '../../assets/images/avatar.jpg';
-import '../../scss/profile.scss';
+import '../../assets/scss/profile.scss';
 
 import { getUserById } from '../../actions/user';
 

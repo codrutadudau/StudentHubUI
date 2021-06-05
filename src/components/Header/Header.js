@@ -5,10 +5,10 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import SettingsIcon from '@material-ui/icons/Settings';
 
-import '../scss/header.scss';
-import avatar from '../assets/images/avatar.jpg';
+import '../../assets/scss/header.scss';
+import avatar from '../../assets/images/avatar.jpg';
 
-import { signOut } from '../actions/auth';
+import { signOut } from '../../actions/auth';
 
 export default function Header() {
     const dispatch = useDispatch();
