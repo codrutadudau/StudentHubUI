@@ -1,8 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Dropdown } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserCircle, faCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 import '../scss/header.scss';
 import avatar from '../assets/images/avatar.jpg';
@@ -40,15 +41,15 @@ export default function Header() {
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
                                 <Dropdown.Item href="/profile">
-                                    <FontAwesomeIcon icon={faUserCircle} />
+                                    <AccountCircleIcon />
                                     <span className="name">My profile</span>
                                 </Dropdown.Item>
                                 <Dropdown.Item href="#/action-2">
-                                    <FontAwesomeIcon icon={faCog} />
+                                    <SettingsIcon />
                                     <span className="name">Settings</span>
                                 </Dropdown.Item>
                                 <Dropdown.Item href="/logout" onClick={handleLogout}>
-                                    <FontAwesomeIcon icon={faSignOutAlt} />
+                                    <ExitToAppIcon />
                                     <span className="name">Logout</span>
                                 </Dropdown.Item>
                             </Dropdown.Menu>

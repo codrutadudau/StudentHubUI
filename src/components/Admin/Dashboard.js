@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
-import map from 'lodash/map'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
+import map from 'lodash/map';
+import  EditIcon from '@material-ui/icons/Edit';
+import  DeleteIcon from '@material-ui/icons/Delete';
 
 import { getAllUsers } from '../../actions/user';
 
@@ -42,8 +42,8 @@ export default function Dashboard() {
                                     <th scope="row">{value + 1}</th>
                                     <td>{user.firstName} {user.lastName}</td>
                                     <td>
-                                        <FontAwesomeIcon onClick={e => handleClick(e, value + 1)} className={`${className}-icon`} icon={faEdit} />
-                                        <FontAwesomeIcon className={`${className}-icon`} icon={faTrash} />
+                                        <EditIcon onClick={e => handleClick(e, value + 1)} className={`${className}-icon`} />
+                                        <DeleteIcon className={`${className}-icon`} />
                                     </td>
                                 </tr>
                             );

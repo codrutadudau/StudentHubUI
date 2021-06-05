@@ -26,9 +26,7 @@ const store = createStore(
 ReactDOM.render(
     <Provider store={store}>
         <PersistGate persistor={persistStore(store)}>
-            <React.StrictMode>
-                <App />
-            </React.StrictMode>
+            <App />
         </PersistGate>
     </Provider>,
     document.getElementById('root')
