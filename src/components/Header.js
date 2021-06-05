@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Dropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -38,19 +38,18 @@ export default function Header() {
                                     <span className="user-details-role">{me.role.name}</span>
                                 </span>
                             </Dropdown.Toggle>
-
                             <Dropdown.Menu>
                                 <Dropdown.Item href="#/action-1">
                                     <FontAwesomeIcon icon={faUserCircle} />
-                                    My account
+                                    <span className="name">My account</span>
                                 </Dropdown.Item>
                                 <Dropdown.Item href="#/action-2">
                                     <FontAwesomeIcon icon={faCog} />
-                                    Settings
+                                    <span className="name">Settings</span>
                                 </Dropdown.Item>
                                 <Dropdown.Item href="/logout" onClick={handleLogout}>
                                     <FontAwesomeIcon icon={faSignOutAlt} />
-                                    Logout
+                                    <span className="name">Logout</span>
                                 </Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown> :

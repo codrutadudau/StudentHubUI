@@ -41,7 +41,11 @@
         }
 
         &-item {
-          padding: 5px 15px;
+          padding: 5px 13px;
+
+          .name {
+            margin-left: 4px;
+          }
         }
 
         button {
