@@ -39,9 +39,9 @@ export default function Header() {
                                 </span>
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <Dropdown.Item href="#/action-1">
+                                <Dropdown.Item href="/profile">
                                     <FontAwesomeIcon icon={faUserCircle} />
-                                    <span className="name">My account</span>
+                                    <span className="name">My profile</span>
                                 </Dropdown.Item>
                                 <Dropdown.Item href="#/action-2">
                                     <FontAwesomeIcon icon={faCog} />
