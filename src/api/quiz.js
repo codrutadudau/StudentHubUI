@@ -11,5 +11,5 @@ export const getQuizById = (id) => {
 };
 
 export const createQuiz = (payload) => {
-    return axios.post(API_URL + "/quizzes", {payload});
+    return axios.post(API_URL + "/quizzes", { ...payload });
 };

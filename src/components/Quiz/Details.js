@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
+import Datetime from 'react-datetime';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from "react-router";
 import isEmpty from 'lodash/isEmpty';
+import "react-datetime/css/react-datetime.css";
 
-import { getQuizById } from '../../actions/quiz';
+import { getQuizById, createQuiz } from '../../actions/quiz';
 
 export default function Details() {
     const dispatch = useDispatch();
@@ -12,7 +14,7 @@ export default function Details() {
     const quizReducer = useSelector(state => state.quizReducer);
 
     const [payload, setPayload] = useState({
-        quizName: "",
+        name: "",
         quizIntro: "",
         timeOpen: "",
         timeClose: "",
@@ -24,10 +26,10 @@ export default function Details() {
             dispatch(getQuizById(params.id));
             setPayload({
                 ...payload,
-                quizName: quizReducer.quiz.name,
+                name: quizReducer.quiz.name,
                 quizIntro: quizReducer.quiz.quizIntro,
-                timeOpen: quizReducer.quiz.timeOpen,
-                timeClose: quizReducer.quiz.timeClose,
+                timeOpen: new Date(quizReducer.quiz.timeOpen),
+                timeClose: new Date(quizReducer.quiz.timeClose),
                 password: quizReducer.quiz.password
             });
         }
@@ -40,17 +42,43 @@ export default function Details() {
         });
     }
 
+    const handleOnChangeTimeOpen = e => {
+        setPayload({
+            ...payload,
+            timeOpen: new Date(e.toString())
+        });
+    }
+
+    const handleOnChangeTimeClose = e => {
+        setPayload({
+            ...payload,
+            timeClose: new Date(e.toString())
+        });
+    }
+
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        dispatch(
+            createQuiz({
+                ...payload,
+                timeOpen: (payload.timeOpen).toISOString(),
+                timeClose: (payload.timeClose).toISOString()
+            })
+        );
+    }
+
     return (
         <div className="page-content">
             <Container className="d-flex justify-content-center quiz">
-                <Form>
+                <Form onSubmit={handleSubmit}>
                     <Form.Group>
                         <Form.Label>Quiz Name</Form.Label>
                         <Form.Control
                             type="text"
-                            name="quizName"
+                            name="name"
                             onChange={handleOnChange}
-                            value={payload.quizName}
+                            value={payload.name}
                         />
                         <Form.Label>Quiz Intro</Form.Label>
                         <Form.Control
@@ -60,20 +88,20 @@ export default function Details() {
                             value={payload.quizIntro}
                         />
                         <Form.Label>Time Open</Form.Label>
-                        <Form.Control
-                            type="text"
-                            name="timeOpen"
-                            onChange={handleOnChange}
+                        <Datetime
                             value={payload.timeOpen}
-                            disabled
+                            onChange={handleOnChangeTimeOpen}
+                            dateFormat="YYYY-MM-DD"
+                            timeFormat="HH:mm"
+                            utc={true}
                         />
                         <Form.Label>Time Close</Form.Label>
-                        <Form.Control
-                            type="text"
-                            name="timeClose"
-                            onChange={handleOnChange}
+                        <Datetime
                             value={payload.timeClose}
-                            disabled
+                            onChange={handleOnChangeTimeClose}
+                            dateFormat="YYYY-MM-DD"
+                            timeFormat="HH:mm"
+                            utc={true}
                         />
                         <Form.Label>Password</Form.Label>
                         <Form.Control
@@ -82,6 +110,7 @@ export default function Details() {
                             onChange={handleOnChange}
                             value={payload.password}
                         />
+                        <Button type="submit">Submit</Button>
                     </Form.Group>
                 </Form>
             </Container>
