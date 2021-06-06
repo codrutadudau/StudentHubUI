@@ -22,6 +22,7 @@ export default function Details() {
     const questions = useSelector(state => state.questionReducer.questions);
 
     return (
+        quiz &&
         <div className="page-content">
             <Container className="d-flex justify-content-center quiz">
                 <h2 className="quiz-title">
