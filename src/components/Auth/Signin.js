@@ -23,6 +23,16 @@ export default function Signin() {
             dispatch(userMe());
         });
     }
+
+    const handleValidation = (message, code) => {
+        let errors = {};
+        
+        switch (code) {
+            case 409:
+                errors['email'] = message;
+            break;
+        }
+    }
     
     return (
         <Container className="d-flex align-items-center justify-content-center auth">

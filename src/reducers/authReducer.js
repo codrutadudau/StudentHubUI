@@ -1,6 +1,9 @@
-import { LOGIN_SUCCESS, LOGIN_FAIL } from '../actions/types';
-
-const token = sessionStorage.getItem('token');
+import {
+    LOGIN_SUCCESS,
+    LOGIN_FAIL,
+    SIGNUP_FAIL,
+    CLEAR_ERROR
+} from '../actions/types';
 
 const initialState = { isLoggedIn: false };
 
@@ -17,6 +20,16 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoggedIn: false
+            };
+        case SIGNUP_FAIL:
+            return {
+                ...state,
+                errorString: payload.errorString
+            };
+        case CLEAR_ERROR:
+            return {
+                ...state,
+                errorString: null
             };
         default:
             return state;

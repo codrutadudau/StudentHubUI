@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Container, Form, Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { signUp } from '../../actions/auth';
+import { useDispatch, useSelector } from 'react-redux';
+import map from 'lodash/map';
+import validation from './validation';
+
+import { signUp, clearError } from '../../actions/auth';
 
 export default function Signup() {
     const dispatch = useDispatch();
@@ -15,9 +18,30 @@ export default function Signup() {
         passwordConfirm: "",
         phoneNumber: ""
     });
+    const firstNameRef = useRef();
+
+    const [errors, setErrors] = useState({});
+
+    const errorString = useSelector(state => state.authReducer.errorString);
+    console.log(errorString);
+
+    const handleOnChange = e => {
+        setPayload({
+            ...payload,
+            [e.target.name]: e.target.value
+        });
+        setErrors({
+            ...errors,
+            [e.target.name]: null
+        });
+        dispatch(clearError());
+    }
 
     const handleSubmit = e => {
         e.preventDefault();
+        setErrors(validation(payload));
+        console.log(errors);
+
 
         dispatch(
             signUp(
@@ -30,6 +54,7 @@ export default function Signup() {
             )
         );
     }
+    
     return (
         <Container className="d-flex align-items-center justify-content-center auth">
             <div className="w-100 auth-inner">
@@ -41,79 +66,62 @@ export default function Signup() {
                                 <Form.Label>First Name</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    id="firstName"
-                                    onChange={ e => setPayload({
-                                        ...payload,
-                                        firstName: e.target.value})
-                                    }
+                                    name="firstName"
+                                    ref={firstNameRef}
+                                    onChange={handleOnChange}
                                     value={payload.firstName}
-                                    required
-                                    />
+                                />
+                                {errors.firstName && <p className="error">{errors.firstName}</p>}
                             </Form.Group>
                             <Form.Group>
                                 <Form.Label>Last Name</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    id="lastName"
-                                    onChange={ e => setPayload({
-                                        ...payload,
-                                        lastName: e.target.value})
-                                    }
+                                    name="lastName"
+                                    onChange={handleOnChange}
                                     value={payload.lastName}
-                                    required
-                                    />
+                                />
+                                {errors.lastName && <p className="error">{errors.lastName}</p>}
                             </Form.Group>
                             <Form.Group>
                                 <Form.Label>Email</Form.Label>
                                 <Form.Control
                                     type="email"
-                                    id="email"
-                                    onChange={ e => setPayload({
-                                        ...payload,
-                                        email: e.target.value})
-                                    }
+                                    name="email"
+                                    onChange={handleOnChange}
                                     value={payload.email}
-                                    required
-                                    />
+                                />
+                            {errors.email && <p className="error">{errors.email}</p>}
                             </Form.Group>
                             <Form.Group>
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control
                                     type="password"
-                                    id="password"
-                                    onChange={e => setPayload({
-                                        ...payload,
-                                        password: e.target.value})
-                                    }
+                                    name="password"
+                                    onChange={handleOnChange}
                                     value={payload.password}
-                                    required
-                                    />
+                                />
+                                {errors.password && <p className="error">{errors.password}</p>}
                             </Form.Group>
                             <Form.Group>
                                 <Form.Label>Password confirmation</Form.Label>
                                 <Form.Control
                                     type="password"
-                                    id="passwordConfirm"
-                                    onChange={e => setPayload({
-                                        ...payload,
-                                        passwordConfirm: e.target.value})
-                                    }
+                                    name="passwordConfirm"
+                                    onChange={handleOnChange}
                                     value={payload.passwordConfirm}
-                                    required
-                                    />
+                                />
+                                {errors.passwordConfirm && <p className="error">{errors.passwordConfirm}</p>}
                             </Form.Group>
                             <Form.Group>
                                 <Form.Label>Phone Number</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    id="phoneNumber"
-                                    onChange={e => setPayload({
-                                        ...payload,
-                                        phoneNumber: e.target.value})
-                                    }
+                                    name="phoneNumber"
+                                    onChange={handleOnChange}
                                     value={payload.phoneNumber}
-                                    required
-                                    />
+                                />
+                                {errors.firstName && <p className="error">{errors.firstName}</p>}
                             </Form.Group>
                             <Button type="submit" className="w-100 mt-3 auth-inner-submit">Sign up</Button>
                         </Form>

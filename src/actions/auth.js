@@ -3,7 +3,8 @@ import {
     LOGIN_FAIL,
     SIGNUP_SUCCESS,
     SIGNUP_FAIL,
-    LOGOUT
+    LOGOUT,
+    CLEAR_ERROR
 } from "./types";
 
 import { authApi } from '../api';
@@ -34,9 +35,10 @@ export const signUp = (firstName, lastName, email, password, passwordConfirm, ph
             });
         })
         .catch(error => {
-            const message = error.response.data.message; // TODO: dispatch and display on signup form
+            const errorString = error.response.data.message;
             dispatch({
                 type: SIGNUP_FAIL,
+                payload: { errorString },
             });
         }
     );
@@ -48,5 +50,11 @@ export const signOut = () => (dispatch) => {
 
     dispatch({
         type: LOGOUT,
+    });
+};
+
+export const clearError = () => (dispatch) => {
+    dispatch({
+        type: CLEAR_ERROR,
     });
 };
