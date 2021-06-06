@@ -1,6 +1,8 @@
 import {
     GET_QUIZZES,
-    GET_QUIZ
+    GET_QUIZ,
+    CREATE_QUIZ_SUCCESS,
+    CREATE_QUIZ_FAIL
 } from "./types";
 
 import { quizApi } from '../api';
@@ -30,6 +32,22 @@ export const getQuizById = (id) => (dispatch) => {
         })
         .catch(error => {
             const message = error.response.data.message;
+        }
+    );
+};
+
+export const createQuiz = (payload) => (dispatch) => {
+    return quizApi.createQuiz(payload)
+        .then(() => {
+            dispatch({
+                type: CREATE_QUIZ_SUCCESS,
+            });
+        })
+        .catch(error => {
+            const message = error.response.data.message;
+            dispatch({
+                type: CREATE_QUIZ_FAIL,
+            });
         }
     );
 };

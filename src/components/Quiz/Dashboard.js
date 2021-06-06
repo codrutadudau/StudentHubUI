@@ -1,9 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
+import { Container } from 'react-bootstrap';
 import map from 'lodash/map';
-import  EditIcon from '@material-ui/icons/Edit';
-import  DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import '../../assets/scss/quiz.scss';
 
 import { getAllQuizzes } from '../../actions/quiz';
 
@@ -17,43 +21,50 @@ export default function Dashboard() {
     
     const quizzes = useSelector(state => state.quizReducer.quizzes);
 
-    const handleClick = (e, id) => {
+    const handleClick = (e, id, action) => {
         e.preventDefault();
 
-        history.push('/quiz/' + id);
+        if (!id) {
+            history.push(`/quizzes/${action}`);
+        } else {
+            history.push(`/quiz/${id}/${action}`);
+        }
     };
 
-    const className = "quiz-table";
     return (
         <div className="page-content">
-            <div className="btn btn-primary">
-                Add new quiz
-            </div>
-            <table className={`table table-striped ${className}`}>
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        map(quizzes, (quiz, value) => {
-                            return (
-                                <tr key={value}>
-                                    <th scope="row">{value + 1}</th>
-                                    <td>{quiz.name}</td>
-                                    <td>
-                                        <EditIcon onClick={e => handleClick(e, value + 1)} className={`${className}-icon`} />
-                                        <DeleteIcon className={`${className}-icon`} />
-                                    </td>
-                                </tr>
-                            );
-                        })
-                    }
-                </tbody>
-            </table>
+            <Container className="d-flex justify-content-center quizzes">
+                <div onClick={e => handleClick(e, null, 'create')} className="btn btn-success quizzes-new">
+                    <AddCircleOutlineIcon className="quizzes-new-icon" />
+                    <span className="quizzes-new-button">Add new quiz</span>
+                </div>
+                <table className={`table table-striped quiz-table`}>
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            map(quizzes, (quiz, value) => {
+                                return (
+                                    <tr key={value}>
+                                        <th scope="row">{value + 1}</th>
+                                        <td>{quiz.name}</td>
+                                        <td>
+                                            <EditIcon onClick={e => handleClick(e, quiz.id, 'edit')} className={`quiz-table-icon`} />
+                                            <DeleteIcon onClick={e => handleClick(e, quiz.id, 'delete')} className={`quiz-table-icon`} />
+                                            <VisibilityIcon onClick={e => handleClick(e, quiz.id, 'view')} className={`$quiz-table-icon`} />
+                                        </td>
+                                    </tr>
+                                );
+                            })
+                        }
+                    </tbody>
+                </table>
+            </Container>
         </div>
     );
 }

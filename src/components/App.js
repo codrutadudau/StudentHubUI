@@ -15,6 +15,7 @@ import QuizDashboard from './Quiz/Dashboard';
 import QuestionDashboard from './Question/Dashboard';
 import UserDetails from './User/Details';
 import QuizDetails from './Quiz/Details';
+import QuizView from './Quiz/View';
 import QuestionDetails from './Question/Details';
 import AnswerDetails from './Answer/Details';
 import AdminDashboard from './Admin/Dashboard';
@@ -38,8 +39,10 @@ function App() {
                 <PrivateRoute path="/user/:id" component={UserDetails} />
                 <PrivateRoute path="/users" exact component={UserDashboard} />
                 <PrivateRoute path="/quizzes" exact component={QuizDashboard} />
+                <PrivateRoute path="/quizzes/create" exact component={QuizDetails} />
                 <PrivateRoute path="/questions" exact component={QuestionDashboard} />
-                <PrivateRoute path="/quiz/:id" exact component={QuizDetails} />
+                <PrivateRoute path="/quiz/:id/view" exact component={QuizView} />
+                <PrivateRoute path="/quiz/:id/:action" exact component={QuizDetails} />
                 <PrivateRoute path="/question/:id" exact component={QuestionDetails} />
                 <PrivateRoute path="/answer/:id" exact component={AnswerDetails} />
                 <AdminRoute path="/admin" component={AdminDashboard} />

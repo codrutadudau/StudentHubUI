@@ -1,4 +1,7 @@
-import { GET_QUIZZES, GET_QUIZ } from '../actions/types';
+import {
+    GET_QUIZZES,
+    GET_QUIZ
+} from '../actions/types';
 
 const initialState = {
     quizzes: null,

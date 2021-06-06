@@ -9,3 +9,7 @@ export const getAllQuizzes = () => {
 export const getQuizById = (id) => {
     return axios.get(API_URL + "/quizzes/" + id);
 };
+
+export const createQuiz = (payload) => {
+    return axios.post(API_URL + "/quizzes", {payload});
+};
