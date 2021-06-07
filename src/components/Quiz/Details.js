@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
 import Datetime from 'react-datetime';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from "react-router";
+import { useParams, withRouter } from "react-router";
 import isEmpty from 'lodash/isEmpty';
 import "react-datetime/css/react-datetime.css";
 
 import { getQuizById, createQuiz } from '../../actions/quiz';
 
-export default function Details() {
+export function Details({location: {state}}) {
     const dispatch = useDispatch();
     const params = useParams();
     const quizReducer = useSelector(state => state.quizReducer);
@@ -22,18 +22,35 @@ export default function Details() {
     });
 
     useEffect(() => {
-        if (!isEmpty(params)) {
+        if (!isEmpty(params) && !state) {
             dispatch(getQuizById(params.id));
-            setPayload({
-                ...payload,
-                name: quizReducer.quiz.name,
-                quizIntro: quizReducer.quiz.quizIntro,
-                timeOpen: new Date(quizReducer.quiz.timeOpen),
-                timeClose: new Date(quizReducer.quiz.timeClose),
-                password: quizReducer.quiz.password
-            });
         }
     }, []);
+    
+    useEffect(() => {
+        if (state) {
+            console.log(2)
+            setPayloadForm(state);
+        }
+    }, [state]);
+
+    useEffect(() => {
+        if (!state && quizReducer.quiz) {
+            console.log(1)
+            setPayloadForm(quizReducer.quiz);
+        }
+    }, [quizReducer.quiz]);
+
+    const setPayloadForm = (state) =>{
+        setPayload({
+            ...payload,
+            name: state.name,
+            quizIntro: state.quizIntro,
+            timeOpen: new Date(state.timeOpen),
+            timeClose: new Date(state.timeClose),
+            password: state.password
+        });
+    }
 
     const handleOnChange = e => {
         setPayload({
@@ -117,3 +134,5 @@ export default function Details() {
         </div>
     );
 }
+
+export default withRouter(Details);

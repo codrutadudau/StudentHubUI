@@ -7,7 +7,7 @@ import {
 
 import { quizApi } from '../api';
 
-export const getAllQuizzes = () => (dispatch) => {
+export const getAllQuizzes = () => async(dispatch) => {
     return quizApi.getAllQuizzes()
         .then(response => {
             dispatch({

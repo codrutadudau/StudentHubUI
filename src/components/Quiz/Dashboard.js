@@ -21,13 +21,13 @@ export default function Dashboard() {
     
     const quizzes = useSelector(state => state.quizReducer.quizzes);
 
-    const handleClick = (e, id, action) => {
+    const handleClick = (e, quiz, action) => {
         e.preventDefault();
 
-        if (!id) {
+        if (!quiz.id) {
             history.push(`/quizzes/${action}`);
         } else {
-            history.push(`/quiz/${id}/${action}`);
+            history.push(`/quiz/${quiz.id}/${action}`, quiz);
         }
     };
 
@@ -54,7 +54,7 @@ export default function Dashboard() {
                                         <th scope="row">{value + 1}</th>
                                         <td>{quiz.name}</td>
                                         <td>
-                                            <EditIcon onClick={e => handleClick(e, quiz.id, 'edit')} className={`quiz-table-icon`} />
+                                            <EditIcon onClick={e => handleClick(e, quiz, 'edit')} className={`quiz-table-icon`} />
                                             <DeleteIcon onClick={e => handleClick(e, quiz.id, 'delete')} className={`quiz-table-icon`} />
                                             <VisibilityIcon onClick={e => handleClick(e, quiz.id, 'view')} className={`$quiz-table-icon`} />
                                         </td>
