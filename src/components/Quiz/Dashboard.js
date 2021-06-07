@@ -55,8 +55,8 @@ export default function Dashboard() {
                                         <td>{quiz.name}</td>
                                         <td>
                                             <EditIcon onClick={e => handleClick(e, quiz, 'edit')} className={`quiz-table-icon`} />
-                                            <DeleteIcon onClick={e => handleClick(e, quiz.id, 'delete')} className={`quiz-table-icon`} />
-                                            <VisibilityIcon onClick={e => handleClick(e, quiz.id, 'view')} className={`$quiz-table-icon`} />
+                                            <DeleteIcon onClick={e => handleClick(e, quiz, 'delete')} className={`quiz-table-icon`} />
+                                            <VisibilityIcon onClick={e => handleClick(e, quiz, 'view')} className={`$quiz-table-icon`} />
                                         </td>
                                     </tr>
                                 );
