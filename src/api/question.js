@@ -10,6 +10,10 @@ export const getQuestionsByQuizId = (id) => {
     return axios.get(API_URL + "/questions/quiz/" + id);
 };
 
+export const getQuestionById = (id) => {
+    return axios.get(API_URL + "/questions/" + id);
+};
+
 export const createQuestion = (payload) => {
     return axios.post(API_URL + "/questions", { ...payload });
 };

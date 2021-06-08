@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, useHistory } from "react-router";
+import { useParams, useHistory, withRouter } from "react-router";
 import isEmpty from 'lodash/isEmpty';
-import { getQuestionsByQuizId, createQuestion, editQuestion } from '../../actions/question';
+import { getQuestionById, createQuestion, editQuestion } from '../../actions/question';
 
-export default function Details({location: { state } }) {
+export function Details({ location: { state } }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const params = useParams();
@@ -19,7 +19,7 @@ export default function Details({location: { state } }) {
 
     useEffect(() => {
         if (!isEmpty(params) && !state) {
-            dispatch(getQuestionsByQuizId(params.id));
+            dispatch(getQuestionById(params.id));
         }
     }, []);
 
@@ -38,7 +38,7 @@ export default function Details({location: { state } }) {
     const setPayloadForm = (state) =>{
         setPayload({
             ...payload,
-            name: state.name,
+            description: state.description,
             defaultGrade: state.defaultGrade,
             hasMultipleAnswers: state.hasMultipleAnswers
         });
@@ -53,29 +53,22 @@ export default function Details({location: { state } }) {
 
     const handleSubmit = e => {
         e.preventDefault();
+
         if (location.pathname.includes('/create')) {
-            dispatch(
-                createQuestion({
-                    ...payload
-                })
-            ).then(() => {
-                history.push('/questions');
-            });
+            dispatch(createQuestion(payload))
+                .then(() => {
+                    history.push('/questions');
+                });
 
             return;
         }
-        dispatch(
-            editQuestion(
-                params.id,
-                {
-                    ...payload
-                }
-            )   
-        ).then(() => {
-            history.push('/questions');
-        });
+
+        dispatch(editQuestion(params.id, payload))
+            .then(() => {
+                history.push('/questions');
+            });
     }
-    
+
     return (
         <div className="page-content">
             <Container className="d-flex justify-content-center question">
@@ -117,3 +110,5 @@ export default function Details({location: { state } }) {
         </div>
     );
 }
+
+export default withRouter(Details);

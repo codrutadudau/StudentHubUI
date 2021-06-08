@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router";
 import { Container } from 'react-bootstrap';
 import map from 'lodash/map';
+import isEmpty from 'lodash/isEmpty';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import VisibilityIcon from '@material-ui/icons/Visibility';
@@ -52,35 +53,39 @@ export default function Dashboard() {
                     id={modalData.id}
                     name={modalData.name}
                 />
-                <table className={`table table-striped quiz-table`}>
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            map(quizzes, (quiz, value) => {
-                                return (
-                                    <tr key={value}>
-                                        <th scope="row">{value + 1}</th>
-                                        <td>{quiz.name}</td>
-                                        <td>
-                                            <EditIcon onClick={e => handleClick(e, quiz, 'edit')} className="quiz-table-icon quiz-table-icon--edit" />
-                                            <DeleteIcon 
-                                                onClick={() => { setModalShow(true); setModalData({ id: quiz.id, name: quiz.name }) }} 
-                                                className="quiz-table-icon quiz-table-icon--delete"
-                                            />
-                                            <VisibilityIcon onClick={e => handleClick(e, quiz, 'view')} className="quiz-table-icon quiz-table-icon--view" />
-                                        </td>
-                                    </tr>
-                                );
-                            })
-                        }
-                    </tbody>
-                </table>
+                {
+                    !isEmpty(quizzes) ?
+                        <table className={`table table-striped quiz-table`}>
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                map(quizzes, (quiz, value) => {
+                                    return (
+                                        <tr key={value}>
+                                            <th scope="row">{value + 1}</th>
+                                            <td>{quiz.name}</td>
+                                            <td>
+                                                <EditIcon onClick={e => handleClick(e, quiz, 'edit')} className="quiz-table-icon quiz-table-icon--edit" />
+                                                <DeleteIcon
+                                                    onClick={() => { setModalShow(true); setModalData({ id: quiz.id, name: quiz.name }) }}
+                                                    className="quiz-table-icon quiz-table-icon--delete"
+                                                />
+                                                <VisibilityIcon onClick={e => handleClick(e, quiz, 'view')} className="quiz-table-icon quiz-table-icon--view" />
+                                            </td>
+                                        </tr>
+                                    );
+                                })
+                            }
+                        </tbody>
+                    </table> :
+                    <p>No quizzes available</p>
+                }
             </Container>
         </div>
     );

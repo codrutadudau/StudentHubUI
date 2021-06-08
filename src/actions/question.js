@@ -1,6 +1,7 @@
 import {
     GET_QUESTIONS,
     GET_QUESTIONS_BY_QUIZ,
+    GET_QUESTION_BY_ID,
     CREATE_QUESTION_SUCCESS,
     CREATE_QUESTION_FAIL,
     EDIT_QUESTION_SUCCESS,
@@ -30,6 +31,20 @@ export const getQuestionsByQuizId = (id) => (dispatch) => {
             dispatch({
                 type: GET_QUESTIONS_BY_QUIZ,
                 payload: { questions: response.data },
+            });
+        })
+        .catch(error => {
+            const message = error.response.data.message;
+        }
+    );
+};
+
+export const getQuestionById = (id) => (dispatch) => {
+    return questionApi.getQuestionById(id)
+        .then(response => {
+            dispatch({
+                type: GET_QUESTION_BY_ID,
+                payload: { question: response.data },
             });
         })
         .catch(error => {
@@ -71,7 +86,7 @@ export const editQuestion = (id, payload) => (dispatch) => {
 };
 
 export const deleteQuestion = (id) => (dispatch) => {
-    return editQuestion.deleteQuestion(id)
+    return questionApi.deleteQuestion(id)
         .then(() => {
             dispatch({
                 type: DELETE_QUESTION,
