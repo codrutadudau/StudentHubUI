@@ -39,7 +39,6 @@ export default function Details() {
                                     <p key={index}>{question.question.description}</p>
                                     {
                                         map(question.answers, (answer, index) => {
-                                            console.log(question.question.hasMultipleAnswers);
                                             return (
                                                 <>
                                                     <input name={`question${question.id}`} type={question.question.hasMultipleAnswers ? 'checkbox' : 'radio'} ></input>

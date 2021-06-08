@@ -16,7 +16,7 @@ export default function AddQuizQuestion(props) {
         hasMultipleAnswers: ""
     });
     const id = props.data.id;
-console.log(payload)
+
     useEffect(() => {
         if (id) {
             setPayload(props.data);

@@ -57,7 +57,6 @@ export const createQuiz = (payload) => (dispatch) => {
 };
 
 export const addQuizQuestion = (id, payload) => (dispatch) => {
-    console.log(id);
     return quizApi.addQuizQuestion(id, payload)
         .then(() => {
             dispatch({
