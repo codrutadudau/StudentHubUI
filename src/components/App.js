@@ -43,7 +43,7 @@ function App() {
                 <PrivateRoute path="/questions" exact component={QuestionDashboard} />
                 <PrivateRoute path="/quiz/:id/view" exact component={QuizView} />
                 <PrivateRoute path="/quiz/:id/:action" exact component={QuizDetails} />
-                <PrivateRoute path="/question/:id" exact component={QuestionDetails} />
+                <PrivateRoute path="/question/:id/" exact component={QuestionDetails} />
                 <PrivateRoute path="/answer/:id" exact component={AnswerDetails} />
                 <AdminRoute path="/admin" component={AdminDashboard} />
             </Switch>
