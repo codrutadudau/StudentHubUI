@@ -68,12 +68,12 @@ export default function Dashboard() {
                                         <th scope="row">{value + 1}</th>
                                         <td>{quiz.name}</td>
                                         <td>
-                                            <EditIcon onClick={e => handleClick(e, quiz, 'edit')} className={`quiz-table-icon`} />
+                                            <EditIcon onClick={e => handleClick(e, quiz, 'edit')} className="quiz-table-icon quiz-table-icon--edit" />
                                             <DeleteIcon 
                                                 onClick={() => { setModalShow(true); setModalData({ id: quiz.id, name: quiz.name }) }} 
-                                                className={`quiz-table-icon`} 
+                                                className="quiz-table-icon quiz-table-icon--delete"
                                             />
-                                            <VisibilityIcon onClick={e => handleClick(e, quiz, 'view')} className={`$quiz-table-icon`} />
+                                            <VisibilityIcon onClick={e => handleClick(e, quiz, 'view')} className="quiz-table-icon quiz-table-icon--view" />
                                         </td>
                                     </tr>
                                 );
