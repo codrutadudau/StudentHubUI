@@ -2,16 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
 import Datetime from 'react-datetime';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, withRouter } from "react-router";
+import { useParams, withRouter, useHistory } from "react-router";
 import isEmpty from 'lodash/isEmpty';
 import "react-datetime/css/react-datetime.css";
 
-import { getQuizById, createQuiz } from '../../actions/quiz';
+import { getQuizById, createQuiz, editQuiz } from '../../actions/quiz';
 
-export function Details({location: {state}}) {
+export function Details({ location: { state } }) {
     const dispatch = useDispatch();
+    const history = useHistory();
     const params = useParams();
-    const quizReducer = useSelector(state => state.quizReducer);
+    const quiz = useSelector(state => state.quizReducer.quiz);
 
     const [payload, setPayload] = useState({
         name: "",
@@ -29,17 +30,15 @@ export function Details({location: {state}}) {
     
     useEffect(() => {
         if (state) {
-            console.log(2)
             setPayloadForm(state);
         }
     }, [state]);
 
     useEffect(() => {
-        if (!state && quizReducer.quiz) {
-            console.log(1)
-            setPayloadForm(quizReducer.quiz);
+        if (!state && quiz && location.pathname.includes('/edit')) {
+            setPayloadForm(quiz);
         }
-    }, [quizReducer.quiz]);
+    }, [quiz]);
 
     const setPayloadForm = (state) =>{
         setPayload({
@@ -75,14 +74,32 @@ export function Details({location: {state}}) {
 
     const handleSubmit = e => {
         e.preventDefault();
+        if (location.pathname.includes('/create')) {
+            dispatch(
+                createQuiz({
+                    ...payload,
+                    timeOpen: (payload.timeOpen).toISOString(),
+                    timeClose: (payload.timeClose).toISOString()
+                })
+            ).then(() => {
+                history.push('/quizzes');
+            });
+
+            return;
+        }
 
         dispatch(
-            createQuiz({
-                ...payload,
-                timeOpen: (payload.timeOpen).toISOString(),
-                timeClose: (payload.timeClose).toISOString()
-            })
-        );
+            editQuiz(
+                params.id,
+                {
+                    ...payload,
+                    timeOpen: (payload.timeOpen).toISOString(),
+                    timeClose: (payload.timeClose).toISOString()
+                }
+            )
+        ).then(() => {
+            history.push('/quizzes');
+        });
     }
 
     return (

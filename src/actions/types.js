@@ -10,6 +10,9 @@ export const GET_QUESTIONS_BY_QUIZ = "GET_QUESTIONS_BY_QUIZ";
 export const GET_QUIZ = "GET_QUIZ";
 export const CREATE_QUIZ_SUCCESS = "CREATE_QUIZ_SUCCESS";
 export const CREATE_QUIZ_FAIL = "CREATE_QUIZ_FAIL";
+export const EDIT_QUIZ_SUCCESS = "EDIT_QUIZ_SUCCESS";
+export const EDIT_QUIZ_FAIL = "EDIT_QUIZ_FAIL";
+export const DELETE_QUIZ = "DELETE_QUIZ";
 
 export const GET_USERS = "GET_USERS";
 export const GET_USER = "GET_USER";
