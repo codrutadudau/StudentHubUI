@@ -4,15 +4,24 @@ import Datetime from 'react-datetime';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, withRouter, useHistory } from "react-router";
 import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import "react-datetime/css/react-datetime.css";
 
+import AddQuizQuestion from '../Modals/AddQuizQuestion';
+
 import { getQuizById, createQuiz, editQuiz } from '../../actions/quiz';
+import { getQuestionsByQuizId } from '../../actions/question';
 
 export function Details({ location: { state } }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const params = useParams();
+
     const quiz = useSelector(state => state.quizReducer.quiz);
+    const questions = useSelector(state => state.questionReducer.questions);
 
     const [payload, setPayload] = useState({
         name: "",
@@ -20,6 +29,14 @@ export function Details({ location: { state } }) {
         timeOpen: "",
         timeClose: "",
         password: "",
+    });
+    const [modalShow, setModalShow] = useState(false);
+    const [modalData, setModalData] = useState({
+        id: "",
+        description: "",
+        hasMultipleAnswers: "",
+        defaultGrade: "",
+        quizId: ""
     });
 
     useEffect(() => {
@@ -39,6 +56,10 @@ export function Details({ location: { state } }) {
             setPayloadForm(quiz);
         }
     }, [quiz]);
+
+    useEffect(() => {
+        dispatch(getQuestionsByQuizId(params.id));
+    }, []);
 
     const setPayloadForm = (state) =>{
         setPayload({
@@ -70,6 +91,27 @@ export function Details({ location: { state } }) {
             ...payload,
             timeClose: new Date(e.toString())
         });
+    }
+
+    const handleClick = (e, question, action) => {
+        setModalShow(true);
+        if (action === 'create') {
+            setModalData({
+                id: "",
+                description: "",
+                hasMultipleAnswers: "",
+                defaultGrade: "",
+                quizId: params.id
+            });
+        } else {
+            setModalData({
+                id: question.id,
+                description: question.description,
+                hasMultipleAnswers: question.hasMultipleAnswers + '',
+                defaultGrade: question.defaultGrade,
+                quizId: params.id
+            });
+        }
     }
 
     const handleSubmit = e => {
@@ -105,6 +147,11 @@ export function Details({ location: { state } }) {
     return (
         <div className="page-content">
             <Container className="d-flex justify-content-center quiz">
+                <AddQuizQuestion
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                    data={modalData}
+                />
                 <Form onSubmit={handleSubmit}>
                     <Form.Group>
                         <Form.Label>Quiz Name</Form.Label>
@@ -147,6 +194,45 @@ export function Details({ location: { state } }) {
                         <Button type="submit">Submit</Button>
                     </Form.Group>
                 </Form>
+                <div className="quiz-questions">
+                    <div onClick={e => handleClick(e, null, 'create')} className="btn btn-success quiz-questions-new">
+                        <AddCircleOutlineIcon className="quiz-questions-new-icon" />
+                        <span className="quiz-question-new-button">Add quiz question</span>
+                    </div>
+                    <div className="quiz-questions-list">
+                        {
+                            !isEmpty(questions) ?
+                                <table className={`table table-striped quiz-questions-list-table`}>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">description</th>
+                                            <th scope="col">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            map(questions, (question, index) => {
+                                                return (
+                                                    <tr key={index}>
+                                                        <th scope="row">{index + 1}</th>
+                                                        <td>{question.question.description}</td>
+                                                        <td>
+                                                            <EditIcon onClick={e => handleClick(e, question.question, 'edit')} className="quiz-questions-list-table-icon quiz-questions-list-table-icon--edit" />
+                                                            <DeleteIcon
+                                                                className="quiz-questions-list-table-icon quiz-questions-list-table-icon--delete"
+                                                            />
+                                                        </td>
+                                                    </tr>
+                                                );
+                                            })
+                                        }
+                                    </tbody>
+                                </table> :
+                                <p>This quiz has no questions available</p>
+                        }
+                    </div>
+                </div>
             </Container>
         </div>
     );

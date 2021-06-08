@@ -47,6 +47,53 @@
 .quiz {
     flex-direction: column;
 
+    &-questions {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+
+        &-new {
+            width: 180px;
+            margin: 10px 0 40px auto;
+            padding: 5px !important;
+
+            &-icon {
+                position: relative;
+                bottom: 1px;
+                right: 5px;
+                font-size: 18px !important;
+            }
+
+            &-button {
+                font-size: 12px;
+            }
+        }
+
+        &-list-table {
+
+            &-icon {
+                margin-right: 3px;
+                cursor: pointer;
+
+                &--edit {
+                    color: #bbaf20;
+                }
+
+                &--delete {
+                    color: #ad1212;
+                }
+
+                &--view {
+                    color: #559006;
+                }
+            }
+        }
+    }
+}
+
+.quiz-view {
+    flex-direction: column;
+
     &-title {
         padding: 20px 0;
         text-align: center;

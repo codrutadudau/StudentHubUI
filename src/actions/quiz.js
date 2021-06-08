@@ -5,7 +5,9 @@ import {
     CREATE_QUIZ_FAIL,
     EDIT_QUIZ_SUCCESS,
     EDIT_QUIZ_FAIL,
-    DELETE_QUIZ
+    DELETE_QUIZ,
+    ADD_QUIZ_QUESTION_SUCCESS,
+    ADD_QUIZ_QUESTION_FAIL
 } from "./types";
 
 import { quizApi } from '../api';
@@ -23,7 +25,6 @@ export const getAllQuizzes = () => async(dispatch) => {
         }
     );
 };
-
 
 export const getQuizById = (id) => (dispatch) => {
     return quizApi.getQuizById(id)
@@ -50,6 +51,23 @@ export const createQuiz = (payload) => (dispatch) => {
             const message = error.response.data.message;
             dispatch({
                 type: CREATE_QUIZ_FAIL,
+            });
+        }
+    );
+};
+
+export const addQuizQuestion = (id, payload) => (dispatch) => {
+    console.log(id);
+    return quizApi.addQuizQuestion(id, payload)
+        .then(() => {
+            dispatch({
+                type: ADD_QUIZ_QUESTION_SUCCESS,
+            });
+        })
+        .catch(error => {
+            const message = error.response.data.message;
+            dispatch({
+                type: ADD_QUIZ_QUESTION_FAIL,
             });
         }
     );

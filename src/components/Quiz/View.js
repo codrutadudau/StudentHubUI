@@ -24,18 +24,18 @@ export default function Details() {
     return (
         quiz &&
         <div className="page-content">
-            <Container className="d-flex justify-content-center quiz">
-                <h2 className="quiz-title">
+            <Container className="d-flex justify-content-center quiz-view">
+                <h2 className="quiz-view-title">
                     {quiz.name}
                 </h2>
-                <div className="quiz-intro">
+                <div className="quiz-view-intro">
                     {quiz.quizIntro}
                 </div>
-                <div className="quiz-questions">
+                <div className="quiz-view-questions">
                     {
                         map(questions, (question, index) => {
                             return (
-                                <div className="quiz-questions-question" key={index}>
+                                <div className="quiz-view-questions-question" key={index}>
                                     <p key={index}>{question.question.description}</p>
                                     {
                                         map(question.answers, (answer, index) => {
