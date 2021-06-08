@@ -2,16 +2,19 @@ import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 
-import { deleteQuiz } from '../../actions/quiz';
+import { deleteQuiz, getAllQuizzes } from '../../actions/quiz';
 
 export default function DeleteQuiz(props) {
     const dispatch = useDispatch();
 
     const handleClick = e => {
-        dispatch(deleteQuiz(props.id));
+        dispatch(deleteQuiz(props.id)).then(() => {
+            dispatch(getAllQuizzes());
+        });
+
         props.onHide();
     }
-  
+
     return (
         <Modal
             {...props}
