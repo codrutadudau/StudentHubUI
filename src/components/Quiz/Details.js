@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams, withRouter, useHistory } from "react-router";
 import isEmpty from 'lodash/isEmpty';
 import "react-datetime/css/react-datetime.css";
+
 import { getQuizById, createQuiz, editQuiz } from '../../actions/quiz';
 
 export function Details({ location: { state } }) {
