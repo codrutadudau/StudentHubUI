@@ -9,11 +9,11 @@
 }
 
 .navbar-right {
-    position: relative;
-    top: 40px;
+    //position: relative;
+    //top: 40px;
     height: 100%;
     width: 15%;
-    background-color: red;
+    //background-color: red;
     min-height: 370px;
 }
 
@@ -41,30 +41,65 @@ li {
 }
 
 .dashboard {
-    flex-direction: column;
+    //flex-direction: column;
 
     &-grid {
-        position: fix;
-        flex-direction: row;
 
         &-item {
             display: inline-block;
-            height: 200px;
-            width: 250px;
-            background: red;;
+            height: 150px;
+            width: 300px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
+            margin-top: 30px;
 
             &:last-of-type {
-                margin-left: 30px;
+                margin-left: 75px;
             }
 
-            &-item-2{
-                position: relative !important;
+            &-title-1{
+                position: fixed;
+                color: #999;
+                font-size: 14px;
+                margin-left: 175px;
+                
             }
+
+            &-title-2{
+                position: fixed;
+                color: #999;
+                font-size: 14px;
+                margin-left: 185px;
+            }
+            
+            &-2-1{
+                position: fixed;
+                background: linear-gradient(60deg, #ffa726, #fb8c00);;
+                border-radius: 5px;
+                box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
+                padding: 0 30px 20px;
+                margin-left: 30px;
+                top: 50px;
+            }
+
+            &-2-2{
+                position: fixed;
+                background: linear-gradient(60deg, #66bb6a, #43a047);
+                border-radius: 5px;
+                box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
+                padding: 0 30px 20px;
+                margin-left: 30px;
+                top: 50px;
+
+            }
+
         }
     }
     
     &-graph-1-container {
         position: fixed;
+        margin-bottom: 20px;
         bottom: 0;
         background: white;
         border-radius: 10px;
@@ -74,6 +109,7 @@ li {
         &-users {
             background: linear-gradient(60deg, #66bb6a, #43a047);
             border-radius: 10px;
+            box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
             position: relative;
             top: -30px;
 
@@ -93,6 +129,10 @@ li {
             margin-bottom: 0;
         }
 
+    }
+
+    .MuiSvgIcon-root{
+        font-size: 3rem;
     }
 
 }
