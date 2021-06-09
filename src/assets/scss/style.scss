@@ -18,6 +18,7 @@
 #root {
   display: flex;
   justify-content: center;
+  background: yellow;//#f6f6f6;
 }
 
 .page-content {
@@ -25,7 +26,6 @@
     top: 40px;
     height: calc(100vh - 40px);
     width: 70%;
-    background: $white;
 }
 
 

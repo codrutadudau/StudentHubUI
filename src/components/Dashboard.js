@@ -6,6 +6,8 @@ import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import HomeIcon from '@material-ui/icons/Home';
 import PeopleIcon from '@material-ui/icons/People';
+import ChartistGraph from 'react-chartist';
+import FaceSharpIcon from '@material-ui/icons/FaceSharp';
 
 import '../assets/scss/dashboard.scss';
 
@@ -40,14 +42,28 @@ export default function Dashboard() {
         ]);
     }
 
+    const data = {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+        series: [
+          [5, 2, 4, 2, 0]
+        ],
+      };
+  
+    const options = {
+        width: '600px',
+        height: '250px',
+    };
+  
+    var type = 'Line'
+
     return (
         <>
             <nav className='navbar-left'>
                 <ul className='nav-menu-items'>
                     {
-                        map(navbarItems(), item => {
+                        map(navbarItems(), (item, index) => {
                             return (
-                                <li className={item.cName}>
+                                <li key={index} className={item.cName}>
                                     <Link to={item.path}>
                                         {item.icon}
                                         <span>{item.title}</span>
@@ -60,6 +76,24 @@ export default function Dashboard() {
             </nav>
             <div className="page-content">
                 <Container className="d-flex justify-content-center dashboard">
+                    <div className="dashboard-grid">
+                        <div className="dashboard-grid-item">
+                            <div className="dashboard-grid-item-2"></div>
+                        </div>
+                        <div className="dashboard-grid-item">
+
+                        </div>
+                    </div>
+                    <div className="dashboard-graph-1-container">
+                        <ChartistGraph
+                            className="dashboard-graph-1-container-users"
+                            data={data}
+                            options={options}
+                            type={type} 
+                        />
+                        <h4 className="dashboard-graph-1-container-title">Users Registered</h4>
+                        <span className="dashboard-graph-1-container-subtitle">2020-2021 Academic Year</span>
+                    </div>
                 </Container>
             </div>
             <div className="navbar-right">

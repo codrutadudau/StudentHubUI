@@ -4,7 +4,7 @@
     position: relative;
     top: 40px;
     width: 12%;
-    margin-right: 80px;
+    margin-right: 60px;
     background-color: #060b26;
 }
 
@@ -41,9 +41,59 @@ li {
 }
 
 .dashboard {
-    //background-color: yellow;
-    //margin-top: 80px;
-    height: 100%;
-    margin-right: 50% !important;
+    flex-direction: column;
+
+    &-grid {
+        position: fix;
+        flex-direction: row;
+
+        &-item {
+            display: inline-block;
+            height: 200px;
+            width: 250px;
+            background: red;;
+
+            &:last-of-type {
+                margin-left: 30px;
+            }
+
+            &-item-2{
+                position: relative !important;
+            }
+        }
+    }
     
+    &-graph-1-container {
+        position: fixed;
+        bottom: 0;
+        background: white;
+        border-radius: 10px;
+        padding: 0 40px 20px;
+        box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
+
+        &-users {
+            background: linear-gradient(60deg, #66bb6a, #43a047);
+            border-radius: 10px;
+            position: relative;
+            top: -30px;
+
+        }
+
+        &-title {
+            color: #3C4858;
+            font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        &-subtitle {
+            color: #999;
+            margin: 0;
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+
+    }
+
 }
+
