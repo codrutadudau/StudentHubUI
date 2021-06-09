@@ -6,7 +6,8 @@ import {
 
 const initialState = {
     questions: null,
-    question: null
+    question: null,
+    quizQuestions: null
 };
 
 const questionReducer = (state = initialState, action) => {
@@ -21,7 +22,7 @@ const questionReducer = (state = initialState, action) => {
         case GET_QUESTIONS_BY_QUIZ:
             return {
                 ...state,
-                questions: payload.questions
+                quizQuestions: payload.questions
             };
         case GET_QUESTION_BY_ID:
             return {

@@ -21,7 +21,7 @@ export function Details({ location: { state } }) {
     const params = useParams();
 
     const quiz = useSelector(state => state.quizReducer.quiz);
-    const questions = useSelector(state => state.questionReducer.questions);
+    const questions = useSelector(state => state.questionReducer.quizQuestions);
 
     const [payload, setPayload] = useState({
         name: "",
