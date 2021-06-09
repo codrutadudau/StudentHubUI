@@ -18,6 +18,10 @@ export const addQuizQuestion = (id, payload) => {
     return axios.post(API_URL + "/quizzes/" + id + "/question", { ...payload });
 };
 
+export const deleteQuizQuestion = (id, questionId) => {
+    return axios.delete(API_URL + "/quizzes/" + id + "/question/" + questionId);
+};
+
 export const editQuiz = (id, payload) => {
     return axios.put(API_URL + "/quizzes/" + id, { ...payload });
 };

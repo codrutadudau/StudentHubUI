@@ -11,6 +11,7 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import "react-datetime/css/react-datetime.css";
 
 import AddQuizQuestion from '../Modals/AddQuizQuestion';
+import DeleteQuizQuestion from '../Modals/DeleteQuizQuestion';
 
 import { getQuizById, createQuiz, editQuiz } from '../../actions/quiz';
 import { getQuestionsByQuizId } from '../../actions/question';
@@ -30,13 +31,20 @@ export function Details({ location: { state } }) {
         timeClose: "",
         password: "",
     });
-    const [modalShow, setModalShow] = useState(false);
-    const [modalData, setModalData] = useState({
+    const [editModalShow, setEditModalShow] = useState(false);
+    const [editModalData, setEditModalData] = useState({
         id: "",
         description: "",
         hasMultipleAnswers: "",
         defaultGrade: "",
         quizId: ""
+    });
+    const [deleteModalShow, setDeleteModalShow] = useState(false);
+    const [deleteModalData, setDeleteModalData] = useState({
+        id: "",
+        description: "",
+        quizId: "",
+        quizName: ""
     });
 
     useEffect(() => {
@@ -94,9 +102,9 @@ export function Details({ location: { state } }) {
     }
 
     const handleClick = (e, question, action) => {
-        setModalShow(true);
+        setEditModalShow(true);
         if (action === 'create') {
-            setModalData({
+            setEditModalData({
                 id: "",
                 description: "",
                 hasMultipleAnswers: "",
@@ -104,7 +112,7 @@ export function Details({ location: { state } }) {
                 quizId: params.id
             });
         } else {
-            setModalData({
+            setEditModalData({
                 id: question.id,
                 description: question.description,
                 hasMultipleAnswers: question.hasMultipleAnswers + '',
@@ -112,6 +120,18 @@ export function Details({ location: { state } }) {
                 quizId: params.id
             });
         }
+    }
+
+    const handleDeleteClick = (e, question) => {
+        e.preventDefault();
+
+        setDeleteModalShow(true);
+        setDeleteModalData({
+            id: question.id,
+            description: question.description,
+            quizId: params.id,
+            quizName: payload.name
+        });
     }
 
     const handleSubmit = e => {
@@ -148,9 +168,14 @@ export function Details({ location: { state } }) {
         <div className="page-content">
             <Container className="d-flex justify-content-center quiz">
                 <AddQuizQuestion
-                    show={modalShow}
-                    onHide={() => setModalShow(false)}
-                    data={modalData}
+                    show={editModalShow}
+                    onHide={() => setEditModalShow(false)}
+                    data={editModalData}
+                />
+                <DeleteQuizQuestion
+                    show={deleteModalShow}
+                    onHide={() => setDeleteModalShow(false)}
+                    data={deleteModalData}
                 />
                 <Form onSubmit={handleSubmit}>
                     <Form.Group>
@@ -219,9 +244,7 @@ export function Details({ location: { state } }) {
                                                         <td>{question.question.description}</td>
                                                         <td>
                                                             <EditIcon onClick={e => handleClick(e, question.question, 'edit')} className="quiz-questions-list-table-icon quiz-questions-list-table-icon--edit" />
-                                                            <DeleteIcon
-                                                                className="quiz-questions-list-table-icon quiz-questions-list-table-icon--delete"
-                                                            />
+                                                            <DeleteIcon onClick={e => handleDeleteClick(e, question.question)} className="quiz-questions-list-table-icon quiz-questions-list-table-icon--delete" />
                                                         </td>
                                                     </tr>
                                                 );

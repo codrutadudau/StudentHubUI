@@ -3,7 +3,7 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useHistory } from "react-router";
 
-import { createQuestion, editQuestion, getQuestionsByQuizId } from '../../actions/question';
+import { editQuestion, getQuestionsByQuizId } from '../../actions/question';
 import { addQuizQuestion } from '../../actions/quiz';
 
 export default function AddQuizQuestion(props) {

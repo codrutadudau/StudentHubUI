@@ -82,11 +82,25 @@
                 &--delete {
                     color: #ad1212;
                 }
-
-                &--view {
-                    color: #559006;
-                }
             }
+        }
+    }
+
+    &-modal {
+
+        &-name {
+            color: #dc3545;
+        }
+    }
+
+    &-delete-question-modal {
+
+        &-description {
+            color: #dc3545;
+        }
+
+        &-quiz-name {
+            color: #0d6efd;
         }
     }
 }
