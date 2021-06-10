@@ -220,14 +220,15 @@ export function Details({ location: { state } }) {
                     <Button type="submit">Submit</Button>
                 </Form.Group>
             </Form>
-            <div className="quiz-questions">
-                <div onClick={e => handleClick(e, null, 'create')} className="btn btn-success quiz-questions-new">
-                    <AddCircleOutlineIcon className="quiz-questions-new-icon" />
-                    <span className="quiz-question-new-button">Add quiz question</span>
-                </div>
-                <div className="quiz-questions-list">
-                    {
-                        params.id ?
+            {
+                params.id ?
+                <div className="quiz-questions">
+                    <div onClick={e => handleClick(e, null, 'create')} className="btn btn-success quiz-questions-new">
+                        <AddCircleOutlineIcon className="quiz-questions-new-icon" />
+                        <span className="quiz-question-new-button">Add quiz question</span>
+                    </div>
+                    <div className="quiz-questions-list">
+                        {
                             !isEmpty(questions) ?
                                 <table className={`table table-striped quiz-questions-list-table`}>
                                     <thead>
@@ -254,11 +255,12 @@ export function Details({ location: { state } }) {
                                         }
                                     </tbody>
                                 </table> :
-                                <p>This quiz has no questions available</p> :
-                                <div></div>
-                    }
-                </div>
-            </div>
+                                <p>This quiz has no questions available</p>
+                        }
+                    </div>
+                </div> :
+                <div></div>
+            }
         </Container>
     );
 }
