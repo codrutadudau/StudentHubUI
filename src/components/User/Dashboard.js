@@ -76,13 +76,11 @@ export default function Dashboard() {
 
     return (
         users &&
-        <div className="page-content">
-            <MUIDataTable
-                className="user-table"
-                title={"Users list"}
-                data={users}
-                columns={columns}
-            />
-        </div>
+        <MUIDataTable
+            className="user-table"
+            title={"Users list"}
+            data={users}
+            columns={columns}
+        />
     );
 }

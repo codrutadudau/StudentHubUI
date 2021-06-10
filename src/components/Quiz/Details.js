@@ -167,101 +167,99 @@ export function Details({ location: { state } }) {
     }
 
     return (
-        <div className="page-content">
-            <Container className="d-flex justify-content-center quiz">
-                <AddQuizQuestion
-                    show={editModalShow}
-                    onHide={() => setEditModalShow(false)}
-                    data={editModalData}
-                />
-                <DeleteQuizQuestion
-                    show={deleteModalShow}
-                    onHide={() => setDeleteModalShow(false)}
-                    data={deleteModalData}
-                />
-                <Form onSubmit={handleSubmit}>
-                    <Form.Group>
-                        <Form.Label>Quiz Name</Form.Label>
-                        <Form.Control
-                            type="text"
-                            name="name"
-                            onChange={handleOnChange}
-                            value={payload.name}
-                        />
-                        <Form.Label>Quiz Intro</Form.Label>
-                        <Form.Control
-                            type="text"
-                            name="quizIntro"
-                            onChange={handleOnChange}
-                            value={payload.quizIntro}
-                        />
-                        <Form.Label>Time Open</Form.Label>
-                        <Datetime
-                            value={payload.timeOpen}
-                            onChange={handleOnChangeTimeOpen}
-                            dateFormat="YYYY-MM-DD"
-                            timeFormat="HH:mm"
-                            utc={true}
-                        />
-                        <Form.Label>Time Close</Form.Label>
-                        <Datetime
-                            value={payload.timeClose}
-                            onChange={handleOnChangeTimeClose}
-                            dateFormat="YYYY-MM-DD"
-                            timeFormat="HH:mm"
-                            utc={true}
-                        />
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control
-                            type="text"
-                            name="password"
-                            onChange={handleOnChange}
-                            value={payload.password}
-                        />
-                        <Button type="submit">Submit</Button>
-                    </Form.Group>
-                </Form>
-                <div className="quiz-questions">
-                    <div onClick={e => handleClick(e, null, 'create')} className="btn btn-success quiz-questions-new">
-                        <AddCircleOutlineIcon className="quiz-questions-new-icon" />
-                        <span className="quiz-question-new-button">Add quiz question</span>
-                    </div>
-                    <div className="quiz-questions-list">
-                        {
-                            params.id ?
-                                !isEmpty(questions) ?
-                                    <table className={`table table-striped quiz-questions-list-table`}>
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">description</th>
-                                                <th scope="col">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {
-                                                map(questions, (question, index) => {
-                                                    return (
-                                                        <tr key={index}>
-                                                            <th scope="row">{index + 1}</th>
-                                                            <td>{question.question.description}</td>
-                                                            <td>
-                                                                <EditIcon onClick={e => handleClick(e, question.question, 'edit')} className="quiz-questions-list-table-icon quiz-questions-list-table-icon--edit" />
-                                                                <DeleteIcon onClick={e => handleDeleteClick(e, question.question)} className="quiz-questions-list-table-icon quiz-questions-list-table-icon--delete" />
-                                                            </td>
-                                                        </tr>
-                                                    );
-                                                })
-                                            }
-                                        </tbody>
-                                    </table> :
-                                    <p>This quiz has no questions available</p> :
-                                    <div></div>
-                        }
-                    </div>
+        <Container className="d-flex justify-content-center quiz">
+            <AddQuizQuestion
+                show={editModalShow}
+                onHide={() => setEditModalShow(false)}
+                data={editModalData}
+            />
+            <DeleteQuizQuestion
+                show={deleteModalShow}
+                onHide={() => setDeleteModalShow(false)}
+                data={deleteModalData}
+            />
+            <Form onSubmit={handleSubmit}>
+                <Form.Group>
+                    <Form.Label>Quiz Name</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="name"
+                        onChange={handleOnChange}
+                        value={payload.name}
+                    />
+                    <Form.Label>Quiz Intro</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="quizIntro"
+                        onChange={handleOnChange}
+                        value={payload.quizIntro}
+                    />
+                    <Form.Label>Time Open</Form.Label>
+                    <Datetime
+                        value={payload.timeOpen}
+                        onChange={handleOnChangeTimeOpen}
+                        dateFormat="YYYY-MM-DD"
+                        timeFormat="HH:mm"
+                        utc={true}
+                    />
+                    <Form.Label>Time Close</Form.Label>
+                    <Datetime
+                        value={payload.timeClose}
+                        onChange={handleOnChangeTimeClose}
+                        dateFormat="YYYY-MM-DD"
+                        timeFormat="HH:mm"
+                        utc={true}
+                    />
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="password"
+                        onChange={handleOnChange}
+                        value={payload.password}
+                    />
+                    <Button type="submit">Submit</Button>
+                </Form.Group>
+            </Form>
+            <div className="quiz-questions">
+                <div onClick={e => handleClick(e, null, 'create')} className="btn btn-success quiz-questions-new">
+                    <AddCircleOutlineIcon className="quiz-questions-new-icon" />
+                    <span className="quiz-question-new-button">Add quiz question</span>
                 </div>
-            </Container>
-        </div>
+                <div className="quiz-questions-list">
+                    {
+                        params.id ?
+                            !isEmpty(questions) ?
+                                <table className={`table table-striped quiz-questions-list-table`}>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">description</th>
+                                            <th scope="col">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            map(questions, (question, index) => {
+                                                return (
+                                                    <tr key={index}>
+                                                        <th scope="row">{index + 1}</th>
+                                                        <td>{question.question.description}</td>
+                                                        <td>
+                                                            <EditIcon onClick={e => handleClick(e, question.question, 'edit')} className="quiz-questions-list-table-icon quiz-questions-list-table-icon--edit" />
+                                                            <DeleteIcon onClick={e => handleDeleteClick(e, question.question)} className="quiz-questions-list-table-icon quiz-questions-list-table-icon--delete" />
+                                                        </td>
+                                                    </tr>
+                                                );
+                                            })
+                                        }
+                                    </tbody>
+                                </table> :
+                                <p>This quiz has no questions available</p> :
+                                <div></div>
+                    }
+                </div>
+            </div>
+        </Container>
     );
 }
 

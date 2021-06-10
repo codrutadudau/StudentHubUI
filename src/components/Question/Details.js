@@ -70,44 +70,42 @@ export function Details({ location: { state } }) {
     }
 
     return (
-        <div className="page-content">
-            <Container className="d-flex justify-content-center question">
-                <Form onSubmit={handleSubmit}>
-                    <Form.Group>
-                        <Form.Label>Question Name</Form.Label>
-                        <Form.Control
-                            type="text"
-                            name="description"
-                            onChange={handleOnChange}
-                            value={payload.description}
-                        />
-                        <Form.Label>Default Grade</Form.Label>
-                        <Form.Control
-                            type="number"
-                            name="defaultGrade"
-                            onChange={handleOnChange}
-                            value={payload.defaultGrade}
-                        />
-                        <Form.Label>Multiple Answers</Form.Label>
-                        <Form.Check
-                            type="radio"
-                            label="true"
-                            name="hasMultipleAnswers"
-                            onChange={handleOnChange}
-                            value={true}
-                        />
-                        <Form.Check
-                            type="radio"
-                            label="false"
-                            name="hasMultipleAnswers"
-                            onChange={handleOnChange}
-                            value={false}
-                        />
-                        <Button type="submit">Submit</Button>
-                    </Form.Group>
-                </Form>
-             </Container>
-        </div>
+        <Container className="d-flex justify-content-center question">
+            <Form onSubmit={handleSubmit}>
+                <Form.Group>
+                    <Form.Label>Question Name</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="description"
+                        onChange={handleOnChange}
+                        value={payload.description}
+                    />
+                    <Form.Label>Default Grade</Form.Label>
+                    <Form.Control
+                        type="number"
+                        name="defaultGrade"
+                        onChange={handleOnChange}
+                        value={payload.defaultGrade}
+                    />
+                    <Form.Label>Multiple Answers</Form.Label>
+                    <Form.Check
+                        type="radio"
+                        label="true"
+                        name="hasMultipleAnswers"
+                        onChange={handleOnChange}
+                        value={true}
+                    />
+                    <Form.Check
+                        type="radio"
+                        label="false"
+                        name="hasMultipleAnswers"
+                        onChange={handleOnChange}
+                        value={false}
+                    />
+                    <Button type="submit">Submit</Button>
+                </Form.Group>
+            </Form>
+        </Container>
     );
 }
 

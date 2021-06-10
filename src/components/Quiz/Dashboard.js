@@ -41,52 +41,50 @@ export default function Dashboard() {
     };
 
     return (
-        <div className="page-content">
-            <Container className="d-flex justify-content-center quizzes">
-                <div onClick={e => handleClick(e, null, 'create')} className="btn btn-success quizzes-new">
-                    <AddCircleOutlineIcon className="quizzes-new-icon" />
-                    <span className="quizzes-new-button">Add new quiz</span>
-                </div>
-                <DeleteQuiz 
-                    show={modalShow} 
-                    onHide={() => setModalShow(false)}
-                    id={modalData.id}
-                    name={modalData.name}
-                />
-                {
-                    !isEmpty(quizzes) ?
-                        <table className={`table table-striped quiz-table`}>
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                map(quizzes, (quiz, value) => {
-                                    return (
-                                        <tr key={value}>
-                                            <th scope="row">{value + 1}</th>
-                                            <td>{quiz.name}</td>
-                                            <td>
-                                                <EditIcon onClick={e => handleClick(e, quiz, 'edit')} className="quiz-table-icon quiz-table-icon--edit" />
-                                                <DeleteIcon
-                                                    onClick={() => { setModalShow(true); setModalData({ id: quiz.id, name: quiz.name }) }}
-                                                    className="quiz-table-icon quiz-table-icon--delete"
-                                                />
-                                                <VisibilityIcon onClick={e => handleClick(e, quiz, 'view')} className="quiz-table-icon quiz-table-icon--view" />
-                                            </td>
-                                        </tr>
-                                    );
-                                })
-                            }
-                        </tbody>
-                    </table> :
-                    <p>No quizzes available</p>
-                }
-            </Container>
-        </div>
+        <Container className="d-flex justify-content-center quizzes">
+            <div onClick={e => handleClick(e, null, 'create')} className="btn btn-success quizzes-new">
+                <AddCircleOutlineIcon className="quizzes-new-icon" />
+                <span className="quizzes-new-button">Add new quiz</span>
+            </div>
+            <DeleteQuiz 
+                show={modalShow} 
+                onHide={() => setModalShow(false)}
+                id={modalData.id}
+                name={modalData.name}
+            />
+            {
+                !isEmpty(quizzes) ?
+                    <table className={`table table-striped quiz-table`}>
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            map(quizzes, (quiz, value) => {
+                                return (
+                                    <tr key={value}>
+                                        <th scope="row">{value + 1}</th>
+                                        <td>{quiz.name}</td>
+                                        <td>
+                                            <EditIcon onClick={e => handleClick(e, quiz, 'edit')} className="quiz-table-icon quiz-table-icon--edit" />
+                                            <DeleteIcon
+                                                onClick={() => { setModalShow(true); setModalData({ id: quiz.id, name: quiz.name }) }}
+                                                className="quiz-table-icon quiz-table-icon--delete"
+                                            />
+                                            <VisibilityIcon onClick={e => handleClick(e, quiz, 'view')} className="quiz-table-icon quiz-table-icon--view" />
+                                        </td>
+                                    </tr>
+                                );
+                            })
+                        }
+                    </tbody>
+                </table> :
+                <p>No quizzes available</p>
+            }
+        </Container>
     );
 }

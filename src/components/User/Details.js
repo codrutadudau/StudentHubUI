@@ -20,54 +20,52 @@ export default function Details() {
     
     return (
         user &&
-        <div className="page-content">
-            <Container className="d-flex justify-content-center profile">
-                <Card className="profile-info">
-                    <Card.Body className="profile-info-card">
-                        <img src={mainLogo} />
-                        <span className="profile-info-card-text">{user.firstName} {user.lastName}</span>
-                        <span className="profile-info-card-text">Full Stack Developer</span>
-                        <span className="profile-info-card-text">Bay Area, San Francisco, CA</span>
-                    </Card.Body>
-                </Card>
-                <Card className="profile-data">
-                    <Card.Body className="profile-data-card">
-                        <Form className="profile-data-card-edit-profile">
-                            <Form.Group>
-                                <Form.Label>First name</Form.Label>
-                                <Form.Control
-                                    type="firstName"
-                                    id="firstName"
-                                    disabled={true}
-                                    value={user.firstName}
-                                />
-                            </Form.Group>
-                            <hr />
-                            <Form.Group>
-                                <Form.Label>Last name</Form.Label>
-                                <Form.Control
-                                    type="lastName"
-                                    id="lastName"
-                                    disabled={true}
-                                    value={user.lastName}
-                                />
-                            </Form.Group>
-                            <hr />
-                            <Form.Group>
-                                <Form.Label>Email</Form.Label>
-                                <Form.Control
-                                    type="email"
-                                    id="email"
-                                    disabled={true}
-                                    value={user.email}
-                                />
-                            </Form.Group>
-                            <hr />
-                            <Button type="submit" className="mt-3 auth-inner-submit">Edit</Button>
-                        </Form>
-                    </Card.Body>
-                </Card>
-            </Container>
-        </div>
+        <Container className="d-flex justify-content-center profile">
+            <Card className="profile-info">
+                <Card.Body className="profile-info-card">
+                    <img src={mainLogo} />
+                    <span className="profile-info-card-text">{user.firstName} {user.lastName}</span>
+                    <span className="profile-info-card-text">Full Stack Developer</span>
+                    <span className="profile-info-card-text">Bay Area, San Francisco, CA</span>
+                </Card.Body>
+            </Card>
+            <Card className="profile-data">
+                <Card.Body className="profile-data-card">
+                    <Form className="profile-data-card-edit-profile">
+                        <Form.Group>
+                            <Form.Label>First name</Form.Label>
+                            <Form.Control
+                                type="firstName"
+                                id="firstName"
+                                disabled={true}
+                                value={user.firstName}
+                            />
+                        </Form.Group>
+                        <hr />
+                        <Form.Group>
+                            <Form.Label>Last name</Form.Label>
+                            <Form.Control
+                                type="lastName"
+                                id="lastName"
+                                disabled={true}
+                                value={user.lastName}
+                            />
+                        </Form.Group>
+                        <hr />
+                        <Form.Group>
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control
+                                type="email"
+                                id="email"
+                                disabled={true}
+                                value={user.email}
+                            />
+                        </Form.Group>
+                        <hr />
+                        <Button type="submit" className="mt-3 auth-inner-submit">Edit</Button>
+                    </Form>
+                </Card.Body>
+            </Card>
+        </Container>
     );
 }

@@ -3,8 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import jwt_decode from "jwt-decode";
 
-const AdminRoute = ({ component: Component, ...rest }) => {
-    const isLoggedIn = useSelector(state => state.authReducer.isLoggedIn);
+const AdminRoute = ({ component: Component, layout: Layout, ...rest }) => {
     let roleName = "";
     if (sessionStorage.getItem("token")) {
         roleName = jwt_decode(sessionStorage.getItem("token")).role;
@@ -17,7 +16,7 @@ const AdminRoute = ({ component: Component, ...rest }) => {
                 props => (
                     roleName !== process.env.ROLE_ADMIN ?
                         <Redirect to="/" /> :
-                        <Component {...props} />
+                        <Layout component={Component} />
                 )
             }
         />

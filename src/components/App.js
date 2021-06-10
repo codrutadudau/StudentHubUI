@@ -17,8 +17,8 @@ import UserDetails from './User/Details';
 import QuizDetails from './Quiz/Details';
 import QuizView from './Quiz/View';
 import QuestionDetails from './Question/Details';
-import AnswerDetails from './Answer/Details';
 import AdminDashboard from './Admin/Dashboard';
+import Layout from './Layout';
 
 function App() {
     axios.interceptors.request.use(function (config) {
@@ -32,21 +32,20 @@ function App() {
         <Router>
             <Header />
             <Switch>
-                <PublicRoute path="/" exact component={HomePage} restricted={true} />
-                <PublicRoute path="/sign-in" component={Login} restricted={true} />
-                <PublicRoute path="/sign-up" component={Signup} restricted={true} />
-                <PrivateRoute path="/dashboard" exact component={Dashboard} />
-                <PrivateRoute path="/user/:id" component={UserDetails} />
-                <PrivateRoute path="/users" exact component={UserDashboard} />
-                <PrivateRoute path="/quizzes" exact component={QuizDashboard} />
-                <PrivateRoute path="/quizzes/create" exact component={QuizDetails} />
-                <PrivateRoute path="/questions" exact component={QuestionDashboard} />
-                <PrivateRoute path="/quiz/:id/view" exact component={QuizView} />
-                <PrivateRoute path="/quiz/:id/:action" exact component={QuizDetails} />
-                <PrivateRoute path="/questions/create" exact component={QuestionDetails} />
-                <PrivateRoute path="/question/:id/:action" exact component={QuestionDetails} />
-                <PrivateRoute path="/answer/:id" exact component={AnswerDetails} />
-                <AdminRoute path="/admin" component={AdminDashboard} />
+                <PublicRoute path="/" exact component={HomePage} restricted={true} layout={Layout}/>
+                <PublicRoute path="/sign-in" component={Login} restricted={true} layout={Layout}/>
+                <PublicRoute path="/sign-up" component={Signup} restricted={true} layout={Layout}/>
+                <PrivateRoute path="/dashboard" exact component={Dashboard} layout={Layout}/>
+                <PrivateRoute path="/user/:id" component={UserDetails} layout={Layout}/>
+                <PrivateRoute path="/users" exact component={UserDashboard} layout={Layout}/>
+                <PrivateRoute path="/quizzes" exact component={QuizDashboard} layout={Layout}/>
+                <PrivateRoute path="/quizzes/create" exact component={QuizDetails} layout={Layout}/>
+                <PrivateRoute path="/questions" exact component={QuestionDashboard} layout={Layout}/>
+                <PrivateRoute path="/quiz/:id/view" exact component={QuizView} layout={Layout}/>
+                <PrivateRoute path="/quiz/:id/:action" exact component={QuizDetails} layout={Layout}/>
+                <PrivateRoute path="/questions/create" exact component={QuestionDetails} layout={Layout}/>
+                <PrivateRoute path="/question/:id/:action" exact component={QuestionDetails} layout={Layout}/>
+                <AdminRoute path="/admin" component={AdminDashboard} layout={Layout}/>
             </Switch>
         </Router>
     );
