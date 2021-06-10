@@ -32,9 +32,9 @@ function App() {
         <Router>
             <Header />
             <Switch>
-                <PublicRoute path="/" exact component={HomePage} restricted={true} layout={Layout}/>
-                <PublicRoute path="/sign-in" component={Login} restricted={true} layout={Layout}/>
-                <PublicRoute path="/sign-up" component={Signup} restricted={true} layout={Layout}/>
+                <PublicRoute path="/" exact component={HomePage} restricted={true} />
+                <PublicRoute path="/sign-in" component={Login} restricted={true} />
+                <PublicRoute path="/sign-up" component={Signup} restricted={true} />
                 <PrivateRoute path="/dashboard" exact component={Dashboard} layout={Layout}/>
                 <PrivateRoute path="/user/:id" component={UserDetails} layout={Layout}/>
                 <PrivateRoute path="/users" exact component={UserDashboard} layout={Layout}/>
