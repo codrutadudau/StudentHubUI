@@ -66,7 +66,9 @@ export function Details({ location: { state } }) {
     }, [quiz]);
 
     useEffect(() => {
-        dispatch(getQuestionsByQuizId(params.id));
+        if (params.id) {
+            dispatch(getQuestionsByQuizId(params.id));
+        }
     }, []);
 
     const setPayloadForm = (state) =>{
@@ -226,33 +228,35 @@ export function Details({ location: { state } }) {
                     </div>
                     <div className="quiz-questions-list">
                         {
-                            !isEmpty(questions) ?
-                                <table className={`table table-striped quiz-questions-list-table`}>
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">description</th>
-                                            <th scope="col">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {
-                                            map(questions, (question, index) => {
-                                                return (
-                                                    <tr key={index}>
-                                                        <th scope="row">{index + 1}</th>
-                                                        <td>{question.question.description}</td>
-                                                        <td>
-                                                            <EditIcon onClick={e => handleClick(e, question.question, 'edit')} className="quiz-questions-list-table-icon quiz-questions-list-table-icon--edit" />
-                                                            <DeleteIcon onClick={e => handleDeleteClick(e, question.question)} className="quiz-questions-list-table-icon quiz-questions-list-table-icon--delete" />
-                                                        </td>
-                                                    </tr>
-                                                );
-                                            })
-                                        }
-                                    </tbody>
-                                </table> :
-                                <p>This quiz has no questions available</p>
+                            params.id ?
+                                !isEmpty(questions) ?
+                                    <table className={`table table-striped quiz-questions-list-table`}>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">description</th>
+                                                <th scope="col">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {
+                                                map(questions, (question, index) => {
+                                                    return (
+                                                        <tr key={index}>
+                                                            <th scope="row">{index + 1}</th>
+                                                            <td>{question.question.description}</td>
+                                                            <td>
+                                                                <EditIcon onClick={e => handleClick(e, question.question, 'edit')} className="quiz-questions-list-table-icon quiz-questions-list-table-icon--edit" />
+                                                                <DeleteIcon onClick={e => handleDeleteClick(e, question.question)} className="quiz-questions-list-table-icon quiz-questions-list-table-icon--delete" />
+                                                            </td>
+                                                        </tr>
+                                                    );
+                                                })
+                                            }
+                                        </tbody>
+                                    </table> :
+                                    <p>This quiz has no questions available</p> :
+                                    <div></div>
                         }
                     </div>
                 </div>
