@@ -14,12 +14,14 @@ export default function Details() {
     const params = useParams();
 
     useEffect(() => {
-        dispatch(getQuizById(params.id));
-        dispatch(getQuestionsByQuizId(params.id));
+        dispatch(getQuizById(params.id))
+            .then(() => {
+                dispatch(getQuestionsByQuizId(params.id));
+            })
     }, []);
 
     const quiz = useSelector(state => state.quizReducer.quiz);
-    const questions = useSelector(state => state.questionReducer.questions);
+    const questions = useSelector(state => state.questionReducer.quizQuestions);
 
     return (
         quiz &&
