@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
+import { Container } from 'react-bootstrap';
 import MUIDataTable from "mui-datatables";
 import  EditIcon from '@material-ui/icons/Edit';
 import  DeleteIcon from '@material-ui/icons/Delete';
@@ -76,11 +77,13 @@ export default function Dashboard() {
 
     return (
         users &&
-        <MUIDataTable
-            className="user-table"
-            title={"Users list"}
-            data={users}
-            columns={columns}
-        />
+        <Container className="d-flex justify-content-center users">
+            <MUIDataTable
+                className="user-table"
+                title={"Users list"}
+                data={users}
+                columns={columns}
+            />
+        </Container>
     );
 }
