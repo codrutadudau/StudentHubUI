@@ -42,23 +42,17 @@ const Layout = ({ component: Component, ...rest }) => {
     return (
         <div className="layout">
             <Header />
-
             <div class="layout-body">
-
                 <section class="layout-content">
-                    6666666666666666
+                    <Component />
                 </section>
-
                 <div class="layout-left-sidebar sidebar">
                     5555555555555
                 </div>
-
                 <div class="layout-right-sidebar sidebar">
                     44444444444
                 </div>
-
             </div>
-
             <footer>
                123123
             </footer>
