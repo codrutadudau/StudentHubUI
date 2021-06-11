@@ -1,37 +1,26 @@
 @import './colors.scss';
 
 .header {
+    position: relative;
     background: #060b26;
     height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-size: 16px;
-    position: absolute;
     z-index: 1;
     width: 100%;
-  
-    &-container {
-      display: flex;
-      justify-content: space-between;
-      height: 40px;
-      width: 100%;
-      padding: 0 25px;
-    }
-  
+
     &-logo {
-      display: flex;
-      align-items: center;
-      justify-self: flex-start;
-      font-size: 24px;
-      color: $white !important;
+      position: absolute;
+      left: 0;
       text-decoration: none;
+      font-size: 27px;
+      padding-left: 15px;
+      color: $white !important;
     }
 
     &-tools {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      position: absolute;
+      right: 0;
+      padding-right: 15px;
 
       .dropdown {
         &-menu {
@@ -49,11 +38,12 @@
         }
 
         button {
-          background-color: $black !important;
-          border-color: $black !important;
+          background-color: $header !important;
+          border: none;
           box-shadow: none !important;
           width: 130px;
           height: 40px;
+          padding: 0;
         }
 
         .avatar {

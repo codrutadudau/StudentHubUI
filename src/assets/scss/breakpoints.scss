@@ -1,0 +1,6 @@
+$mobile: 'screen and (min-width: 320px) and (max-width: 480px)';
+$mobile-landscape: 'screen and (min-width: 481px) and (max-width: 767px)';
+$tablet: 'screen and (min-width: 768px) and (max-width: 1024px)';
+$tablet-plus: 'screen and (min-width: 768px)';
+$tablet-landscape: 'screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape)';
+$desktop: 'screen and (min-width: 1025px)'

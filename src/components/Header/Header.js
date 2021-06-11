@@ -23,41 +23,39 @@ export default function Header() {
     }
 
     return (
-        <nav className="header">
-            <div className="header-container">
-                <a className="header-logo" href="/">StudentHub</a>
-                <div className="header-tools">
-                {
-                    isLoggedIn && me ?
-                        <Dropdown>
-                            <Dropdown.Toggle id="dropdown-basic">
-                                <span className="avatar">
-                                    <img src={avatar} alt="user-avatar"/>
-                                </span>
-                                <span className="user-details">
-                                    <span className="user-details-name">{me.firstName}</span>
-                                    <span className="user-details-role">{me.role.name}</span>
-                                </span>
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu>
-                                <Dropdown.Item href="/profile">
-                                    <AccountCircleIcon />
-                                    <span className="name">My profile</span>
-                                </Dropdown.Item>
-                                <Dropdown.Item href="#/action-2">
-                                    <SettingsIcon />
-                                    <span className="name">Settings</span>
-                                </Dropdown.Item>
-                                <Dropdown.Item href="/logout" onClick={handleLogout}>
-                                    <ExitToAppIcon />
-                                    <span className="name">Logout</span>
-                                </Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown> :
-                        <a href="/sign-in" className="header-tools-signin w-20 btn">Sign in</a>
-                }
-                </div>
+        <header className="header">
+            <a className="header-logo" href="/">StudentHub</a>
+            <div className="header-tools">
+            {
+                isLoggedIn && me ?
+                    <Dropdown>
+                        <Dropdown.Toggle id="dropdown-basic">
+                            <span className="avatar">
+                                <img src={avatar} alt="user-avatar"/>
+                            </span>
+                            <span className="user-details">
+                                <span className="user-details-name">{me.firstName}</span>
+                                <span className="user-details-role">{me.role.name}</span>
+                            </span>
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                            <Dropdown.Item href="/profile">
+                                <AccountCircleIcon />
+                                <span className="name">My profile</span>
+                            </Dropdown.Item>
+                            <Dropdown.Item href="#/action-2">
+                                <SettingsIcon />
+                                <span className="name">Settings</span>
+                            </Dropdown.Item>
+                            <Dropdown.Item href="/logout" onClick={handleLogout}>
+                                <ExitToAppIcon />
+                                <span className="name">Logout</span>
+                            </Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown> :
+                    <a href="/sign-in" className="header-tools-signin w-20 btn">Sign in</a>
+            }
             </div>
-        </nav>
+        </header>
     );
 }

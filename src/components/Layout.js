@@ -6,6 +6,8 @@ import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import HomeIcon from '@material-ui/icons/Home';
 import PeopleIcon from '@material-ui/icons/People';
 
+import Header from './Header/Header';
+
 const Layout = ({ component: Component, ...rest }) => {
 
     const navbarItems = () => {
@@ -39,28 +41,27 @@ const Layout = ({ component: Component, ...rest }) => {
 
     return (
         <div className="layout">
-            <nav className='navbar-left'>
-                <ul className='nav-menu-items'>
-                    {
-                        map(navbarItems(), (item, index) => {
-                            return (
-                                <li key={index} className={item.cName}>
-                                    <Link to={item.path}>
-                                        {item.icon}
-                                        <span>{item.title}</span>
-                                    </Link>
-                                </li>
-                            );
-                        })
-                    }
-                </ul>
-            </nav>
-            <div className="page-content">
-                <Component />
-            </div>
-            <div className="navbar-right">
+            <Header />
+
+            <div class="layout-body">
+
+                <section class="layout-content">
+                    6666666666666666
+                </section>
+
+                <div class="layout-left-sidebar sidebar">
+                    5555555555555
+                </div>
+
+                <div class="layout-right-sidebar sidebar">
+                    44444444444
+                </div>
 
             </div>
+
+            <footer>
+               123123
+            </footer>
         </div>
     )
 }
