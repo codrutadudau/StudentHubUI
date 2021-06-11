@@ -5,6 +5,7 @@
         width: 130px;
         margin: 10px 0 10px auto;
         padding: 2px !important;
+        margin-left: 100px;
 
         &-icon {
             position: relative;
@@ -20,6 +21,10 @@
 
     .quiz-table {
         border: 1px solid #a9a9a9;
+        margin-left: 100px;
+        background: white;
+        box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
+        margin-top: 30px;
 
         th {
             color: #a9a9a9;
@@ -107,25 +112,51 @@
 
 .quiz-view {
     flex-direction: column;
+    display: inline-block;
+    height: 85%;
+    position: relative;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
+    margin-top: 50px;
+    margin-left: 110px !important;
 
-    &-title {
-        padding: 20px 0;
+
+    &-title { 
         text-align: center;
-        width: 100%;
-        background-color: lightblue;
+        background: linear-gradient(60deg, #ab47bc, #8e24aa);
+        border-radius: 10px;
+        box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
+        position: relative;
         font-weight: bold;
+        padding: 10px 0;
+        top: 10px;
     }
-    
     &-intro {
-        // padding: 30px;
+        word-wrap: break-word;
+        background: #f6f6f6;
+        border-radius: 5px;
+        box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
+        position: relative;
+        top: 40px;
+        height: 10% !important;
     }
 
     &-questions {
+        position: relative;
+        flex-direction: column;
 
         &-question {
+            word-wrap: break-word;
+            background: #f6f6f6;
+            border-radius: 5px;
+            box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
+            margin-top: -200px;
+            margin: 100px 0 100px 0;
 
             &-answer {
                 display: block;
+
             }
         }
     }
