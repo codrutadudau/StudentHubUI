@@ -1,0 +1,45 @@
+@import './colors.scss';
+@import './breakpoints.scss';
+
+.layout-left-sidebar {
+    @media #{$mobile} {
+        order: -1;
+    }
+}
+
+.navbar-menu {
+
+    &-items {
+        display: flex;
+        flex-direction: column;
+        padding: 0 !important;
+        font-size: 18px;
+
+        &-item {
+            list-style-type: none;
+            display: block;
+            padding: 20px;
+            color: $navbar-item;
+
+            a {
+                text-decoration: none;
+                color: $navbar-item;
+
+                &:hover {
+                    text-decoration: none;
+                    color: $navbar-item;
+                }
+            }
+
+            @media #{$mobile} {
+                margin: 0;
+                padding: 0 10px;
+            }
+        }
+
+        @media #{$mobile} {
+            margin: 0;
+            flex-direction: row;
+        }
+    }
+}

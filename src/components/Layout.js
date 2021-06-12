@@ -7,8 +7,9 @@ import HomeIcon from '@material-ui/icons/Home';
 import PeopleIcon from '@material-ui/icons/People';
 
 import Header from './Header/Header';
+import '../assets/scss/sidebar.scss';
 
-const Layout = ({ component: Component, ...rest }) => {
+const Layout = ({ component: Component }) => {
 
     const navbarItems = () => {
         return ([
@@ -16,25 +17,25 @@ const Layout = ({ component: Component, ...rest }) => {
                 title: 'Home',
                 path: '/dashboard',
                 icon: <HomeIcon />,
-                cName: 'nav-text'
+                cName: 'navbar-menu-items-item'
             },
             {
                 title: 'Users',
                 path: '/users',
                 icon: <PeopleIcon />,
-                cName: 'nav-text'
+                cName: 'navbar-menu-items-item'
             },
             {
                 title: 'Quizzes',
                 path: '/quizzes',
                 icon: <FormatListBulletedIcon />,
-                cName: 'nav-text'
+                cName: 'navbar-menu-items-item'
             },
             {
                 title: 'Questions',
                 path: '/questions',
                 icon: <QuestionAnswerIcon />,
-                cName: 'nav-text'
+                cName: 'navbar-menu-items-item'
             },
         ]);
     }
@@ -47,7 +48,22 @@ const Layout = ({ component: Component, ...rest }) => {
                     <Component />
                 </section>
                 <div class="layout-left-sidebar sidebar">
-                    5555555555555
+                    <nav className='navbar-menu'>
+                        <ul className='navbar-menu-items'>
+                            {
+                                map(navbarItems(), (item, index) => {
+                                    return (
+                                        <li key={index} className={item.cName}>
+                                            <Link to={item.path}>
+                                                {item.icon}
+                                                <span>{item.title}</span>
+                                            </Link>
+                                        </li>
+                                    );
+                                })
+                            }
+                        </ul>
+                    </nav>
                 </div>
                 <div class="layout-right-sidebar sidebar">
                     44444444444

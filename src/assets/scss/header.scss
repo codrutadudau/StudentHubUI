@@ -37,6 +37,12 @@
           }
         }
 
+        &-toggle {
+          &:after {
+            display: none;
+          }
+        }
+
         button {
           background-color: $header !important;
           border: none;
@@ -48,6 +54,7 @@
 
         .avatar {
           position: absolute;
+          top: 5px;
           left: 3px;
 
           img {
@@ -58,23 +65,22 @@
         }
 
         .user-details {
-          display: block;
-          position: relative;
-          left: 30px;
-          text-align: left;
+          position: absolute;
+          top: 0;
+          left: 36px;
+          line-height: 20px;
 
           &-role,
           &-name {
             display: block;
-            font-size: 10px;
           }
 
           &-name {
-            font-size: 10px;
+            font-size: 16px;
           }
 
           &-role {
-            font-size: 8px;
+            font-size: 12px;
           }
         }
       }
