@@ -29,13 +29,13 @@ export default function Dashboard() {
                     <div className="dashboard-grid-item">
                         <h4 className="dashboard-grid-item-title-1">Users Registered</h4>
                         <div className="dashboard-grid-item-2-1">
-                            <span class="MuiSvgIcon-root"><PersonAddOutlinedIcon/></span>
+                            <span className="MuiSvgIcon-root"><PersonAddOutlinedIcon/></span>
                         </div>
                     </div>
                     <div className="dashboard-grid-item">
                         <h4 className="dashboard-grid-item-title-2">Courses Added</h4>
                         <div className="dashboard-grid-item-2-2">
-                            <span class="MuiSvgIcon-root"><LocalLibraryOutlinedIcon/></span>
+                            <span className="MuiSvgIcon-root"><LocalLibraryOutlinedIcon/></span>
                         </div>
                     </div>
                 </div>

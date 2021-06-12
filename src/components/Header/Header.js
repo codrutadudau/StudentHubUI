@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Dropdown } from 'react-bootstrap';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -21,6 +21,12 @@ export default function Header() {
 
         dispatch(signOut());
     }
+
+    useEffect(() => {
+        if (!sessionStorage.getItem("token")) {
+            dispatch(signOut());
+        }
+    }, []);
 
     return (
         <header className="header">
