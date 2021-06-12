@@ -45,7 +45,13 @@
 }
 
 .question {
+    flex-direction: column;
 
+    &-add-answers {
+        width: 170px;
+    }
+
+    // delete question modal
     &-modal {
 
         &-name {

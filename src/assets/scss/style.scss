@@ -25,11 +25,12 @@ body {
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
+    height: 100vh;
+    background-image: -webkit-linear-gradient(top, #accbee 0%, #e7f0fd 100%);
   }
 
   &-content {
     flex: 1 1 auto;
-    background-color: #f1f1f1;
     padding: 20px;
   }
 
@@ -39,7 +40,6 @@ body {
 
   .sidebar {
     padding: 20px;
-    background: #060b26;
   }
 }
 

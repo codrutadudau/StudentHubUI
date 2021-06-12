@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory, withRouter } from "react-router";
 import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+import times from 'lodash/times';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
+
 import { getQuestionById, createQuestion, editQuestion } from '../../actions/question';
 
 export function Details({ location: { state } }) {
@@ -15,6 +20,15 @@ export function Details({ location: { state } }) {
         description: "",
         defaultGrade: "",
         hasMultipleAnswers: ""
+    });
+
+    const [answersPayload, setAnswersPayload] = useState({
+        nrAnswers: 0,
+        answers: "",
+        correctAnswers: {
+            radio: "",
+            checkbox: ""
+        },
     });
 
     useEffect(() => {
@@ -44,10 +58,90 @@ export function Details({ location: { state } }) {
         });
     }
 
+    const handleAddAnswer = () => {
+        const currentNrOfAnswers = answersPayload.nrAnswers + 1;
+        setAnswersPayload({
+            ...answersPayload,
+            answers: {
+                ...answersPayload.answers,
+                [`answer-${currentNrOfAnswers}`]: ""
+
+            },
+            nrAnswers: currentNrOfAnswers
+        });
+    }
+
+    const handleRemoveAnswer = (e, index) => {
+        delete answersPayload.answers[index];
+
+        setAnswersPayload({
+            ...answersPayload,
+            answers: {
+                ...answersPayload.answers,
+            },
+            correctAnswers: {
+                ...answersPayload.correctAnswers,
+                radio: {
+                    ...answersPayload.correctAnswers.radio,
+                    [index]: ""
+                },
+                checkbox: {
+                    ...answersPayload.correctAnswers.checkbox,
+                    [index]: ""
+                }
+            },
+            nrAnswers: answersPayload.nrAnswers - 1
+        });
+    }
+
     const handleOnChange = e => {
+        if (e.target.name === 'hasMultipleAnswers') {
+            setAnswersPayload({
+                ...answersPayload,
+                correctAnswers: {
+                    radio: "",
+                    checkbox: ""
+                },
+            });
+        }
+
         setPayload({
             ...payload,
             [e.target.name]: e.target.value
+        });
+    }
+
+    const handleOnAnswerChange = (e, index) => {
+        setAnswersPayload({
+            ...answersPayload,
+            answers: {
+                ...answersPayload.answers,
+                [index]: e.target.value
+            }
+        });
+    }
+
+    const handleCheckbox = (e, index) => {
+        setAnswersPayload({
+            ...answersPayload,
+            correctAnswers: {
+                ...answersPayload.correctAnswers,
+                checkbox: {
+                    ...answersPayload.correctAnswers.checkbox,
+                    [index]: !answersPayload.correctAnswers.checkbox[index]
+                }
+            }
+        });
+    }
+
+    const handleRadio = (e, index) => {
+        setAnswersPayload({
+            ...answersPayload,
+            correctAnswers: {
+                radio: {
+                    index
+                }
+            }
         });
     }
 
@@ -73,7 +167,7 @@ export function Details({ location: { state } }) {
         <Container className="d-flex justify-content-center question">
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
-                    <Form.Label>Question Name</Form.Label>
+                    <Form.Label>Question Description</Form.Label>
                     <Form.Control
                         type="text"
                         name="description"
@@ -105,6 +199,30 @@ export function Details({ location: { state } }) {
                     <Button type="submit">Submit</Button>
                 </Form.Group>
             </Form>
+            <div onClick={handleAddAnswer} className="btn btn-success question-add-answers">
+                <AddCircleOutlineIcon />
+                <span>Add answer</span>
+            </div>
+            {
+                answersPayload.nrAnswers > 0 &&
+                <div className="question-answers">
+                    {
+                        map(answersPayload.answers, (answer, index) => {
+                            return (
+                                <div key={index}>
+                                    <input type="text" name={index} onChange={e => handleOnAnswerChange(e, index)} />
+                                    {
+                                        'true' === payload.hasMultipleAnswers ?
+                                            <input type="checkbox" name={index} onChange={e => handleCheckbox(e, index)} checked={!!answersPayload.correctAnswers.checkbox[index]} /> :
+                                            <input type="radio" name={`answer`} onChange={e => handleRadio(e, index)} />
+                                    }
+                                    <RemoveCircleOutlineIcon onClick={e => handleRemoveAnswer(e, index)} />
+                                </div>
+                            );
+                        })
+                    }
+                </div>
+            }
         </Container>
     );
 }
