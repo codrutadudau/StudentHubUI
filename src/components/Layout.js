@@ -43,11 +43,11 @@ const Layout = ({ component: Component }) => {
     return (
         <div className="layout">
             <Header />
-            <div class="layout-body">
-                <section class="layout-content">
+            <div className="layout-body">
+                <section className="layout-content">
                     <Component />
                 </section>
-                <div class="layout-left-sidebar sidebar">
+                <div className="layout-left-sidebar sidebar">
                     <nav className='navbar-menu'>
                         <ul className='navbar-menu-items'>
                             {
@@ -65,7 +65,7 @@ const Layout = ({ component: Component }) => {
                         </ul>
                     </nav>
                 </div>
-                <div class="layout-right-sidebar sidebar">
+                <div className="layout-right-sidebar sidebar">
                     44444444444
                 </div>
             </div>
