@@ -95,3 +95,13 @@ body {
 .form-check-input:focus {
   box-shadow: none !important;
 }
+
+.slick-dots {
+    bottom: 250px;
+}
+
+.slick-dot {
+  display: block;
+  padding: 10px;
+  background-color: lightblue;
+}

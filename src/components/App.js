@@ -30,7 +30,6 @@ function App() {
 
     return (
         <Router>
-            {/* <Header /> */}
             <Switch>
                 <PublicRoute path="/" exact component={HomePage} restricted={true} />
                 <PublicRoute path="/sign-in" component={Login} restricted={true} />

@@ -3,6 +3,7 @@ import { Container, Form, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from "react-router";
 import map from 'lodash/map';
+import Slider from "react-slick";
 
 import '../../assets/scss/quiz.scss';
 
@@ -22,6 +23,19 @@ export default function Details() {
 
     const quiz = useSelector(state => state.quizReducer.quiz);
     const questions = useSelector(state => state.questionReducer.quizQuestions);
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        customPaging: i => {
+            return (
+                <div className="slick-dot">{i + 1}</div>
+            );
+        }
+    };
 
     return (
         quiz &&
@@ -53,6 +67,27 @@ export default function Details() {
                     })
                 }
             </div>
+            <Slider {...settings}>
+                {
+                    map(questions, (question, index) => {
+                        return (
+                            <div className="quiz-view-questions-question" key={index}>
+                                <p key={index}>{question.question.description}</p>
+                                {
+                                    map(question.answers, (answer, index) => {
+                                        return (
+                                            <>
+                                                <input name={`question${question.id}`} type={question.question.hasMultipleAnswers ? 'checkbox' : 'radio'} ></input>
+                                                <label htmlFor={`question${question.id}`}>{answer.description}</label><br></br>
+                                            </>
+                                        );
+                                    })
+                                }
+                            </div>
+                        );
+                    })
+                }
+            </Slider>
         </Container>
     );
 }

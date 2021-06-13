@@ -59,7 +59,9 @@ export default function Header() {
                             </Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown> :
-                    <a href="/sign-in" className="header-tools-signin w-20 btn">Sign in</a>
+                    <div className="header-tools-unlogged">
+                        <a href="/sign-in" className="header-tools-unlogged-signin w-20 btn">Sign in</a>
+                    </div>
             }
             </div>
         </header>

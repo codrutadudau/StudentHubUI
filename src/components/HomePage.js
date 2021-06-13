@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Header from './Header/Header';
 import Video from '../videos/video.mp4';
 import '../assets/scss/homepage.scss';
 
@@ -7,7 +8,9 @@ export default function HomePage() {
     const className = 'homepage-container';
 
     return (
-        <div className={`${className}`}>
+        <>
+            <Header />
+            <div className={`${className}`}>
             <div className={`${className}-background`}>
                 <video className={`${className}-video`} autoPlay loop muted src={Video}/>
             </div>
@@ -17,5 +20,6 @@ export default function HomePage() {
                 <p className={`${className}-subtitle`}><Link className={`${className}-subtitle-link btn`} to="/sign-up">Sign up</Link> to receive more information</p>
             </div>
         </div>
+        </>
     );
 }

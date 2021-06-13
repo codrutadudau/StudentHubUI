@@ -6,7 +6,7 @@
 }
 
 .layout-left-sidebar {
-    @media #{$mobile} {
+    @media #{$mobile}, #{$mobile-landscape} {
         order: -1;
     }
 }
@@ -49,7 +49,7 @@
             }
         }
 
-        @media #{$mobile} {
+        @media #{$mobile}, #{$mobile-landscape} {
             margin: 0;
             flex-direction: row;
         }
