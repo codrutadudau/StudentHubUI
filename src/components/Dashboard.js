@@ -23,33 +23,31 @@ export default function Dashboard() {
     var type = 'Line';
 
     return (
-        <>
-            <Container className="d-flex justify-content-center dashboard">
-                <div className="dashboard-grid">
-                    <div className="dashboard-grid-item">
-                        <h4 className="dashboard-grid-item-title-1">Users Registered</h4>
-                        <div className="dashboard-grid-item-2-1">
-                            <span className="MuiSvgIcon-root"><PersonAddOutlinedIcon/></span>
-                        </div>
-                    </div>
-                    <div className="dashboard-grid-item">
-                        <h4 className="dashboard-grid-item-title-2">Courses Added</h4>
-                        <div className="dashboard-grid-item-2-2">
-                            <span className="MuiSvgIcon-root"><LocalLibraryOutlinedIcon/></span>
-                        </div>
+        <Container className="d-flex justify-content-center dashboard">
+            <div className="dashboard-grid">
+                <div className="dashboard-grid-item">
+                    <h4 className="dashboard-grid-item-title">Users Registered</h4>
+                    <div className="dashboard-grid-item-tag">
+                        <PersonAddOutlinedIcon className="dashboard-grid-item-tag-icon" />
                     </div>
                 </div>
-                <div className="dashboard-graph-1-container">
+                <div className="dashboard-grid-item">
+                    <h4 className="dashboard-grid-item-title">Courses Added</h4>
+                    <div className="dashboard-grid-item-tag">
+                        <LocalLibraryOutlinedIcon className="dashboard-grid-item-tag-icon" />
+                    </div>
+                </div>
+            </div>
+            {/* <div className="dashboard-graph">
+                <div className="dashboard-graph-container">
                     <ChartistGraph
-                        className="dashboard-graph-1-container-users"
+                        className="dashboard-graph-container-users"
                         data={data}
                         options={options}
                         type={type}
                     />
-                    <h4 className="dashboard-graph-1-container-title">Users Registered</h4>
-                    <span className="dashboard-graph-1-container-subtitle">2020-2021 Academic Year</span>
                 </div>
-            </Container>
-        </>
+            </div> */}
+        </Container>
     );
 }

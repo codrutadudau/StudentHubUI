@@ -11,6 +11,12 @@
     }
 }
 
+.layout-right-sidebar {
+    @media #{$mobile} {
+        display: none;
+    }
+}
+
 .navbar-menu {
 
     &-items {
