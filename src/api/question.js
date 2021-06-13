@@ -18,6 +18,10 @@ export const createQuestion = (payload) => {
     return axios.post(API_URL + "/questions", { ...payload });
 };
 
+export const addQuestionAnswers = (id, payload) => {
+    return axios.post(API_URL + "/questions/" + id + "/answers", { ...payload });
+};
+
 export const editQuestion = (id, payload) => {
     return axios.put(API_URL + "/questions/" + id, { ...payload });
 };

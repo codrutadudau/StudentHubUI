@@ -6,8 +6,9 @@ import {
     CREATE_QUESTION_FAIL,
     EDIT_QUESTION_SUCCESS,
     EDIT_QUESTION_FAIL,
-    DELETE_QUESTION
+    DELETE_QUESTION,
 } from "./types";
+import isEmpty from 'lodash/isEmpty';
 
 import { questionApi } from '../api';
 
@@ -53,12 +54,16 @@ export const getQuestionById = (id) => (dispatch) => {
     );
 };
 
-export const createQuestion = (payload) => (dispatch) => {
+export const createQuestion = (payload, answersPayload = null) => (dispatch) => {
     return questionApi.createQuestion(payload)
-        .then(() => {
+        .then((response) => {
             dispatch({
                 type: CREATE_QUESTION_SUCCESS,
             });
+
+            if (!isEmpty(answersPayload.answers)) {
+                questionApi.addQuestionAnswers(response.data.id, answersPayload);
+            }
         })
         .catch(error => {
             const message = error.response.data.message;
