@@ -4,16 +4,24 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory, withRouter } from "react-router";
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
+import SaveIcon from '@material-ui/icons/Save';
 
-import { getQuestionById, createQuestion, editQuestion } from '../../actions/question';
+import DeleteAnswer from '../Modals/DeleteAnswer';
+import EditAnswer from '../Modals/EditAnswer';
+
+import { getQuestionById, createQuestion, editQuestion, getAnswersByQuestionId } from '../../actions/question';
+import { createAnswer } from '../../actions/answer';
 
 export function Details({ location: { state } }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const params = useParams();
     const question = useSelector(state => state.questionReducer.question);
+    const questionAnswers = useSelector(state => state.questionReducer.questionAnswers);
 
     const [payload, setPayload] = useState({
         description: "",
@@ -27,6 +35,19 @@ export function Details({ location: { state } }) {
         correctAnswers: "",
     });
 
+    const [editModalShow, setEditModalShow] = useState(false);
+    const [editModalData, setEditModalData] = useState({
+        id: "",
+        name: ""
+    });
+
+    const [deleteModalShow, setDeleteModalShow] = useState(false);
+    const [deleteModalData, setDeleteModalData] = useState({
+        id: "",
+        description: "",
+        questionId: ""
+    });
+
     useEffect(() => {
         if (!isEmpty(params) && !state) {
             dispatch(getQuestionById(params.id));
@@ -36,6 +57,7 @@ export function Details({ location: { state } }) {
     useEffect(() => {
         if (state) {
             setPayloadForm(state);
+            dispatch(getAnswersByQuestionId(params.id));
         }
     }, [state]);
 
@@ -141,13 +163,63 @@ export function Details({ location: { state } }) {
         });
     }
 
+    const handleEditAnswerClick = (e, answer) => {
+        e.preventDefault();
+
+        setEditModalShow(true);
+        setEditModalData({
+            ...editModalData,
+            id: answer.id,
+            description: answer.description,
+            correct: answer.correct,
+            questionId: params.id,
+        });
+    }
+
+    const handleDeleteAnswerClick = (e, answer) => {
+        e.preventDefault();
+
+        setDeleteModalShow(true);
+        setDeleteModalData({
+            ...deleteModalData,
+            id: answer.id,
+            description: answer.description,
+            questionId: params.id,
+        });
+    }
+
+    const handleAnswerSave = (e, index) => {
+        e.preventDefault();
+
+        dispatch(createAnswer({
+            description: answersPayload.answers[index],
+            correct: !!answersPayload.correctAnswers[index],
+            question: params.id,
+        })).then(() => {
+            delete answersPayload.answers[index];
+            delete answersPayload.correctAnswers[index];
+
+            setAnswersPayload({
+                ...answersPayload,
+                answers: {
+                    ...answersPayload.answers,
+                },
+                correctAnswers: {
+                    ...answersPayload.correctAnswers,
+                },
+                nrAnswers: answersPayload.nrAnswers - 1
+            });
+            dispatch(getAnswersByQuestionId(params.id));
+        });
+    }
+
     const handleSubmit = e => {
         e.preventDefault();
 
         if (location.pathname.includes('/create')) {
             dispatch(createQuestion(payload, answersPayload))
-                .then((response) => {
-                    // history.push('/questions');
+                .then(() => {
+                    history.push('/questions');
                 });
 
             return;
@@ -162,6 +234,16 @@ export function Details({ location: { state } }) {
 
     return (
         <Container className="d-flex justify-content-center question">
+            <EditAnswer
+                show={editModalShow}
+                onHide={() => setEditModalShow(false)}
+                data={editModalData}
+            />
+            <DeleteAnswer
+                show={deleteModalShow}
+                onHide={() => setDeleteModalShow(false)}
+                data={deleteModalData}
+            />
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
                     <Form.Label>Question Description</Form.Label>
@@ -193,6 +275,18 @@ export function Details({ location: { state } }) {
                         onChange={handleOnChange}
                         value={false}
                     />
+                    {
+                        !location.pathname.includes('/create') &&
+                        map(questionAnswers, (answer, index) => {
+                            return (
+                                <div key={index}>
+                                    <span>{answer.description}</span>
+                                    <EditIcon onClick={e => handleEditAnswerClick(e, answer)}/>
+                                    <DeleteIcon onClick={e => handleDeleteAnswerClick(e, answer)} />
+                                </div>
+                            );
+                        })
+                    }
                     <div onClick={handleAddAnswer} className="btn btn-success question-add-answers">
                         <AddCircleOutlineIcon />
                         <span>Add answer</span>
@@ -209,6 +303,10 @@ export function Details({ location: { state } }) {
                                                 'true' === payload.hasMultipleAnswers ?
                                                     <input type="checkbox" name={index} onChange={e => handleCheckbox(e, index)} checked={answersPayload.correctAnswers[index]} /> :
                                                     <input type="radio" name={`answer`} onChange={e => handleRadio(e, index)} checked={answersPayload.correctAnswers[index]} />
+                                            }
+                                            {
+                                                params.action === 'edit' &&
+                                                <SaveIcon onClick={e => handleAnswerSave(e, index)} />
                                             }
                                             <RemoveCircleOutlineIcon onClick={e => handleRemoveAnswer(e, index)} />
                                         </div>

@@ -19,7 +19,11 @@ export const createQuestion = (payload) => {
 };
 
 export const addQuestionAnswers = (id, payload) => {
-    return axios.post(API_URL + "/questions/" + id + "/answers", { ...payload });
+    return axios.post(API_URL + "/questions/answers/" + id, { ...payload });
+};
+
+export const getQuestionAnswers = (id) => {
+    return axios.get(API_URL + "/questions/answers/" + id);
 };
 
 export const editQuestion = (id, payload) => {

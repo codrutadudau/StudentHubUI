@@ -1,13 +1,15 @@
 import {
     GET_QUESTIONS,
     GET_QUESTIONS_BY_QUIZ,
-    GET_QUESTION_BY_ID
+    GET_QUESTION_BY_ID,
+    GET_ANSWERS_BY_QUESTION_ID,
 } from '../actions/types';
 
 const initialState = {
     questions: null,
     question: null,
-    quizQuestions: null
+    quizQuestions: null,
+    questionAnswers: null,
 };
 
 const questionReducer = (state = initialState, action) => {
@@ -28,6 +30,11 @@ const questionReducer = (state = initialState, action) => {
             return {
                 ...state,
                 question: payload.question
+            };
+        case GET_ANSWERS_BY_QUESTION_ID:
+            return {
+                ...state,
+                questionAnswers: payload.questionAnswers
             };
         default:
             return state;

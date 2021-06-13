@@ -7,6 +7,7 @@ import {
     EDIT_QUESTION_SUCCESS,
     EDIT_QUESTION_FAIL,
     DELETE_QUESTION,
+    GET_ANSWERS_BY_QUESTION_ID,
 } from "./types";
 import isEmpty from 'lodash/isEmpty';
 
@@ -95,6 +96,20 @@ export const deleteQuestion = (id) => (dispatch) => {
         .then(() => {
             dispatch({
                 type: DELETE_QUESTION,
+            });
+        })
+        .catch(error => {
+            const message = error.response.data.message;
+        }
+    );
+};
+
+export const getAnswersByQuestionId = (id) => (dispatch) => {
+    return questionApi.getQuestionAnswers(id)
+        .then(response => {
+            dispatch({
+                type: GET_ANSWERS_BY_QUESTION_ID,
+                payload: { questionAnswers: response.data },
             });
         })
         .catch(error => {
