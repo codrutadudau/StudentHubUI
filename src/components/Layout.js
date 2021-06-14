@@ -1,45 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import map from 'lodash/map';
-import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
-import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
-import HomeIcon from '@material-ui/icons/Home';
-import PeopleIcon from '@material-ui/icons/People';
-
 import Header from './Header/Header';
-import '../assets/scss/sidebar.scss';
 
-const Layout = ({ component: Component }) => {
-
-    const navbarItems = () => {
-        return ([
-            {
-                title: 'Home',
-                path: '/dashboard',
-                icon: <HomeIcon />,
-                cName: 'navbar-menu-items-item'
-            },
-            {
-                title: 'Users',
-                path: '/users',
-                icon: <PeopleIcon />,
-                cName: 'navbar-menu-items-item'
-            },
-            {
-                title: 'Quizzes',
-                path: '/quizzes',
-                icon: <FormatListBulletedIcon />,
-                cName: 'navbar-menu-items-item'
-            },
-            {
-                title: 'Questions',
-                path: '/questions',
-                icon: <QuestionAnswerIcon />,
-                cName: 'navbar-menu-items-item'
-            },
-        ]);
-    }
-
+const Layout = ({ component: Component, sidebar: Sidebar }) => {
     return (
         <div className="layout">
             <Header />
@@ -47,24 +9,7 @@ const Layout = ({ component: Component }) => {
                 <section className="layout-content">
                     <Component />
                 </section>
-                <div className="layout-left-sidebar sidebar">
-                    <nav className='navbar-menu'>
-                        <ul className='navbar-menu-items'>
-                            {
-                                map(navbarItems(), (item, index) => {
-                                    return (
-                                        <li key={index} className={item.cName}>
-                                            <Link to={item.path}>
-                                                {item.icon}
-                                                <span>{item.title}</span>
-                                            </Link>
-                                        </li>
-                                    );
-                                })
-                            }
-                        </ul>
-                    </nav>
-                </div>
+                <Sidebar />
                 <div className="layout-right-sidebar sidebar">
                     <div>
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.

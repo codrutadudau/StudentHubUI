@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import axios from 'axios';
 import '../assets/scss/style.scss';
 import Dashboard from './Dashboard';
-import Header from './Header/Header';
+import Sidebar from './Sidebar/Sidebar';
 import HomePage from './HomePage';
 import Login from './Auth/Signin';
 import PrivateRoute from './PrivateRoute';
@@ -34,17 +34,17 @@ function App() {
                 <PublicRoute path="/" exact component={HomePage} restricted={true} />
                 <PublicRoute path="/sign-in" component={Login} restricted={true} />
                 <PublicRoute path="/sign-up" component={Signup} restricted={true} />
-                <PrivateRoute path="/dashboard" exact component={Dashboard} layout={Layout}/>
-                <PrivateRoute path="/user/:id" component={UserDetails} layout={Layout}/>
-                <PrivateRoute path="/users" exact component={UserDashboard} layout={Layout}/>
-                <PrivateRoute path="/quizzes" exact component={QuizDashboard} layout={Layout}/>
-                <PrivateRoute path="/quizzes/create" exact component={QuizDetails} layout={Layout}/>
-                <PrivateRoute path="/questions" exact component={QuestionDashboard} layout={Layout}/>
-                <PrivateRoute path="/quiz/:id/view" exact component={QuizView} layout={Layout}/>
-                <PrivateRoute path="/quiz/:id/:action" exact component={QuizDetails} layout={Layout}/>
-                <PrivateRoute path="/questions/create" exact component={QuestionDetails} layout={Layout}/>
-                <PrivateRoute path="/question/:id/:action" exact component={QuestionDetails} layout={Layout}/>
-                <AdminRoute path="/admin" component={AdminDashboard} layout={Layout}/>
+                <PrivateRoute path="/dashboard" exact component={Dashboard} layout={Layout} sidebar={Sidebar} />
+                <PrivateRoute path="/user/:id" component={UserDetails} layout={Layout} sidebar={Sidebar} />
+                <PrivateRoute path="/users" exact component={UserDashboard} layout={Layout} sidebar={Sidebar} />
+                <PrivateRoute path="/quizzes" exact component={QuizDashboard} layout={Layout} sidebar={Sidebar} />
+                <PrivateRoute path="/quizzes/create" exact component={QuizDetails} layout={Layout} sidebar={Sidebar} />
+                <PrivateRoute path="/questions" exact component={QuestionDashboard} layout={Layout} sidebar={Sidebar} />
+                <PrivateRoute path="/quiz/:id/view" exact component={QuizView} layout={Layout} sidebar={Sidebar} />
+                <PrivateRoute path="/quiz/:id/:action" exact component={QuizDetails} layout={Layout} sidebar={Sidebar} />
+                <PrivateRoute path="/questions/create" exact component={QuestionDetails} layout={Layout} sidebar={Sidebar} />
+                <PrivateRoute path="/question/:id/:action" exact component={QuestionDetails} layout={Layout} sidebar={Sidebar} />
+                <AdminRoute path="/admin" component={AdminDashboard} layout={Layout} sidebar={Sidebar} />
             </Switch>
         </Router>
     );
