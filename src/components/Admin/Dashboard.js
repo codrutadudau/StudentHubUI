@@ -1,56 +1,53 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from "react-router-dom";
-import map from 'lodash/map';
-import  EditIcon from '@material-ui/icons/Edit';
-import  DeleteIcon from '@material-ui/icons/Delete';
+import React from 'react';
+import { Container } from 'react-bootstrap';
+import ChartistGraph from 'react-chartist';
+import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
+import LocalLibraryOutlinedIcon from '@material-ui/icons/LocalLibraryOutlined';
 
-import { getAllUsers } from '../../actions/user';
+import '../../assets/scss/dashboard.scss';
 
 export default function Dashboard() {
-    const dispatch = useDispatch();
-    const history = useHistory();
 
-    useEffect(() => {
-        dispatch(getAllUsers());
-    }, []);
-
-    const handleClick = (e, id) => {
-        e.preventDefault();
-
-        history.push('/user/' + id);
+    const data = {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+        series: [
+          [5, 2, 4, 2, 0]
+        ],
+      };
+  
+    const options = {
+        width: '600px',
+        height: '250px',
     };
-
-    const users = useSelector(state => state.userReducer.users);
-    const className = "user-table";
+  
+    var type = 'Line';
 
     return (
-        <div className="page-content">
-            <table className={`table table-striped ${className}`}>
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        map(users, (user, value) => {
-                            return (
-                                <tr key={value}>
-                                    <th scope="row">{value + 1}</th>
-                                    <td>{user.firstName} {user.lastName}</td>
-                                    <td>
-                                        <EditIcon onClick={e => handleClick(e, value + 1)} className={`${className}-icon`} />
-                                        <DeleteIcon className={`${className}-icon`} />
-                                    </td>
-                                </tr>
-                            );
-                        })
-                    }
-                </tbody>
-            </table>
-        </div>
+        <Container className="d-flex justify-content-center dashboard">
+            <div className="dashboard-grid">
+                <div className="dashboard-grid-item">
+                    <h4 className="dashboard-grid-item-title">Users Registered</h4>
+                    <div className="dashboard-grid-item-tag">
+                        <PersonAddOutlinedIcon className="dashboard-grid-item-tag-icon" />
+                    </div>
+                </div>
+                <div className="dashboard-grid-item">
+                    <h4 className="dashboard-grid-item-title">Courses Added</h4>
+                    <div className="dashboard-grid-item-tag">
+                        <LocalLibraryOutlinedIcon className="dashboard-grid-item-tag-icon" />
+                    </div>
+                </div>
+            </div>
+            {/* <div className="dashboard-graph">
+                <div className="dashboard-graph-container">
+                    <ChartistGraph
+                        className="dashboard-graph-container-users"
+                        data={data}
+                        options={options}
+                        type={type}
+                    />
+                </div>
+            </div> */}
+        </Container>
     );
 }

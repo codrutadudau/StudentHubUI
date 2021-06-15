@@ -1,6 +1,7 @@
-import { LOGIN_SUCCESS, LOGIN_FAIL } from '../actions/types';
-
-const token = sessionStorage.getItem('token');
+import {
+    LOGIN_SUCCESS,
+    LOGIN_FAIL
+} from '../actions/types';
 
 const initialState = { isLoggedIn: false };
 
@@ -11,12 +12,13 @@ const authReducer = (state = initialState, action) => {
         case LOGIN_SUCCESS:
             return {
                 ...state,
-                isLoggedIn: true
+                isLoggedIn: true,
+                token: payload.token,
             };
         case LOGIN_FAIL:
             return {
                 ...state,
-                isLoggedIn: false
+                isLoggedIn: false,
             };
         default:
             return state;

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Dropdown } from 'react-bootstrap';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -12,6 +12,7 @@ import { signOut } from '../../actions/auth';
 
 export default function Header() {
     const dispatch = useDispatch();
+    const [roleName, setRoleName] = useState();
 
     const isLoggedIn = useSelector(state => state.authReducer.isLoggedIn);
     const me = useSelector(state => state.userReducer.me);
@@ -23,10 +24,27 @@ export default function Header() {
     }
 
     useEffect(() => {
-        if (!sessionStorage.getItem("token")) {
+        if (!localStorage.getItem("token")) {
             dispatch(signOut());
         }
     }, []);
+
+    useEffect(() => {
+        if (me) {
+            switch (me.role.name) {
+                case process.env.ROLE_ADMIN:
+                    setRoleName('Admin');
+                break;
+                case process.env.ROLE_TEACHER:
+                    setRoleName('Teacher');
+                break;
+                case process.env.ROLE_STUDENT:
+                    setRoleName('Student');
+                break;
+                default: break;
+            }
+        }
+    }, [me]);
 
     return (
         <header className="header">
@@ -41,7 +59,7 @@ export default function Header() {
                             </span>
                             <span className="user-details">
                                 <span className="user-details-name">{me.firstName}</span>
-                                <span className="user-details-role">{me.role.name}</span>
+                                <span className="user-details-role">{roleName}</span>
                             </span>
                         </Dropdown.Toggle>
                         <Dropdown.Menu>

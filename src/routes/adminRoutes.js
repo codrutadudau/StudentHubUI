@@ -1,11 +1,3 @@
-// import Dashboard from './Dashboard';
-// import AdminSidebar from './Sidebar/AdminSidebar';
-// import HomePage from './HomePage';
-// import Login from './Auth/Signin';
-// import PrivateRoute from './PrivateRoute';
-// import PublicRoute from './PublicRoute';
-// import AdminRoute from './AdminRoute';
-// import Signup from './Auth/Signup';
 import UserDashboard from '../components/User/Dashboard';
 import QuizDashboard from '../components/Quiz/Dashboard';
 import QuestionDashboard from '../components/Question/Dashboard';
@@ -13,14 +5,9 @@ import UserDetails from '../components/User/Details';
 import QuizDetails from '../components/Quiz/Details';
 import QuizView from '../components/Quiz/View';
 import QuestionDetails from '../components/Question/Details';
-import AdminDashboard from '../components/Admin/Dashboard';
+import AdminDashboard from '../components/Admin/Dashboard old';
 
 export const adminRoutes = [
-    {
-        path: "/dashboard",
-        exact: true,
-        component: AdminDashboard,
-    },
     {
         path:"/user/:id",
         exact: false,

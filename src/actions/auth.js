@@ -43,7 +43,7 @@ export const signUp = (firstName, lastName, email, password, passwordConfirm, ph
 };
 
 export const signOut = () => (dispatch) => {
-    sessionStorage.removeItem('token');
+    localStorage.removeItem('token');
     localStorage.removeItem('persist:root');
 
     dispatch({
