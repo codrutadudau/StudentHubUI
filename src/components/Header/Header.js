@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import { Dropdown } from 'react-bootstrap';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -12,6 +13,7 @@ import { signOut } from '../../actions/auth';
 
 export default function Header() {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [roleName, setRoleName] = useState();
 
     const isLoggedIn = useSelector(state => state.authReducer.isLoggedIn);
@@ -20,14 +22,11 @@ export default function Header() {
     const handleLogout = e => {
         e.preventDefault();
 
-        dispatch(signOut());
+        dispatch(signOut())
+            .then(() => {
+                history.push('/');
+            });
     }
-
-    useEffect(() => {
-        if (!localStorage.getItem("token")) {
-            dispatch(signOut());
-        }
-    }, []);
 
     useEffect(() => {
         if (me) {

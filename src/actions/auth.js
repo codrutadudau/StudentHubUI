@@ -49,4 +49,6 @@ export const signOut = () => (dispatch) => {
     dispatch({
         type: LOGOUT,
     });
+
+    return Promise.resolve();
 };
