@@ -232,9 +232,9 @@ export function Details({ location: { state } }) {
                             !isEmpty(questions) ?
                                 <table className={`table table-striped quiz-questions-list-table`}>
                                     <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">description</th>
+                                        <tr className="table table-striped quiz-questions-list-table-header">
+                                            <th scope="col"></th>
+                                            <th scope="col">Description</th>
                                             <th scope="col">Actions</th>
                                         </tr>
                                     </thead>

@@ -5,7 +5,7 @@
         width: 130px;
         margin: 10px 0 10px auto;
         padding: 2px !important;
-        margin-left: 100px;
+        margin-right: 5px;
 
         &-icon {
             position: relative;
@@ -15,18 +15,22 @@
         }
 
         &-button {
-            font-size: 12px;
+            font-size: 13px;
+            
         }
     }
 
     .quiz-table {
-        border: 1px solid #a9a9a9;
         background: white;
-        box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
         margin-top: 30px;
+        
 
-        th {
-            color: #a9a9a9;
+        &-header{
+            font-family: Lato-Bold;
+            font-size: 18px;
+            color: #fff;
+            line-height: 1.4;
+            background: linear-gradient(60deg, #ab47bc, #8e24aa);
         }
 
         &-icon {
@@ -50,6 +54,15 @@
 
 .quiz {
     flex-direction: column;
+    width: 40% !important;
+    margin: 10px 0 100px auto;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
+
+    Button{
+       margin-top: 30px;
+    }
 
     &-questions {
         display: flex;
@@ -58,22 +71,34 @@
 
         &-new {
             width: 180px;
-            margin: 10px 0 40px auto;
-            padding: 5px !important;
+            margin: 100px 0 10px auto;
+            padding: 2px !important;
 
             &-icon {
                 position: relative;
                 bottom: 1px;
                 right: 5px;
-                font-size: 18px !important;
+                font-size: 20px !important;
             }
 
             &-button {
-                font-size: 12px;
+                font-size: 5px;
             }
         }
 
         &-list-table {
+            background: white;
+            margin-top: 30px;
+            
+            &-header{
+                font-family: Lato-Bold !important;
+                font-size: 18px !important;
+                color: #fff !important;
+                line-height: 1.4;
+                background: linear-gradient(60deg, #ab47bc, #8e24aa);
+                border-bottom-color: white;
+            }
+            
 
             &-icon {
                 margin-right: 3px;
@@ -108,6 +133,7 @@
         }
     }
 }
+
 
 .quiz-view {
     flex-direction: column;
