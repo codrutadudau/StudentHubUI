@@ -33,7 +33,7 @@ export default function Details() {
                             withIcon={false}
                             withPreview={true}
                             label=""
-                            buttonText=""
+                            buttonText="Upload Image"
                             onChange={handleOnChange}
                             imgExtension={[".jpg", ".gif", ".png", ".gif", ".svg"]}
                             maxFileSize={1048576}
