@@ -28,7 +28,7 @@ export default function Details() {
             <div className="profile-container-first">
                 <Card className="profile-container-first-info">
                     <Card.Body className="profile-container-first-info-card">
-                        <img className="avatar" src={avatar} />
+                        {/* <img className="avatar" src={avatar} /> */}
                         <ImageUploader 
                             withIcon={false}
                             withPreview={true}
