@@ -14,6 +14,7 @@ import PageNotFound from './PageNotFound';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import Signup from './Auth/Signup';
+import Profile from './User/Details'
 
 import { adminRoutes } from '../routes/adminRoutes';
 import { studentRoutes } from '../routes/studentRoutes';
@@ -40,6 +41,7 @@ function App() {
                 <PublicRoute path="/sign-in" component={Login} restricted={true} />
                 <PublicRoute path="/sign-up" component={Signup} restricted={true} />
                 <PrivateRoute path="/dashboard" component={Dashboard} role={roleName} />
+                <PrivateRoute path="/profile" component={Profile} role={roleName} />
                 {
                     roleName === process.env.ROLE_ADMIN &&
                     map(adminRoutes, (route, index) => {

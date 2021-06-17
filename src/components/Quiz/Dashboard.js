@@ -56,7 +56,7 @@ export default function Dashboard() {
                 !isEmpty(quizzes) ?
                     <table className={`table table-striped quiz-table`}>
                     <thead>
-                        <tr className="table table-striped quiz-table-header">
+                        <tr className="quiz-table-header">
                             <th scope="col"></th>
                             <th scope="col">Name</th>
                             <th scope="col">Actions</th>
