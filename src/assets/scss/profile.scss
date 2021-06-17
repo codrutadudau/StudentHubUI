@@ -1,54 +1,117 @@
+@import './breakpoints.scss';
+
 .profile {
     align-items: flex-start;
 
-    &-info {
-        width: 30%;
+    &-container-first {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
 
-        &-card {
-            display: flex;
+        @media #{$mobile} {
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        }
 
-            img {
-                display: block;
-                border-radius: 50%;
+        .card {
+            &:last-of-type {
+                margin: 0 0 0 30px;
+
+                @media #{$mobile} {
+                    margin: 30px 0 0;
+                }
+            }
+        }
+
+        &-info {
+            width: calc(30% - 15px);
+
+            @media #{$mobile} {
                 width: 100%;
             }
 
-            &-text {
-                display: block;
-                text-align: center;
-                font-size: 14px;
+            &-card {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                border-radius: 12px;
+                box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
+
+                .avatar {
+                    height: 70px;
+                    width: 70px;
+                }
+
+                .fileUploader {
+
+                    .fileContainer {
+                        box-shadow: none;
+                        padding: 0;
+                        margin: 0;
+
+                        .uploadPictureContainer {
+                            width: 100%;
+                            border-radius: 50%;
+
+                            img.uploadPicture {
+                                border-radius: 50%;
+                            }
+                        }
+
+                        .chooseFileButton {
+                            margin: 0;
+                            position: relative;
+                            top: 100px;
+                            z-index: 1;
+                        }
+
+                        .deleteImage {
+                            display: none;
+                        }
+
+                    }
+                }
+
+                &-text {
+                    display: block;
+                    text-align: center;
+                    font-size: 14px;
+                }
             }
         }
-    }
 
-    &-data {
-        width: 70%;
+        &-data {
+            width: calc(70% - 15px);
+            border-radius: 12px;
+            box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
 
-        &-card {
+            @media #{$mobile} {
+                width: 100%;
+            }
 
-            &-edit-profile {
+            &-card {
 
-                label {
-                    width: 35%;
-                }
+                &-edit-profile {
 
-                hr {
-                    margin: 3px 0;
-                }
+                    label {
+                        width: 35%;
+                    }
 
-                .form-group {
-                    .form-control {
-                        display: inline-block;
-                        width: 65%;
-                        border: none;
-                        border-radius: 0;
+                    hr {
+                        margin: 3px 0;
+                    }
+
+                    .form-group {
+                        .form-control {
+                            display: inline-block;
+                            width: 65%;
+                            border: none;
+                            border-radius: 0;
+                        }
                     }
                 }
             }
-
         }
     }
 }
