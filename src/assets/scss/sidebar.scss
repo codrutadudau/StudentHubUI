@@ -17,7 +17,7 @@
     }
 }
 
-.admin-navbar-menu {
+.navbar-menu {
 
     &-items {
         display: flex;
@@ -92,6 +92,25 @@
     }
 }
 
-.admin-sidebar {
+.admin-sidebar,
+.student-sidebar,
+.teacher-sidebar {
     background-color: #2c2c2c;
+}
+
+.admin-sidebar {
+    @media #{$mobile} {
+        padding: 8px !important;
+    }
+
+    .navbar-menu {
+        
+        &-items-item {
+            
+            @media #{$mobile} {
+                padding: 0 3px;
+                font-size: 10px;
+            }
+        }
+    }
 }

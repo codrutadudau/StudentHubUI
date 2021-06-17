@@ -6,6 +6,10 @@ import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import HomeIcon from '@material-ui/icons/Home';
 import PeopleIcon from '@material-ui/icons/People';
+import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import AccessibilityIcon from '@material-ui/icons/Accessibility';
 
 import '../../assets/scss/sidebar.scss';
 
@@ -20,26 +24,50 @@ export default function Sidebar() {
             {
                 title: 'Dashboard',
                 path: '/dashboard',
-                icon: <HomeIcon className="admin-navbar-menu-items-item-icon" />,
-                cName: 'admin-navbar-menu-items-item'
+                icon: <HomeIcon className="navbar-menu-items-item-icon" />,
+                cName: 'navbar-menu-items-item'
             },
             {
                 title: 'Users',
                 path: '/users',
-                icon: <PeopleIcon className="admin-navbar-menu-items-item-icon" />,
-                cName: 'admin-navbar-menu-items-item'
+                icon: <PeopleIcon className="navbar-menu-items-item-icon" />,
+                cName: 'navbar-menu-items-item'
             },
             {
                 title: 'Quizzes',
                 path: '/quizzes',
-                icon: <FormatListBulletedIcon className="admin-navbar-menu-items-item-icon" />,
-                cName: 'admin-navbar-menu-items-item'
+                icon: <FormatListBulletedIcon className="navbar-menu-items-item-icon" />,
+                cName: 'navbar-menu-items-item'
             },
             {
                 title: 'Questions',
                 path: '/questions',
-                icon: <QuestionAnswerIcon className="admin-navbar-menu-items-item-icon" />,
-                cName: 'admin-navbar-menu-items-item'
+                icon: <QuestionAnswerIcon className="navbar-menu-items-item-icon" />,
+                cName: 'navbar-menu-items-item'
+            },
+            {
+                title: 'Teachers',
+                path: '/teachers',
+                icon: <PeopleAltIcon className="navbar-menu-items-item-icon" />,
+                cName: 'navbar-menu-items-item'
+            },
+            {
+                title: 'Students',
+                path: '/students',
+                icon: <EmojiPeopleIcon className="navbar-menu-items-item-icon" />,
+                cName: 'navbar-menu-items-item'
+            },
+            {
+                title: 'Roles',
+                path: '/roles',
+                icon: <AccessibilityIcon className="navbar-menu-items-item-icon" />,
+                cName: 'navbar-menu-items-item'
+            },
+            {
+                title: 'Privileges',
+                path: '/privileges',
+                icon: <MenuBookIcon className="navbar-menu-items-item-icon" />,
+                cName: 'navbar-menu-items-item'
             },
         ]);
     }
@@ -53,8 +81,8 @@ export default function Sidebar() {
 
     return (
         <div className="layout-left-sidebar sidebar admin-sidebar">
-            <nav className='admin-navbar-menu'>
-                <ul className='admin-navbar-menu-items'>
+            <nav className='navbar-menu'>
+                <ul className='navbar-menu-items'>
                     {
                         map(navbarItems(), (item, index) => {
                             const activeClassName = selectedItem.active === index || history.location.pathname === item.path ? 'active' : '';

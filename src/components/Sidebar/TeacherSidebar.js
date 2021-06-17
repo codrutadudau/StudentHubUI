@@ -20,8 +20,8 @@ export default function TeacherSidebar() {
             {
                 title: 'Teacher',
                 path: '/dashboard',
-                icon: <HomeIcon className="admin-navbar-menu-items-item-icon" />,
-                cName: 'admin-navbar-menu-items-item'
+                icon: <HomeIcon className="navbar-menu-items-item-icon" />,
+                cName: 'navbar-menu-items-item'
             },
         ]);
     }
@@ -34,9 +34,9 @@ export default function TeacherSidebar() {
     }
 
     return (
-        <div className="layout-left-sidebar sidebar admin-sidebar">
-            <nav className='admin-navbar-menu'>
-                <ul className='admin-navbar-menu-items'>
+        <div className="layout-left-sidebar sidebar teacher-sidebar">
+            <nav className='navbar-menu'>
+                <ul className='navbar-menu-items'>
                     {
                         map(navbarItems(), (item, index) => {
                             const activeClassName = selectedItem.active === index || history.location.pathname === item.path ? 'active' : '';
