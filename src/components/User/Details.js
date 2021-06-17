@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Form, Button, Card } from 'react-bootstrap';
-import ImageUploader from "react-images-upload"
+import ImageUploader from "react-images-upload";
 
 import '../../assets/scss/profile.scss';
+import avatar from '../../assets/images/avatar.jpg';
 
 import { getUserById } from '../../actions/user';
 
@@ -20,9 +21,6 @@ export default function Details() {
     const handleOnChange = e => {
         console.log(e);
     }
-
-
-    
     
     return (
         me &&
@@ -30,6 +28,7 @@ export default function Details() {
             <div className="profile-container-first">
                 <Card className="profile-container-first-info">
                     <Card.Body className="profile-container-first-info-card">
+                        <img className="avatar" src={avatar} />
                         <ImageUploader 
                             withIcon={false}
                             withPreview={true}
@@ -40,7 +39,7 @@ export default function Details() {
                             maxFileSize={1048576}
                             fileSizeError=" file size is too big"
                         />
-                        <span className="profile-container-first-info-card-text">{me.firstName} {me.lastName}</span>
+                        {/* <span className="profile-container-first-info-card-text">{me.firstName} {me.lastName}</span> */}
                         {/* <span className="profile-container-first-info-card-text">Full Stack Developer</span>
                         <span className="profile-container-first-info-card-text">Bay Area, San Francisco, CA</span> */}
                     </Card.Body>
