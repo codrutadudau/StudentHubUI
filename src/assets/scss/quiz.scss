@@ -138,31 +138,32 @@
 .quiz-view {
     flex-direction: column;
     display: inline-block;
-    height: 85%;
     position: relative;
     background: white;
     border-radius: 5px;
     box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
-    margin-top: 50px;
-
+    position: relative;
+    top: 20px;
+    padding: 60px 0 0;
 
     &-title { 
         text-align: center;
         background: linear-gradient(60deg, #ab47bc, #8e24aa);
         border-radius: 10px;
         box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
-        position: relative;
         font-weight: bold;
         padding: 10px 0;
-        top: -350px;
+        position: absolute;
+        top: -20px;
+        left: 7.5%;
+        width: 85%;
     }
+
     &-intro {
         word-wrap: break-word;
         background: #f6f6f6;
         border-radius: 5px;
         box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
-        position: relative;
-        top: -300px;
         height: 10% !important;
     }
 
@@ -190,5 +191,9 @@
         &-name {
             color: #dc3545;
         }
+    }
+
+    &-slider {
+        width: 100%;
     }
 }
