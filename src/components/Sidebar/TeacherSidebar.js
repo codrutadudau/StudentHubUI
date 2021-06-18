@@ -6,6 +6,7 @@ import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import HomeIcon from '@material-ui/icons/Home';
 import PeopleIcon from '@material-ui/icons/People';
+import FolderOpenIcon from '@material-ui/icons/FolderOpen';
 
 import '../../assets/scss/sidebar.scss';
 
@@ -18,9 +19,15 @@ export default function TeacherSidebar() {
     const navbarItems = () => {
         return ([
             {
-                title: 'Teacher',
+                title: 'Dashboard',
                 path: '/dashboard',
                 icon: <HomeIcon className="navbar-menu-items-item-icon" />,
+                cName: 'navbar-menu-items-item'
+            },
+            {
+                title: 'Courses',
+                path: '/courses',
+                icon: <FolderOpenIcon className="navbar-menu-items-item-icon" />,
                 cName: 'navbar-menu-items-item'
             },
         ]);
