@@ -176,8 +176,6 @@
             background: #f6f6f6;
             border-radius: 5px;
             box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
-            margin-top: -200px;
-            margin: 100px 0 100px 0;
 
             &-answer {
                 display: block;
@@ -196,4 +194,9 @@
     &-slider {
         width: 100%;
     }
+}
+
+
+.BrainhubCarousel__dots .BrainhubCarousel__thumbnail {
+    font-size: 20px !important;
 }
