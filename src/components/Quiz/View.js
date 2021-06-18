@@ -40,7 +40,7 @@ export default function Details() {
             <div className="quiz-view-intro">
                 {quiz.quizIntro}
             </div>
-            <div style={{ display: 'flex', justifyContent: 'center', flexFlow: 'row', alignContent: 'center', textAlign: 'center' }}>
+            <div style={{ display: 'grid' }}>
                 <Dots
                     value={currentSlide}
                     onChange={handleSliderChange}
