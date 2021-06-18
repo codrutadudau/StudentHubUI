@@ -44,7 +44,7 @@ export default function Details() {
                 <Dots
                     value={currentSlide}
                     onChange={handleSliderChange}
-                    number={Object.keys(questions).length}
+                    number={3}
                     thumbnails={[
                         (<div>1</div>),
                         (<div>2</div>),

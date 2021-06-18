@@ -2,12 +2,12 @@ import axios from 'axios';
 
 const API_URL = process.env.API_URL;
 
-export const getAllTeachers = () => {
-    return axios.get(API_URL + "/user_teachers");
-};
+export const getAllTeachers = (id = null) => {
+    if (id) {
+        return axios.get(API_URL + "/user_teachers?user=" + id);
+    }
 
-export const getTeacherById = (id) => {
-    return axios.get(API_URL + "/user_teachers/" + id);
+    return axios.get(API_URL + "/user_teachers");
 };
 
 export const getTeacherCourses = (id) => {

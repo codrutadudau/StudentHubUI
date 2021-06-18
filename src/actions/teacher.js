@@ -6,8 +6,8 @@ import {
 
 import { teacherApi } from '../api';
 
-export const getAllTeachers = () => (dispatch) => {
-    return teacherApi.getAllTeachers()
+export const getAllTeachers = (id) => (dispatch) => {
+    return teacherApi.getAllTeachers(id)
         .then((response) => {
             dispatch({
                 type: GET_TEACHERS,
