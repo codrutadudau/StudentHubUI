@@ -2,6 +2,8 @@ import CourseDashboard from "../components/Course/Dashboard";
 import QuizDashboard from '../components/Quiz/Dashboard';
 import QuizDetails from '../components/Quiz/Details';
 import QuizView from '../components/Quiz/View';
+import QuestionDetails from '../components/Question/Details';
+import QuestionDashboard from '../components/Question/Dashboard';
 
 export const teacherRoutes = [
     {
@@ -28,5 +30,20 @@ export const teacherRoutes = [
         path:"/quizzes/create",
         exact: true,
         component: QuizDetails, 
+    },
+    {
+        path:"/questions/create",
+        exact: true,
+        component: QuestionDetails,
+    },
+    {
+        path:"/question/:id/:action",
+        exact: true,
+        component: QuestionDetails,
+    },
+    {
+        path:"/questions",
+        exact: true,
+        component: QuestionDashboard,
     },
 ];

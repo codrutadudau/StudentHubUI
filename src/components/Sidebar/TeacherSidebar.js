@@ -36,6 +36,12 @@ export default function TeacherSidebar() {
                 icon: <FormatListBulletedIcon className="navbar-menu-items-item-icon" />,
                 cName: 'navbar-menu-items-item'
             },
+            {
+                title: 'Questions',
+                path: '/questions',
+                icon: <QuestionAnswerIcon className="navbar-menu-items-item-icon" />,
+                cName: 'navbar-menu-items-item'
+            },
         ]);
     }
 
