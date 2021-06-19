@@ -1,6 +1,7 @@
 import {
     GET_QUIZZES,
-    GET_QUIZ
+    GET_QUIZ,
+    GET_TEACHER_QUIZZES,
 } from '../actions/types';
 
 const initialState = {
@@ -13,6 +14,7 @@ const quizReducer = (state = initialState, action) => {
 
     switch (type) {
         case GET_QUIZZES:
+        case GET_TEACHER_QUIZZES:
             return {
                 ...state,
                 quizzes: payload.quizzes

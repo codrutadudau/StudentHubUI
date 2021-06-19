@@ -10,6 +10,10 @@ export const getAllQuizzes = (id = null) => {
     return axios.get(API_URL + "/quizzes");
 };
 
+export const getAllQuizzesForTeacherId = (id) => {
+    return axios.get(API_URL + "/quizzes?teacher=" + id);
+};
+
 export const getQuizById = (id) => {
     return axios.get(API_URL + "/quizzes/" + id);
 };

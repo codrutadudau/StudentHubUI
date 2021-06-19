@@ -5,6 +5,7 @@ export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
 export const SIGNUP_FAIL = "SIGNUP_FAIL";
 
 export const GET_QUIZZES = "GET_QUIZZES";
+export const GET_TEACHER_QUIZZES = "GET_TEACHER_QUIZZES";
 export const GET_QUIZ = "GET_QUIZ";
 export const CREATE_QUIZ_SUCCESS = "CREATE_QUIZ_SUCCESS";
 export const CREATE_QUIZ_FAIL = "CREATE_QUIZ_FAIL";

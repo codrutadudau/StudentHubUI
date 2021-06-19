@@ -9,16 +9,31 @@ import {
     ADD_QUIZ_QUESTION_SUCCESS,
     ADD_QUIZ_QUESTION_FAIL,
     DELETE_QUIZ_QUESTION_SUCCESS,
-    DELETE_QUIZ_QUESTION_FAIL
+    DELETE_QUIZ_QUESTION_FAIL,
+    GET_TEACHER_QUIZZES,
 } from "./types";
 
 import { quizApi } from '../api';
 
-export const getAllQuizzes = (id = null) => async(dispatch) => {
+export const getAllQuizzes = (id = null) => (dispatch) => {
     return quizApi.getAllQuizzes(id)
         .then(response => {
             dispatch({
                 type: GET_QUIZZES,
+                payload: { quizzes: response.data },
+            });
+        })
+        .catch(error => {
+            const message = error.response.data.message;
+        }
+    );
+};
+
+export const getAllQuizzesForTeacherId = (id) => (dispatch) => {
+    return quizApi.getAllQuizzesForTeacherId(id)
+        .then(response => {
+            dispatch({
+                type: GET_TEACHER_QUIZZES,
                 payload: { quizzes: response.data },
             });
         })

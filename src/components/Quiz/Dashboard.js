@@ -13,9 +13,10 @@ import DeleteQuiz from '../Modals/DeleteQuiz';
 
 import '../../assets/scss/quiz.scss';
 
-import { getAllQuizzes } from '../../actions/quiz';
+import { getAllQuizzes, getAllQuizzesForTeacherId } from '../../actions/quiz';
+import { getAllTeachers } from '../../actions/teacher';
 
-export default function Dashboard() {
+export default function Dashboard(props) {
     const dispatch = useDispatch();
     const history = useHistory();
     const [modalShow, setModalShow] = useState(false);
@@ -24,11 +25,31 @@ export default function Dashboard() {
         name: ""
     });
     
+    const me = useSelector(state => state.userReducer.me);
+    const quizzes = useSelector(state => state.quizReducer.quizzes);
+    const teacherReducer = useSelector(state => state.teacherReducer);
+
     useEffect(() => {
-        dispatch(getAllQuizzes());
+        switch (props.role) {
+            case process.env.ROLE_ADMIN:
+                
+            break;
+            case process.env.ROLE_TEACHER:
+                dispatch(getAllTeachers(me.id));
+            break;
+            default: break;
+        }
     }, []);
     
-    const quizzes = useSelector(state => state.quizReducer.quizzes);
+    useEffect(() => {
+        if (process.env.ROLE_TEACHER === props.role) {
+            if (teacherReducer.teachers) {
+                dispatch(getAllQuizzesForTeacherId(teacherReducer.teachers[0].id));
+            }
+        } else {
+            dispatch(getAllQuizzes());
+        }
+    }, []);
 
     const handleClick = (e, quiz, action) => {
         e.preventDefault();
