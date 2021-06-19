@@ -14,8 +14,8 @@ import {
 
 import { quizApi } from '../api';
 
-export const getAllQuizzes = () => async(dispatch) => {
-    return quizApi.getAllQuizzes()
+export const getAllQuizzes = (id = null) => async(dispatch) => {
+    return quizApi.getAllQuizzes(id)
         .then(response => {
             dispatch({
                 type: GET_QUIZZES,

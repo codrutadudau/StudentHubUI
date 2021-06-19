@@ -30,6 +30,12 @@ export default function TeacherSidebar() {
                 icon: <FolderOpenIcon className="navbar-menu-items-item-icon" />,
                 cName: 'navbar-menu-items-item'
             },
+            {
+                title: 'Quizzes',
+                path: '/quizzes',
+                icon: <FormatListBulletedIcon className="navbar-menu-items-item-icon" />,
+                cName: 'navbar-menu-items-item'
+            },
         ]);
     }
 
