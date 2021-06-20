@@ -33,7 +33,8 @@ export function Details({ location: { state } }) {
         timeOpen: "",
         timeClose: "",
         password: "",
-        course: ""
+        course: "",
+        duration: "",
     });
     const [editModalShow, setEditModalShow] = useState(false);
     const [editModalData, setEditModalData] = useState({
@@ -96,6 +97,7 @@ export function Details({ location: { state } }) {
             timeClose: new Date(state.timeClose),
             password: state.password,
             course: state.courseId,
+            duration: state.duration,
         });
     }
 
@@ -250,6 +252,13 @@ export function Details({ location: { state } }) {
                             })
                         }
                     </Form.Control>
+                    <Form.Label>Duration (in minutes)</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="duration"
+                        onChange={handleOnChange}
+                        value={payload.duration}
+                    />
                     <Button type="submit">Submit</Button>
                 </Form.Group>
             </Form>

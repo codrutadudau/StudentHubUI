@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import map from 'lodash/map';
-import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
-import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
+import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
 import HomeIcon from '@material-ui/icons/Home';
-import PeopleIcon from '@material-ui/icons/People';
 
 import '../../assets/scss/sidebar.scss';
 
@@ -18,9 +16,21 @@ export default function StudentSidebar() {
     const navbarItems = () => {
         return ([
             {
-                title: 'Student',
+                title: 'Dashboard',
                 path: '/dashboard',
                 icon: <HomeIcon className="navbar-menu-items-item-icon" />,
+                cName: 'navbar-menu-items-item'
+            },
+            {
+                title: 'Classroom',
+                path: '/classroom',
+                icon: <PeopleOutlineIcon className="navbar-menu-items-item-icon" />,
+                cName: 'navbar-menu-items-item'
+            },
+            {
+                title: 'Quizzes',
+                path: '/quizzes',
+                icon: <PeopleOutlineIcon className="navbar-menu-items-item-icon" />,
                 cName: 'navbar-menu-items-item'
             },
         ]);

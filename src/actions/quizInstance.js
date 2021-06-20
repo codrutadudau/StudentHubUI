@@ -2,6 +2,10 @@
 import {
     ASSIGN_QUIZ_SUCCESS,
     ASSIGN_QUIZ_FAIL,
+    GET_USER_QUIZ_INSTANCES,
+    START_QUIZ_SUCCESS,
+    START_QUIZ_FAIL,
+    GET_QUIZ_INSTANCE,
 } from "./types";
 
 import { quizInstanceApi } from '../api';
@@ -22,31 +26,46 @@ export const assignQuiz = (payload) => (dispatch) => {
     );
 };
 
-// export const editAnswer = (id, payload) => (dispatch) => {
-//     return answerApi.editAnswer(id, payload)
-//         .then(() => {
-//             dispatch({
-//                 type: EDIT_ANSWER_SUCCESS,
-//             });
-//         })
-//         .catch(error => {
-//             const message = error.response.data.message;
-//             dispatch({
-//                 type: EDIT_ANSWER_FAIL,
-//             });
-//         }
-//     );
-// };
+export const getQuizInstancesByUser = (id) => (dispatch) => {
+    return quizInstanceApi.getQuizInstancesByUser(id)
+        .then(response => {
+            dispatch({
+                type: GET_USER_QUIZ_INSTANCES,
+                payload: { quizzes: response.data },
+            });
+        })
+        .catch(error => {
+            const message = error.response.data.message;
+        }
+    );
+};
 
-// export const deleteAnswer = (id) => (dispatch) => {
-//     return answerApi.deleteAnswer(id)
-//         .then(() => {
-//             dispatch({
-//                 type: DELETE_ANSWER,
-//             });
-//         })
-//         .catch(error => {
-//             const message = error.response.data.message;
-//         }
-//     );
-// };
+export const startQuiz = (id) => (dispatch) => {
+    return quizInstanceApi.startQuiz(id)
+        .then(() => {
+            dispatch({
+                type: START_QUIZ_SUCCESS,
+            });
+        })
+        .catch(error => {
+            const message = error.response.data.message;
+            dispatch({
+                type: START_QUIZ_FAIL,
+            });
+        }
+    );
+};
+
+export const getQuizInstance = (id) => (dispatch) => {
+    return quizInstanceApi.getQuizInstance(id)
+        .then((response) => {
+            dispatch({
+                type: GET_QUIZ_INSTANCE,
+                payload: { quizInstance: response.data },
+            });
+        })
+        .catch(error => {
+            const message = error.response.data.message;
+        }
+    );
+};

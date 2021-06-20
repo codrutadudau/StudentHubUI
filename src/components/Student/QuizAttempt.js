@@ -1,37 +1,65 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
+import { withRouter, useParams } from "react-router";
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from "react-router";
 import map from 'lodash/map';
 import Carousel, { Dots } from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
 
-import '../../assets/scss/quiz.scss';
-
 import { getQuizById } from '../../actions/quiz';
 import { getQuestionsByQuizId } from '../../actions/question';
+import { getQuizInstance } from '../../actions/quizInstance';
 
-export default function Details() {
+import '../../assets/scss/student.scss';
+import '../../assets/scss/quiz.scss';
+
+export function QuizAttempt({ location: { state } }) {
     const dispatch = useDispatch();
     const params = useParams();
     const [currentSlide, setCurrentSlide] = useState(0);
-
-    useEffect(() => {
-        dispatch(getQuizById(params.id))
-            .then(() => {
-                dispatch(getQuestionsByQuizId(params.id));
-            })
-    }, []);
+    const [quizOptions, setQuizOptions] = useState();
 
     const quiz = useSelector(state => state.quizReducer.quiz);
     const questions = useSelector(state => state.questionReducer.quizQuestions);
+    const quizInstance = useSelector(state => state.quizInstanceReducer.quizInstance);
+
+    useEffect(() => {
+        if (state) {
+            dispatch(getQuizById(state.quiz.id))
+                .then(() => {
+                    dispatch(getQuestionsByQuizId(state.quiz.id));
+                })
+        }
+    }, []);
+
+    useEffect(() => {
+        if (!quiz && !state) {
+            dispatch(getQuizInstance(params.id));
+        }
+    }, []);
+
+    useEffect(() => {
+        if (!state && quizInstance) {
+            dispatch(getQuizById(quizInstance.quiz.id))
+                .then(() => {
+                    dispatch(getQuestionsByQuizId(quizInstance.quiz.id));
+                })
+        }
+    }, [quizInstance]);
 
     const handleSliderChange = slide => {
         setCurrentSlide(slide);
     }
 
+    const handleAnswerCheck = (e, question, answer) => {
+        console.log("trigger");
+        console.log(question);
+        console.log(answer);
+        console.log(e.target.name);
+    }
+    
     return (
-        quiz &&
+        quiz && questions &&
         <Container className="d-flex justify-content-center quiz-view">
             <h2 className="quiz-view-title">
                 {quiz.name}
@@ -40,6 +68,7 @@ export default function Details() {
                 {quiz.quizIntro}
             </div>
             <div className="quiz-view-wrapper" style={{ display: 'grid' }}>
+                {/* <div className="quiz-view-wrapper-timer">{quiz.}</div> */}
                 <Dots
                     className="quiz-view-question-dots"
                     value={currentSlide}
@@ -47,7 +76,7 @@ export default function Details() {
                     number={questions ? Object.keys(questions).length : 0}
                     thumbnails={
                         map(questions, (question, index) => {
-                            return (<div className="quiz-view-question-dots-item">{index + 1}</div>)
+                            return (<div id={`dot${question.question.id}`} className="quiz-view-question-dots-item">{index + 1}</div>)
                         })
                     }
                 />
@@ -66,10 +95,18 @@ export default function Details() {
                                                     <div className="quiz-view-questions-question-answers-item" key={index}>
                                                         <span className="quiz-view-questions-question-answers-item-input">
                                                             <input
-                                                                name={`question${question.question.id}`} type={question.question.hasMultipleAnswers ? 'checkbox' : 'radio'}
+                                                                onClick={e => handleAnswerCheck(e, question, answer)}
+                                                                id={`question-${question.question.id}-${index}`} 
+                                                                name={`question-${question.question.id}`} 
+                                                                type={question.question.hasMultipleAnswers ? 'checkbox' : 'radio'}
                                                             />
                                                             </span>
-                                                        <label htmlFor={`question${question.question.id}`}>{answer.description}</label><br></br>
+                                                        <label
+                                                            onClick={e => handleAnswerCheck(e, question, answer)}
+                                                            htmlFor={`question-${question.question.id}-${index}`}
+                                                        >
+                                                            {answer.description}
+                                                        </label>
                                                     </div>
                                                 );
                                             })
@@ -85,3 +122,5 @@ export default function Details() {
         </Container>
     );
 }
+
+export default withRouter(QuizAttempt);

@@ -44,7 +44,6 @@ export default function AssignQuiz(props) {
 
         //we're assigning the quiz to the whole classroom
         if (props.data.classroomId) {
-            console.log(classroomReducer.classroomStudents);
             map(classroomReducer.classroomStudents, student => {
                 if (student.hasInProgressQuizzes === 0) {
                     dispatch(assignQuiz({
