@@ -6,6 +6,7 @@ import * as answerApi from './answer';
 import * as teacherApi from './teacher';
 import * as classroomApi from './classroom';
 import * as quizInstanceApi from './quizInstance';
+import * as courseApi from './course';
 
 export {
     authApi,
@@ -16,4 +17,5 @@ export {
     teacherApi,
     classroomApi,
     quizInstanceApi,
+    courseApi,
 };

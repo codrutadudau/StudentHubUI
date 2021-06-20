@@ -15,14 +15,17 @@ import DeleteQuizQuestion from '../Modals/DeleteQuizQuestion';
 
 import { getQuizById, createQuiz, editQuiz } from '../../actions/quiz';
 import { getQuestionsByQuizId } from '../../actions/question';
+import { getAllCourses } from '../../actions/course';
 
 export function Details({ location: { state } }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const params = useParams();
 
+    const me = useSelector(state => state.userReducer.me);
     const quiz = useSelector(state => state.quizReducer.quiz);
     const questions = useSelector(state => state.questionReducer.quizQuestions);
+    const courses = useSelector(state => state.courseReducer.courses);
 
     const [payload, setPayload] = useState({
         name: "",
@@ -30,6 +33,7 @@ export function Details({ location: { state } }) {
         timeOpen: "",
         timeClose: "",
         password: "",
+        course: ""
     });
     const [editModalShow, setEditModalShow] = useState(false);
     const [editModalData, setEditModalData] = useState({
@@ -71,14 +75,27 @@ export function Details({ location: { state } }) {
         }
     }, []);
 
-    const setPayloadForm = (state) =>{
+    useEffect(() => {
+        switch (me.role.name) {
+            case process.env.ROLE_ADMIN:
+                dispatch(getAllCourses());
+            break;
+            case process.env.ROLE_TEACHER:
+                dispatch(getAllCourses(me.id));
+            break;
+            default: break;
+        }
+    }, [me]);
+
+    const setPayloadForm = (state) => {
         setPayload({
             ...payload,
             name: state.name,
             quizIntro: state.quizIntro,
             timeOpen: new Date(state.timeOpen),
             timeClose: new Date(state.timeClose),
-            password: state.password
+            password: state.password,
+            course: state.courseId,
         });
     }
 
@@ -217,6 +234,22 @@ export function Details({ location: { state } }) {
                         onChange={handleOnChange}
                         value={payload.password}
                     />
+                    <Form.Label>Course</Form.Label>
+                    <Form.Control as="select" name="course" onChange={handleOnChange} value={payload.course}>
+                        <option value="">Select a course</option>
+                        {
+                            map(courses, (course, index) => {
+                                return (
+                                    <option
+                                        key={index} 
+                                        value={course.id}
+                                    >
+                                        {course.name}
+                                    </option>
+                                );
+                            })
+                        }
+                    </Form.Control>
                     <Button type="submit">Submit</Button>
                 </Form.Group>
             </Form>

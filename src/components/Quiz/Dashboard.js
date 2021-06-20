@@ -49,7 +49,7 @@ export default function Dashboard(props) {
         } else {
             dispatch(getAllQuizzes());
         }
-    }, []);
+    }, [teacherReducer.teachers]);
 
     const handleClick = (e, quiz, action) => {
         e.preventDefault();
@@ -67,7 +67,7 @@ export default function Dashboard(props) {
                 <AddCircleOutlineIcon className="quizzes-new-icon" />
                 <span className="quizzes-new-button">Add new quiz</span>
             </div>
-            <DeleteQuiz 
+            <DeleteQuiz
                 show={modalShow} 
                 onHide={() => setModalShow(false)}
                 id={modalData.id}
@@ -80,6 +80,7 @@ export default function Dashboard(props) {
                         <tr className="quiz-table-header">
                             <th scope="col"></th>
                             <th scope="col">Name</th>
+                            <th scope="col">Course</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -90,6 +91,7 @@ export default function Dashboard(props) {
                                     <tr key={value}>
                                         <th scope="row">{value + 1}</th>
                                         <td>{quiz.name}</td>
+                                        <td>{quiz.courseName}</td>
                                         <td>
                                             <EditIcon onClick={e => handleClick(e, quiz, 'edit')} className="quiz-table-icon quiz-table-icon--edit" />
                                             <DeleteIcon
