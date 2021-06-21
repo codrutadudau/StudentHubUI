@@ -1,16 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { Container } from 'react-bootstrap';
 import MUIDataTable from "mui-datatables";
-import  EditIcon from '@material-ui/icons/Edit';
-import  DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
+import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
+import EnableUser from '../Modals/EnableUser';
 
 import { getAllUsers } from '../../actions/user';
 
 export default function Dashboard() {
     const dispatch = useDispatch();
     const history = useHistory();
+    const [modalShow, setModalShow] = useState(false);
+    const [modalData, setModalData] = useState(false);
     
     useEffect(() => {
         dispatch(getAllUsers());
@@ -23,6 +27,11 @@ export default function Dashboard() {
 
         history.push('/user/' + id);
     };
+
+    const handleEnable = (e, id) => {
+        setModalShow(true);
+        setModalData(id);
+    }
 
     const columns = [
         {
@@ -58,6 +67,19 @@ export default function Dashboard() {
             }
         },
         {
+            name: "enabled",
+            label: "Enabled",
+            options: {
+                filter: true,
+                sort: true,
+                customBodyRender: (enabled) => {
+                    return (
+                        enabled === true ? 1 : 0
+                    );
+                }
+            }
+        },
+        {
             name: "id",
             label: "Actions",
             options: {
@@ -66,7 +88,8 @@ export default function Dashboard() {
                 customBodyRender: (id) => {
                     return (
                         <div>
-                            <EditIcon onClick={(e) => handleClick(e, id)}/>
+                            <VerifiedUserIcon onClick={e => handleEnable(e, id)} />
+                            <EditIcon onClick={e => handleClick(e, id)}/>
                             <DeleteIcon />
                         </div>
                     );
@@ -78,11 +101,21 @@ export default function Dashboard() {
     return (
         users &&
         <Container className="d-flex justify-content-center users">
+            <EnableUser
+                show={modalShow} 
+                onHide={() => setModalShow(false)}
+                data={modalData}
+            />
             <MUIDataTable
                 className="user-table"
                 title={"Users list"}
                 data={users}
                 columns={columns}
+                options={{
+                    selectableRows: false,
+                    filter: false,
+                    print: false,
+                }}
             />
         </Container>
     );

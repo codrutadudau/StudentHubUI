@@ -13,3 +13,7 @@ export const getUserById = (id) => {
 export const getUserMe = () => {
     return axios.get(API_URL + "/users/me");
 };
+
+export const enableUser = (id) => {
+    return axios.put(API_URL + "/users/" + id + "/enable");
+};

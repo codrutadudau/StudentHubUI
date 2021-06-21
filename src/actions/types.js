@@ -36,6 +36,7 @@ export const DELETE_ANSWER = "DELETE_ANSWER";
 export const GET_USERS = "GET_USERS";
 export const GET_USER = "GET_USER";
 export const GET_ME_USER = "GET_ME_USER";
+export const ENABLE_USER = "ENABLE_USER";
 
 export const GET_TEACHERS = "GET_TEACHERS";
 export const GET_TEACHER_COURSES = "GET_TEACHER_COURSES";

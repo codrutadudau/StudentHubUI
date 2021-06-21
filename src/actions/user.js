@@ -1,7 +1,8 @@
 import {
     GET_USERS,
     GET_ME_USER,
-    GET_USER
+    GET_USER,
+    ENABLE_USER,
 } from "./types";
 
 import { userApi } from '../api';
@@ -44,6 +45,19 @@ export const userMe = () => (dispatch) => {
         })
         .catch(error => {
                 const message = error.response.data.message;
+            }
+        );
+};
+
+export const enableUser = (id) => (dispatch) => {
+    return userApi.enableUser(id)
+        .then(() => {
+            dispatch({
+                type: ENABLE_USER,
+            });
+        })
+        .catch(error => {
+                
             }
         );
 };
