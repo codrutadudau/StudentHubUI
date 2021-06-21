@@ -27,17 +27,17 @@ export function QuizAttempt({ location: { state } }) {
     const quizInstance = useSelector(state => state.quizInstanceReducer.quizInstance);
 
     useEffect(() => {
+        if (!quizInstance) {
+            dispatch(getQuizInstance(params.id));
+        }
+    }, []);
+
+    useEffect(() => {
         if (state) {
             dispatch(getQuizById(state.quiz.id))
                 .then(() => {
                     dispatch(getQuestionsByQuizId(state.quiz.id));
                 })
-        }
-    }, []);
-
-    useEffect(() => {
-        if (!quiz && !state) {
-            dispatch(getQuizInstance(params.id));
         }
     }, []);
 
@@ -51,15 +51,7 @@ export function QuizAttempt({ location: { state } }) {
     }, [quizInstance]);
 
     useEffect(() => {
-        if (!quizInstance && state) {
-            const startedAt = new Date(state.startedAt);
-            startedAt.setSeconds(startedAt.getSeconds() + 60 * state.quiz.duration);
-            setTime(startedAt);
-        }
-    }, []);
-
-    useEffect(() => {
-        if (!state && quizInstance) {
+        if (quizInstance && quizInstance.startedAt) {
             const startedAt = new Date(quizInstance.startedAt);
             startedAt.setSeconds(startedAt.getSeconds() + 60 * quizInstance.quiz.duration);
             setTime(startedAt);
@@ -71,6 +63,10 @@ export function QuizAttempt({ location: { state } }) {
     }
 
     const handleAnswerCheck = (e, question, answer) => {
+        if (e.target.name === undefined) {
+            return;
+        }
+
         console.log("trigger");
         console.log(question);
         console.log(answer);
