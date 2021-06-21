@@ -5,7 +5,7 @@ import map from 'lodash/map';
 
 import { getStudentClassroom, getClassroomStudents } from '../../actions/classroom';
 
-import '../../assets/scss/dashboard.scss';
+import '../../assets/scss/classroom.scss';
 
 export default function Classroom() {
     const dispatch = useDispatch();
@@ -27,14 +27,14 @@ export default function Classroom() {
     return (
         classroom &&
         <Container className="d-flex justify-content-center classroom">
-            {classroom[0].name}
+            <h2 className="classroom-name">{classroom[0].name}</h2>
             {
                 classroomStudents &&
-                <div>
+                <div className="classroom-students">
                     {
                         map(classroomStudents, (student, index) => {
                             return (
-                                <p key={index}>{student.firstName} {student.lastName}</p>
+                                <p key={index} className="classroom-student-name">{index + 1}. {student.firstName} {student.lastName}</p>
                             );
                         })
                     }

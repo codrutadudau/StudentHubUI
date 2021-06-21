@@ -1,3 +1,5 @@
+@import './colors.scss';
+
 .quizzes {
     flex-direction: column;
 
@@ -134,7 +136,6 @@
     }
 }
 
-
 .quiz-view {
     flex-direction: column;
     display: inline-block;
@@ -148,7 +149,7 @@
 
     &-title { 
         text-align: center;
-        background: linear-gradient(60deg, #ab47bc, #8e24aa);
+        background: teal;
         border-radius: 10px;
         box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
         font-weight: bold;
@@ -164,7 +165,8 @@
         background: #f6f6f6;
         border-radius: 5px;
         box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
-        height: 10% !important;
+        text-align: left;
+        padding: 5px 20px;
     }
 
     &-questions {
@@ -182,6 +184,17 @@
                 &-item {
                     display: flex;
                     align-items: center;
+                    margin: 5px 0;
+                    padding: 5px;
+                    border-radius: 5px;
+
+                    &--correct {
+                        background: $bright-green;
+                    }
+
+                    &--incorrect {
+                        background: $dark-red-1;
+                    }
 
                     &-input {
                         padding-right: 10px;
@@ -223,9 +236,12 @@
     }
 
     &-wrapper {
+        display: grid;
         background-color: lightblue;
-        margin: 65px 0 0;
+        margin: 80px 0 0;
         position: relative;
+        border-radius: 5px;
+        box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
 
         &-timer {
             position: absolute;
@@ -257,11 +273,23 @@
                 }
             }
         }
+
+        &-grade {
+            position: absolute;
+            top: -45px;
+            background: #f6f6f6;
+            width: 100%;
+            box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
+            text-align: left;
+            border-radius: 5px;
+            padding: 5px 20px;
+        }
     }
 
     &-submit {
         margin: 20px 0 0 auto;
         width: 35%;
+        background: teal;
     }
 }
 
@@ -282,6 +310,7 @@
 
     &__dots {
         justify-content: flex-start !important;
+        padding: 0 10px !important;
     }
 
     &__thumbnail {

@@ -6,6 +6,8 @@ import {
     START_QUIZ_SUCCESS,
     START_QUIZ_FAIL,
     GET_QUIZ_INSTANCE,
+    FINISH_QUIZ,
+    GET_FINISHED_QUIZ_INSTANCE,
 } from "./types";
 
 import { quizInstanceApi } from '../api';
@@ -56,12 +58,39 @@ export const startQuiz = (id) => (dispatch) => {
     );
 };
 
+export const finishQuiz = (id, payload) => (dispatch) => {
+    return quizInstanceApi.finishQuiz(id, payload)
+        .then(() => {
+            dispatch({
+                type: FINISH_QUIZ,
+            });
+        })
+        .catch(error => {
+            const message = error.response.data.message;
+        }
+    );
+};
+
 export const getQuizInstance = (id) => (dispatch) => {
     return quizInstanceApi.getQuizInstance(id)
         .then((response) => {
             dispatch({
                 type: GET_QUIZ_INSTANCE,
                 payload: { quizInstance: response.data },
+            });
+        })
+        .catch(error => {
+            const message = error.response.data.message;
+        }
+    );
+};
+
+export const getFinishedQuizInstance = (id) => (dispatch) => {
+    return quizInstanceApi.getFinishedQuizInstance(id)
+        .then((response) => {
+            dispatch({
+                type: GET_FINISHED_QUIZ_INSTANCE,
+                payload: { finishedQuizInstance: response.data },
             });
         })
         .catch(error => {

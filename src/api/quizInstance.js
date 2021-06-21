@@ -14,6 +14,14 @@ export const startQuiz = (id) => {
     return axios.put(API_URL + "/quiz_instances/" + id + "/start");
 };
 
+export const finishQuiz = (id, payload) => {
+    return axios.put(API_URL + "/quiz_instances/" + id, { ...payload });
+};
+
 export const getQuizInstance = (id) => {
     return axios.get(API_URL + "/quiz_instances/" + id);
+};
+
+export const getFinishedQuizInstance = (id) => {
+    return axios.get(API_URL + "/quiz_instances/" + id + "/answers");
 };

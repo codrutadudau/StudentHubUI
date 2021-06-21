@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
+import { useHistory } from 'react-router';
 import map from 'lodash/map';
+import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
 import StartQuizConfirmation from '../Modals/StartQuizConfirmation';
 
@@ -12,6 +14,7 @@ import '../../assets/scss/student.scss';
 
 export default function Quizzes() {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [quizzesAssigned, setQuizzesAssigned] = useState();
     const [quizzesTaken, setQuizzesTaken] = useState();
     const [modalShow, setModalShow] = useState(false);
@@ -26,7 +29,7 @@ export default function Quizzes() {
 
     useEffect(() => {
         map(quizzes, quizInstance => {
-            if (quizInstance.finishedAt) {
+            if (quizInstance.finishedAt != null) {
                 setQuizzesTaken({
                     ...quizzesTaken,
                     quizInstance
@@ -45,6 +48,10 @@ export default function Quizzes() {
         setModalData(quizInstance);
     }
 
+    const handleViewClick = (e, quizInstance) => {
+        history.push(`/quizzes/${quizInstance.id}/view`, quizInstance);
+    }
+
     return (
         <Container className="d-flex justify-content-center student-quizzes">
             <StartQuizConfirmation
@@ -52,22 +59,38 @@ export default function Quizzes() {
                 onHide={() => setModalShow(false)}
                 data={modalData}
             />
-            <h3>Quizzes assigned</h3>
-            {
-                map(quizzesAssigned, (quizInstance, index) => {
-                    return (
-                        <p key={index}>{quizInstance.quiz.name} <PlayCircleFilledIcon onClick={e => handleClick(e, quizInstance)} /></p>
-                    );
-                })
-            }
-            <h3>Quizzes taken</h3>
-            {
-                map(quizzesTaken, (quizInstance, index) => {
-                    return (
-                        <p key={index}>{quizInstance.quiz.name}</p>
-                    );
-                })
-            }
+            <div className="student-quizzes-assigned">
+                <h3 className="student-quizzes-taken-title">Quizzes assigned</h3>
+                {
+                    quizzesAssigned ?
+                    <div className="student-quizzes-taken-items">
+                        {
+                            map(quizzesAssigned, (quizInstance, index) => {
+                                return (
+                                    <p className="student-quizzes-taken-item" key={index}>{quizInstance.quiz.name} {quizInstance.finishedAt == null && <PlayCircleFilledIcon className="student-quizzes-taken-item-icon-start" onClick={e => handleClick(e, quizInstance)} />}</p>
+                                );
+                            })
+                        }
+                    </div> :
+                    <div className="student-quizzes-assigned-notice">You don't have any quizzes assigned</div>
+                }
+            </div>
+            <div className="student-quizzes-taken">
+                <h3 className="student-quizzes-taken-title">Quizzes taken</h3>
+                {
+                    quizzesTaken ?
+                    <div className="student-quizzes-taken-items">
+                        {
+                            map(quizzesTaken, (quizInstance, index) => {
+                                return (
+                                    <p className="student-quizzes-taken-item" key={index}>{quizInstance.quiz.name} {quizInstance.finishedAt != null && <VisibilityIcon className="student-quizzes-taken-item-icon-view" onClick={e => handleViewClick(e, quizInstance)} />}</p>
+                                );
+                            })
+                        }
+                    </div> :
+                    <div className="student-quizzes-assigned-notice">You don't have any taken quizzes</div>
+                }
+            </div>
         </Container>
     );
 }

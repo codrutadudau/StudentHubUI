@@ -1,0 +1,19 @@
+.classroom {
+    flex-direction: column;
+    padding: 20px;
+
+    &-name,
+    &-students {
+        margin-right: auto;
+        background: white;
+        width: 100%;
+        text-align: left;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
+    }
+
+    &-students {
+        margin-top: 30px;
+    }
+}
