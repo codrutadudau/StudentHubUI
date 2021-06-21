@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, Button } from 'react-bootstrap';
 import { withRouter, useParams } from "react-router";
 import { useSelector, useDispatch } from 'react-redux';
 import map from 'lodash/map';
@@ -19,8 +19,12 @@ export function QuizAttempt({ location: { state } }) {
     const dispatch = useDispatch();
     const params = useParams();
     const [currentSlide, setCurrentSlide] = useState(0);
-    const [quizOptions, setQuizOptions] = useState();
+    const [singleAnswers, setSingleAnswers] = useState();
+    const [multipleAnswers, setMultipleAnswers] = useState();
     const [time, setTime] = useState();
+    const [grade, setGrade] = useState(0);
+    const [singleAnswersGrades, setSingleAnswersGrades] = useState();
+    const [multipleAnswersGrades, setMultipleAnswersGrades] = useState();
 
     const quiz = useSelector(state => state.quizReducer.quiz);
     const questions = useSelector(state => state.questionReducer.quizQuestions);
@@ -67,12 +71,36 @@ export function QuizAttempt({ location: { state } }) {
             return;
         }
 
-        console.log("trigger");
-        console.log(question);
-        console.log(answer);
-        console.log(e.target.name);
+        if (question.question.hasMultipleAnswers) {
+
+        } else {
+            setSingleAnswers({
+                ...singleAnswers,
+                [`question-${question.question.id}`]: answer.id,
+            });
+            setSingleAnswersGrades({
+                ...singleAnswersGrades,
+                [`question-${question.question.id}`]: answer.correct ? 1 : 0,
+            });
+        }
+
+        
+        // console.log("trigger");
+        // console.log("question id: " + question.question.id);
+        // console.log("answer id: " + answer.id);
+        // console.log(answer);
+        // console.log(question);
     }
 
+    const handleSubmit = e => {
+        let tempGrade = 0;
+        map(singleAnswersGrades, answerGrade => {
+            tempGrade += answerGrade;
+        });
+        setGrade(tempGrade);
+    }
+console.log(grade);
+// console.log(singleAnswersGrades);
     return (
         quiz && questions &&
         <Container className="d-flex justify-content-center quiz-view">
@@ -105,7 +133,7 @@ export function QuizAttempt({ location: { state } }) {
                         map(questions, (question, index) => {
                             return (
                                 <div className="quiz-view-questions-question" key={index}>
-                                    <p key={index}>{question.question.description}</p>
+                                    <p key={index}>{question.question.description} ({question.question.defaultGrade}p)</p>
                                     <div className="quiz-view-questions-question-answers">
                                         {
                                             map(question.answers, (answer, index) => {
@@ -137,6 +165,7 @@ export function QuizAttempt({ location: { state } }) {
                 >
                 </Carousel>
             </div>
+            <Button className="btn btn-success quiz-view-submit" onClick={handleSubmit}>Submit</Button>
         </Container>
     );
 }

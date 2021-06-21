@@ -16,22 +16,25 @@ export default function Details() {
     const params = useParams();
     const [currentSlide, setCurrentSlide] = useState(0);
 
-    useEffect(() => {
-        dispatch(getQuizById(params.id))
-            .then(() => {
-                dispatch(getQuestionsByQuizId(params.id));
-            })
-    }, []);
-
     const quiz = useSelector(state => state.quizReducer.quiz);
     const questions = useSelector(state => state.questionReducer.quizQuestions);
+
+    useEffect(() => {
+        dispatch(getQuizById(params.id));
+    }, []);
+
+    useEffect(() => {
+        if (quiz) {
+            dispatch(getQuestionsByQuizId(params.id));
+        }
+    }, [quiz]);
 
     const handleSliderChange = slide => {
         setCurrentSlide(slide);
     }
 
     return (
-        quiz &&
+        quiz && questions &&
         <Container className="d-flex justify-content-center quiz-view">
             <h2 className="quiz-view-title">
                 {quiz.name}
