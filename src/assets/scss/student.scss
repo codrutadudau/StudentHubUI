@@ -52,3 +52,19 @@
         margin: 40px auto 0 0;
     }
 }
+
+.dashboard {
+    
+    &-course-1 {
+        padding: 10px 20px;
+        margin-right: auto;
+        width: 40%;
+        background: white;
+        border-radius: 5px;
+        box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
+
+        &-quiz-name {
+            text-align: left;
+        }
+    }
+}
