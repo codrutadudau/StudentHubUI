@@ -66,10 +66,6 @@ export default function Header() {
                                 <AccountCircleIcon />
                                 <span className="name">My profile</span>
                             </Dropdown.Item>
-                            <Dropdown.Item href="#/action-2">
-                                <SettingsIcon />
-                                <span className="name">Settings</span>
-                            </Dropdown.Item>
                             <Dropdown.Item href="/logout" onClick={handleLogout}>
                                 <ExitToAppIcon />
                                 <span className="name">Logout</span>

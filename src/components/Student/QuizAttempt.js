@@ -36,9 +36,7 @@ export function QuizAttempt({ location: { state } }) {
     const me = useSelector(state => state.userReducer.me);
 
     useEffect(() => {
-        if (!quizInstance) {
-            dispatch(getQuizInstance(params.id));
-        }
+        dispatch(getQuizInstance(params.id));
     }, []);
 
     useEffect(() => {
@@ -75,7 +73,8 @@ export function QuizAttempt({ location: { state } }) {
         if (e.target.name === undefined) {
             return;
         }
-
+console.log(question);
+console.log(answer);
         if (question.question.hasMultipleAnswers) {
 
         } else {
@@ -127,7 +126,7 @@ export function QuizAttempt({ location: { state } }) {
                     <div className="quiz-view-wrapper" style={{ display: 'grid' }}>
                         {
                             time &&
-                            <Timer className="quiz-view-wrapper-timer" expiryTimestamp={time} /*onExpire={handleSubmit}*/ />
+                            <Timer className="quiz-view-wrapper-timer" expiryTimestamp={time} onExpire={handleSubmit} />
                         }
                         <Dots
                             className="quiz-view-question-dots"

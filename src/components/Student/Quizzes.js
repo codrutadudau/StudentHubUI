@@ -62,12 +62,12 @@ export default function Quizzes() {
             <div className="student-quizzes-assigned">
                 <h3 className="student-quizzes-taken-title">Quizzes assigned</h3>
                 {
-                    quizzesAssigned ?
+                    quizzes && quizzes[quizzes.findIndex(x => x.finishedAt == null)] ?
                     <div className="student-quizzes-taken-items">
                         {
-                            map(quizzesAssigned, (quizInstance, index) => {
+                            map(quizzes, (quizInstance, index) => {
                                 return (
-                                    <p className="student-quizzes-taken-item" key={index}>{quizInstance.quiz.name} {quizInstance.finishedAt == null && <PlayCircleFilledIcon className="student-quizzes-taken-item-icon-start" onClick={e => handleClick(e, quizInstance)} />}</p>
+                                    <p className="student-quizzes-taken-item" key={index}>{quizInstance.quiz.name} <PlayCircleFilledIcon className="student-quizzes-taken-item-icon-start" onClick={e => handleClick(e, quizInstance)} /></p>
                                 );
                             })
                         }
@@ -78,12 +78,12 @@ export default function Quizzes() {
             <div className="student-quizzes-taken">
                 <h3 className="student-quizzes-taken-title">Quizzes taken</h3>
                 {
-                    quizzesTaken ?
+                    quizzes && quizzes[quizzes.findIndex(x => x.finishedAt != null)] ?
                     <div className="student-quizzes-taken-items">
                         {
-                            map(quizzesTaken, (quizInstance, index) => {
+                            map(quizzes, (quizInstance, index) => {
                                 return (
-                                    <p className="student-quizzes-taken-item" key={index}>{quizInstance.quiz.name} {quizInstance.finishedAt != null && <VisibilityIcon className="student-quizzes-taken-item-icon-view" onClick={e => handleViewClick(e, quizInstance)} />}</p>
+                                    <p className="student-quizzes-taken-item" key={index}>{quizInstance.quiz.name} <VisibilityIcon className="student-quizzes-taken-item-icon-view" onClick={e => handleViewClick(e, quizInstance)} /></p>
                                 );
                             })
                         }
