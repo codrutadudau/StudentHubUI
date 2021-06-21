@@ -57,18 +57,6 @@ export default function Sidebar() {
                 icon: <EmojiPeopleIcon className="navbar-menu-items-item-icon" />,
                 cName: 'navbar-menu-items-item'
             },
-            {
-                title: 'Roles',
-                path: '/roles',
-                icon: <AccessibilityIcon className="navbar-menu-items-item-icon" />,
-                cName: 'navbar-menu-items-item'
-            },
-            {
-                title: 'Privileges',
-                path: '/privileges',
-                icon: <MenuBookIcon className="navbar-menu-items-item-icon" />,
-                cName: 'navbar-menu-items-item'
-            },
         ]);
     }
 

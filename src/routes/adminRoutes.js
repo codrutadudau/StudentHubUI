@@ -5,7 +5,8 @@ import UserDetails from '../components/User/Details';
 import QuizDetails from '../components/Quiz/Details';
 import QuizView from '../components/Quiz/View';
 import QuestionDetails from '../components/Question/Details';
-import AdminDashboard from '../components/Admin/Dashboard old';
+import Student from '../components/Admin/Student';
+import Teacher from '../components/Admin/Teacher';
 
 export const adminRoutes = [
     {
@@ -52,5 +53,15 @@ export const adminRoutes = [
         path:"/question/:id/:action",
         exact: true,
         component: QuestionDetails,
+    },
+    {
+        path:"/teachers",
+        exact: true,
+        component: Teacher,
+    },
+    {
+        path:"/students",
+        exact: true,
+        component: Student,
     },
 ];
