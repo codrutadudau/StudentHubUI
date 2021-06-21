@@ -15,7 +15,9 @@ export default function Dashboard() {
     const quizzes = useSelector(state => state.quizInstanceReducer.quizzes);
 
     useEffect(() => {
-        dispatch(getQuizInstancesByUser(me.id));
+        if (me) {
+            dispatch(getQuizInstancesByUser(me.id));
+        }
     }, [me]);
 
     return (
