@@ -6,6 +6,8 @@ import map from 'lodash/map';
 import Carousel, { Dots } from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
 
+import Timer from '../Timer';
+
 import { getQuizById } from '../../actions/quiz';
 import { getQuestionsByQuizId } from '../../actions/question';
 import { getQuizInstance } from '../../actions/quizInstance';
@@ -18,6 +20,7 @@ export function QuizAttempt({ location: { state } }) {
     const params = useParams();
     const [currentSlide, setCurrentSlide] = useState(0);
     const [quizOptions, setQuizOptions] = useState();
+    const [time, setTime] = useState();
 
     const quiz = useSelector(state => state.quizReducer.quiz);
     const questions = useSelector(state => state.questionReducer.quizQuestions);
@@ -47,6 +50,22 @@ export function QuizAttempt({ location: { state } }) {
         }
     }, [quizInstance]);
 
+    useEffect(() => {
+        if (!quizInstance && state) {
+            const startedAt = new Date(state.startedAt);
+            startedAt.setSeconds(startedAt.getSeconds() + 60 * state.quiz.duration);
+            setTime(startedAt);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (!state && quizInstance) {
+            const startedAt = new Date(quizInstance.startedAt);
+            startedAt.setSeconds(startedAt.getSeconds() + 60 * quizInstance.quiz.duration);
+            setTime(startedAt);
+        }
+    }, [quizInstance]);
+
     const handleSliderChange = slide => {
         setCurrentSlide(slide);
     }
@@ -57,7 +76,7 @@ export function QuizAttempt({ location: { state } }) {
         console.log(answer);
         console.log(e.target.name);
     }
-    
+    console.log(time);
     return (
         quiz && questions &&
         <Container className="d-flex justify-content-center quiz-view">
@@ -68,7 +87,10 @@ export function QuizAttempt({ location: { state } }) {
                 {quiz.quizIntro}
             </div>
             <div className="quiz-view-wrapper" style={{ display: 'grid' }}>
-                {/* <div className="quiz-view-wrapper-timer">{quiz.}</div> */}
+                {
+                    time &&
+                    <Timer className="quiz-view-wrapper-timer" expiryTimestamp={time} onExpire={() => console.log(123)} />
+                }
                 <Dots
                     className="quiz-view-question-dots"
                     value={currentSlide}
