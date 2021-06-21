@@ -76,7 +76,7 @@ export function QuizAttempt({ location: { state } }) {
         console.log(answer);
         console.log(e.target.name);
     }
-    console.log(time);
+
     return (
         quiz && questions &&
         <Container className="d-flex justify-content-center quiz-view">
