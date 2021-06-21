@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Modal, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from "react-router";
 import map from 'lodash/map';
 
 import { getAllQuizzes } from '../../actions/quiz';
@@ -9,6 +10,7 @@ import { getClassroomStudents } from '../../actions/classroom';
 
 export default function AssignQuiz(props) {
     const dispatch = useDispatch();
+    const history = useHistory();
     const quizzes = useSelector(state => state.quizReducer.quizzes);
     const classroomReducer = useSelector(state => state.classroomReducer);
     const [selectedQuiz, setSelectedQuiz] = useState();
@@ -23,15 +25,7 @@ export default function AssignQuiz(props) {
         if (props && props.data && props.data.classroomId) {
             dispatch(getClassroomStudents(props.data.classroomId));
         }
-    }, [props && props.data && props.data.classroomId]);
-
-    // const handleClick = e => {
-    //     dispatch(deleteAnswer(props.data.id)).then(() => {
-    //         dispatch(getAnswersByQuestionId(props.data.questionId));
-    //     });
-
-    //     props.onHide();
-    // }
+    }, []);
 
     const handleSelectChange = e => {
         e.preventDefault();
@@ -54,6 +48,8 @@ export default function AssignQuiz(props) {
                 }
             });
 
+            history.push('/courses');
+
             return;
         }
 
@@ -63,6 +59,7 @@ export default function AssignQuiz(props) {
             userStudent: props.data.studentId,
             quiz: selectedQuiz,
         }));
+        history.push('/courses');
     }
 
     return (

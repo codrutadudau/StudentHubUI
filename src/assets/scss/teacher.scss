@@ -1,0 +1,46 @@
+.courses {
+    flex-direction: column;
+
+    &-list {
+        width: 100%;
+        display: flex;
+    }
+
+    &-title {
+        text-align: left;
+        background: white;
+        width: 100%;
+        border-radius: 5px;
+        box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
+        padding: 10px 20px;
+    }
+
+    &-classrooms {
+        display: flex;
+        flex-direction: column;
+        background: white;
+        width: 100%;
+        border-radius: 5px;
+        box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
+        padding: 10px 20px;
+        text-align: left;
+
+        &-item {
+
+            &-name {
+                font-size: 26px;
+                padding: 10px 10px 0 0;
+                position: relative;
+                top: 5px;
+            }
+
+            &-assign-button {
+                padding: 5px !important;
+            }
+
+            &-students {
+                padding: 10px 30px 15px 40px;
+            }
+        }
+    }
+}
