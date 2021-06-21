@@ -20,9 +20,7 @@ export function QuizReview({ location: { state } }) {
     const finishedQuizInstance = useSelector(state => state.quizInstanceReducer.finishedQuizInstance);
 
     useEffect(() => {
-        if (!quizInstance) {
-            dispatch(getQuizInstance(params.id));
-        }
+        dispatch(getQuizInstance(params.id));
     }, [quizInstance]);
 
     useEffect(() => {
