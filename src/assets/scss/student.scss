@@ -1,4 +1,5 @@
 @import './colors.scss';
+@import './breakpoints.scss';
 
 .student-quizzes {
     flex-direction: column;
@@ -54,17 +55,62 @@
 }
 
 .dashboard {
+
+    &-title {
+        margin-right: auto;
+        width: 100%;
+        padding: 10px 20px;
+        background: white;
+        text-align: left;
+        border-radius: 5px;
+        box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
+        margin-bottom: 30px;
+    }
     
-    &-course-1 {
+    &-courses {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
         padding: 10px 20px;
         margin-right: auto;
-        width: 40%;
+        width: 100%;
         background: white;
         border-radius: 5px;
         box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
 
-        &-quiz-name {
-            text-align: left;
+        @media #{$mobile} {
+            flex-direction: column;
+        }
+
+        &-item {
+            display: flex;
+            flex-direction: column;
+            width: 48%;
+            justify-content: center;
+
+            &:nth-child(odd) {
+                margin: 0 auto 75px 0;
+            }
+
+            &:nth-child(even) {
+                margin: 0 0 75px auto;
+            }
+
+            &:nth-child(odd),
+            &:nth-child(even) {
+                @media #{$mobile}, #{$tablet} {
+                    margin: 0 0 50px 0;
+                    width: 100%;
+                }
+            }
+
+            &-course-name {
+                margin: 0 auto 15px 0;
+            }
+
+            &-quiz-name {
+                margin: 0 auto 3px 0;
+            }
         }
     }
 }
