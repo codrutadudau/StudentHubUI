@@ -28,7 +28,7 @@ export function QuizAttempt({ location: { state } }) {
     const [time, setTime] = useState();
     const [grade, setGrade] = useState(0);
     const [singleAnswersGrades, setSingleAnswersGrades] = useState();
-    const [multipleAnswersGrades, setMultipleAnswersGrades] = useState();
+    const [multipleAnswersGrade, setMultipleAnswersGrade] = useState();
 
     const quiz = useSelector(state => state.quizReducer.quiz);
     const questions = useSelector(state => state.questionReducer.quizQuestions);
@@ -60,7 +60,7 @@ export function QuizAttempt({ location: { state } }) {
     useEffect(() => {
         if (quizInstance && quizInstance.startedAt) {
             const startedAt = new Date(quizInstance.startedAt);
-            startedAt.setSeconds(startedAt.getSeconds() + 60 * quizInstance.quiz.duration);
+            startedAt.setSeconds(startedAt.getSeconds() + 60 * 100);
             setTime(startedAt);
         }
     }, [quizInstance]);
@@ -73,9 +73,39 @@ export function QuizAttempt({ location: { state } }) {
         if (e.target.name === undefined) {
             return;
         }
-console.log(question);
-console.log(answer);
+
         if (question.question.hasMultipleAnswers) {
+            // on the first tick of the checkbox
+            if (multipleAnswers === undefined) {
+                setMultipleAnswers({
+                    ...multipleAnswers,
+                    [`question-${question.question.id}`]: [answer.id],
+                });
+
+                return;
+            }
+
+            let nrCorrectQuestionAnswers = 0;
+            map(question.answers, (answer) => {
+                if (answer.correct === true) {
+                    nrCorrectQuestionAnswers += 1;
+                }
+            })
+
+            let currentAnswers = multipleAnswers[`question-${question.question.id}`];
+            let nrCorrectAnswers = 0;
+            let nrWrongAnswers = 0;
+            if (currentAnswers.includes(answer.id)) {
+                currentAnswers.splice(currentAnswers.indexOf(answer.id), 1);
+            } else {
+                currentAnswers.push(answer.id);
+            }
+
+            console.log(multipleAnswers);
+
+            
+            // console.log(currentAnswers);
+            
 
         } else {
             setSingleAnswers({
