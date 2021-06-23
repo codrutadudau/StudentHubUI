@@ -15,8 +15,6 @@ import '../../assets/scss/student.scss';
 export default function Quizzes() {
     const dispatch = useDispatch();
     const history = useHistory();
-    const [quizzesAssigned, setQuizzesAssigned] = useState();
-    const [quizzesTaken, setQuizzesTaken] = useState();
     const [modalShow, setModalShow] = useState(false);
     const [modalData, setModalData] = useState();
 
@@ -26,22 +24,6 @@ export default function Quizzes() {
     useEffect(() => {
         dispatch(getQuizInstancesByUser(me.id));
     }, [me]);
-
-    useEffect(() => {
-        map(quizzes, quizInstance => {
-            if (quizInstance.finishedAt != null) {
-                setQuizzesTaken({
-                    ...quizzesTaken,
-                    quizInstance
-                });
-            } else {
-                setQuizzesAssigned({
-                    ...quizzesAssigned,
-                    quizInstance
-                });
-            }
-        })
-    }, [quizzes]);
 
     const handleClick = (e, quizInstance) => {
         setModalShow(true);
@@ -66,9 +48,11 @@ export default function Quizzes() {
                     <div className="student-quizzes-taken-items">
                         {
                             map(quizzes, (quizInstance, index) => {
-                                return (
-                                    <p className="student-quizzes-taken-item" key={index}>{quizInstance.quiz.name} <PlayCircleFilledIcon className="student-quizzes-taken-item-icon-start" onClick={e => handleClick(e, quizInstance)} /></p>
-                                );
+                                if (quizInstance.finishedAt == null) {
+                                    return (
+                                        <p className="student-quizzes-taken-item" key={index}>{quizInstance.quiz.name} <PlayCircleFilledIcon className="student-quizzes-taken-item-icon-start" onClick={e => handleClick(e, quizInstance)} /></p>
+                                    );
+                                }
                             })
                         }
                     </div> :
@@ -82,9 +66,11 @@ export default function Quizzes() {
                     <div className="student-quizzes-taken-items">
                         {
                             map(quizzes, (quizInstance, index) => {
-                                return (
-                                    <p className="student-quizzes-taken-item" key={index}>{quizInstance.quiz.name} <VisibilityIcon className="student-quizzes-taken-item-icon-view" onClick={e => handleViewClick(e, quizInstance)} /></p>
-                                );
+                                if (quizInstance.finishedAt != null) {
+                                    return (
+                                        <p className="student-quizzes-taken-item" key={index}>{quizInstance.quiz.name} <VisibilityIcon className="student-quizzes-taken-item-icon-view" onClick={e => handleViewClick(e, quizInstance)} /></p>
+                                    );
+                                }
                             })
                         }
                     </div> :
