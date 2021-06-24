@@ -10,6 +10,8 @@ import EnableUser from '../Modals/EnableUser';
 
 import { getAllUsers } from '../../actions/user';
 
+import '../../assets/scss/user.scss';
+
 export default function Dashboard() {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -88,9 +90,9 @@ export default function Dashboard() {
                 customBodyRender: (id) => {
                     return (
                         <div>
-                            <VerifiedUserIcon onClick={e => handleEnable(e, id)} />
-                            <EditIcon onClick={e => handleClick(e, id)}/>
-                            <DeleteIcon />
+                            <VerifiedUserIcon className="user-table-icon user-table-icon--green" onClick={e => handleEnable(e, id)} />
+                            <EditIcon  className="user-table-icon user-table-icon--orange" onClick={e => handleClick(e, id)}/>
+                            <DeleteIcon className="user-table-icon user-table-icon--red" />
                         </div>
                     );
                 }
@@ -116,7 +118,11 @@ export default function Dashboard() {
                     filter: false,
                     print: false,
                 }}
-            />
+            >
+                <div className="user-table-tag">
+                    aaa
+                </div>
+            </MUIDataTable>
         </Container>
     );
 }

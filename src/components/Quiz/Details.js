@@ -198,22 +198,22 @@ export function Details({ location: { state } }) {
                 data={deleteModalData}
             />
             <Form onSubmit={handleSubmit}>
-                <Form.Group>
-                    <Form.Label>Quiz Name</Form.Label>
+                <Form.Group className="quiz-form">
+                    <Form.Label className="quiz-form-label">Quiz Name</Form.Label>
                     <Form.Control
                         type="text"
                         name="name"
                         onChange={handleOnChange}
                         value={payload.name}
                     />
-                    <Form.Label>Quiz Intro</Form.Label>
+                    <Form.Label className="quiz-form-label">Quiz Intro</Form.Label>
                     <Form.Control
                         type="text"
                         name="quizIntro"
                         onChange={handleOnChange}
                         value={payload.quizIntro}
                     />
-                    <Form.Label>Time Open</Form.Label>
+                    <Form.Label className="quiz-form-label">Time Open</Form.Label>
                     <Datetime
                         value={payload.timeOpen}
                         onChange={handleOnChangeTimeOpen}
@@ -221,7 +221,7 @@ export function Details({ location: { state } }) {
                         timeFormat="HH:mm"
                         utc={true}
                     />
-                    <Form.Label>Time Close</Form.Label>
+                    <Form.Label className="quiz-form-label">Time Close</Form.Label>
                     <Datetime
                         value={payload.timeClose}
                         onChange={handleOnChangeTimeClose}
@@ -229,14 +229,14 @@ export function Details({ location: { state } }) {
                         timeFormat="HH:mm"
                         utc={true}
                     />
-                    <Form.Label>Password</Form.Label>
+                    <Form.Label className="quiz-form-label">Password</Form.Label>
                     <Form.Control
                         type="text"
                         name="password"
                         onChange={handleOnChange}
                         value={payload.password}
                     />
-                    <Form.Label>Course</Form.Label>
+                    <Form.Label className="quiz-form-label">Course</Form.Label>
                     <Form.Control as="select" name="course" onChange={handleOnChange} value={payload.course}>
                         <option value="">Select a course</option>
                         {
@@ -252,7 +252,7 @@ export function Details({ location: { state } }) {
                             })
                         }
                     </Form.Control>
-                    <Form.Label>Duration (in minutes)</Form.Label>
+                    <Form.Label className="quiz-form-label">Duration (in minutes)</Form.Label>
                     <Form.Control
                         type="text"
                         name="duration"

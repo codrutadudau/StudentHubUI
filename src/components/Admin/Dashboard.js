@@ -54,8 +54,8 @@ export default function Dashboard() {
         <Container className="d-flex justify-content-center dashboard">
             <div className="dashboard-grid">
                 <div className="dashboard-grid-item">
-                    <h4 className="dashboard-grid-item-title">Users Registered</h4>
-                    <div className="dashboard-grid-item-tag">
+                    <h4 className="dashboard-grid-item-title">Last Users Registered</h4>
+                    <div className="dashboard-grid-item-tag dashboard-grid-item-tag--orange">
                         <PersonAddOutlinedIcon className="dashboard-grid-item-tag-icon" />
                     </div>
                     <div className="dashboard-grid-item-registered-users">
@@ -72,8 +72,8 @@ export default function Dashboard() {
                     </div>
                 </div>
                 <div className="dashboard-grid-item">
-                    <h4 className="dashboard-grid-item-title">Courses Added</h4>
-                    <div className="dashboard-grid-item-tag">
+                    <h4 className="dashboard-grid-item-title">Last Courses Added</h4>
+                    <div className="dashboard-grid-item-tag dashboard-grid-item-tag--purple">
                         <LocalLibraryOutlinedIcon className="dashboard-grid-item-tag-icon" />
                     </div>
                     <div className="dashboard-grid-item-added-courses">
@@ -90,7 +90,7 @@ export default function Dashboard() {
                     </div>
                 </div>
             </div>
-            {/* <div className="dashboard-graph">
+            <div className="dashboard-graph">
                 <div className="dashboard-graph-container">
                     <ChartistGraph
                         className="dashboard-graph-container-users"
@@ -99,7 +99,7 @@ export default function Dashboard() {
                         type={type}
                     />
                 </div>
-            </div> */}
+            </div>
         </Container>
     );
 }

@@ -1,0 +1,36 @@
+.user-table {
+    position: relative;
+    margin: 40px 0 0 40px;
+
+    // &:before {
+    //     position: absolute;
+    //     display: inline-block;
+    //     width: 80px;
+    //     height: 80px;
+    //     left: 30px;
+    //     top: -30px;
+    //     content: "";
+    //     background: red;
+    //     border-radius: 5px;
+    // }
+
+    &-icon {
+
+        &--green {
+            color: #559006;
+        }
+
+        &--orange {
+            color: #bbaf20;
+        }
+
+        &--red {
+            color: #ad1212;
+        }
+
+    }
+}
+
+.MUIDataTableToolbar-titleRoot-19 {
+    text-align: left !important;
+}

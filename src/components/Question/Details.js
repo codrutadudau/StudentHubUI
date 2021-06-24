@@ -245,23 +245,24 @@ export function Details({ location: { state } }) {
                 data={deleteModalData}
             />
             <Form onSubmit={handleSubmit}>
-                <Form.Group>
-                    <Form.Label>Question Description</Form.Label>
+                <Form.Group className="question-form">
+                    <Form.Label className="question-form-label">Question Description</Form.Label>
                     <Form.Control
                         type="text"
                         name="description"
                         onChange={handleOnChange}
                         value={payload.description}
                     />
-                    <Form.Label>Default Grade</Form.Label>
+                    <Form.Label className="question-form-label">Default Grade</Form.Label>
                     <Form.Control
                         type="number"
                         name="defaultGrade"
                         onChange={handleOnChange}
                         value={payload.defaultGrade}
                     />
-                    <Form.Label>Multiple Answers</Form.Label>
+                    <Form.Label className="question-form-label">Multiple Answers</Form.Label>
                     <Form.Check
+                        className="question-form-check"
                         type="radio"
                         label="true"
                         name="hasMultipleAnswers"
@@ -269,6 +270,7 @@ export function Details({ location: { state } }) {
                         value={true}
                     />
                     <Form.Check
+                        className="question-form-check"
                         type="radio"
                         label="false"
                         name="hasMultipleAnswers"

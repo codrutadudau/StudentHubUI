@@ -39,8 +39,16 @@
                 width: 25%;
                 height: 75px;
                 border-radius: 5px;
-                background: linear-gradient(60deg, #ffa726, #fb8c00);
 
+                &--orange {
+                    background: linear-gradient(60deg, #ffa726, #fb8c00);
+                }
+
+                &--purple {
+                    background: linear-gradient(60deg, #66bb6a, #43a047);
+                }
+ 
+                
                 &-icon {
                     font-size: 25px !important;
 
@@ -83,6 +91,9 @@
                     padding: 5px;
                     margin: 0;
                     margin-right: auto;
+                   font-family: 'Courier New', Courier, monospace;
+                   font-weight: bold;
+
                 }
             }
         }
@@ -90,6 +101,8 @@
 
     &-graph {
         width: 100%;
+        display: flex;
+        justify-content: center;
 
         &-container {
             background-color: white;

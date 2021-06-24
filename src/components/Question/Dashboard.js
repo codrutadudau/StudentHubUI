@@ -55,8 +55,8 @@ export default function Dashboard() {
                 !isEmpty(questions) ?
                     <table className="table table-striped question-table">
                     <thead>
-                        <tr>
-                            <th scope="col">#</th>
+                        <tr className="question-table-header">
+                            <th scope="col"></th>
                             <th scope="col">Description</th>
                             <th scope="col">Default grade</th>
                             <th scope="col">Has multiple answers</th>
@@ -78,7 +78,6 @@ export default function Dashboard() {
                                                 onClick={() => { setModalShow(true); setModalData({ id: question.id, description: question.description }) }} 
                                                 className="question-table-icon question-table-icon--delete"
                                             />
-                                            <VisibilityIcon onClick={e => handleClick(e, question, 'view')} className="question-table-icon question-table-icon--view" />
                                         </td>
                                     </tr>
                                 );
