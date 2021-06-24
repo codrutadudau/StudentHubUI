@@ -28,6 +28,11 @@
             color: #fff;
             line-height: 1.4;
             background: linear-gradient(60deg, #ab47bc, #8e24aa);
+
+            th {
+                padding: 2px 18px;
+                vertical-align: middle;
+            }
         }
 
         &-icon {
@@ -47,7 +52,6 @@
 
 .question {
     flex-direction: column;
-    width: 60% !important;
     margin: 10px 0 100px auto;
     background-color: white;
     border-radius: 5px;
@@ -70,11 +74,53 @@
                 margin-right: 10px;
             }
         }
+
+        &-outer {
+            padding: 20px;
+        }
+
+        &-submit {
+            margin-top: 40px;
+        }
+
+        &-current-answers {
+            margin-top: 30px;
+
+            &-inner {
+                display: flex;
+                flex-direction: column;
+
+                &-item,
+                &-title {
+                    margin-right: auto;
+                }
+
+                &-item {
+
+                    &-icon {
+                        position: relative;
+                        top: -3px;
+                        left: 3px;
+                        cursor: pointer;
+                        
+                        &--edit {
+                            color: #bbaf20;
+                        }
+
+                        &--delete {
+                            color: #ad1212;
+                        }
+                    }
+                }
+            }
+        }
     }
 
 
     &-add-answers {
-        width: 170px;
+        margin-left: 5px;
+        color: #198754;
+        cursor: pointer;
     }
 
     // delete question modal
@@ -82,6 +128,38 @@
 
         &-name {
             color: #dc3545;
+        }
+    }
+
+    &-answers-added {
+        display: flex;
+        flex-direction: column;
+
+        &-item {
+            margin-right: auto;
+
+            &-icon {
+                font-size: 34px !important;
+                position: relative;
+                top: -3px;
+
+                &--save {
+                    color: #198754;
+                }
+
+                &--delete {
+                    color: #dc3545;
+                }
+            }
+
+            &-input {
+                color: #212529;
+                background-color: #fff;
+                background-clip: padding-box;
+                border: 1px solid #ced4da;
+                border-radius: .25rem;
+                margin-right: 10px;
+            }
         }
     }
 }

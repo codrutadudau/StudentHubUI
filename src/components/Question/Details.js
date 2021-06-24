@@ -244,7 +244,7 @@ export function Details({ location: { state } }) {
                 onHide={() => setDeleteModalShow(false)}
                 data={deleteModalData}
             />
-            <Form onSubmit={handleSubmit}>
+            <Form className="question-form-outer" onSubmit={handleSubmit}>
                 <Form.Group className="question-form">
                     <Form.Label className="question-form-label">Question Description</Form.Label>
                     <Form.Control
@@ -279,28 +279,40 @@ export function Details({ location: { state } }) {
                     />
                     {
                         !location.pathname.includes('/create') &&
-                        map(questionAnswers, (answer, index) => {
-                            return (
-                                <div key={index}>
-                                    <span>{answer.description}</span>
-                                    <EditIcon onClick={e => handleEditAnswerClick(e, answer)}/>
-                                    <DeleteIcon onClick={e => handleDeleteAnswerClick(e, answer)} />
+                        <div className="question-form-current-answers">
+                            {
+                                questionAnswers &&
+                                <div className="question-form-current-answers-inner">
+                                    <h4 className="question-form-current-answers-inner-title">
+                                        Current answers
+                                        {
+                                            params.action === 'edit' &&
+                                            <AddCircleOutlineIcon onClick={handleAddAnswer} className="question-add-answers" />
+                                        }
+                                    </h4>
+                                    {
+                                        map(questionAnswers, (answer, index) => {
+                                        return (
+                                            <div className="question-form-current-answers-inner-item" key={index}>
+                                                <span>{answer.description}</span>
+                                                <EditIcon className="question-form-current-answers-inner-item-icon question-form-current-answers-inner-item-icon--edit" onClick={e => handleEditAnswerClick(e, answer)}/>
+                                                <DeleteIcon className="question-form-current-answers-inner-item-icon question-form-current-answers-inner-item-icon--delete" onClick={e => handleDeleteAnswerClick(e, answer)} />
+                                            </div>
+                                        );
+                                    })
+                                    }
                                 </div>
-                            );
-                        })
+                            }
+                        </div>
                     }
-                    <div onClick={handleAddAnswer} className="btn btn-success question-add-answers">
-                        <AddCircleOutlineIcon />
-                        <span>Add answer</span>
-                    </div>
                     {
                         answersPayload.nrAnswers > 0 &&
-                        <div className="question-answers">
+                        <div className="question-answers-added">
                             {
                                 map(answersPayload.answers, (answer, index) => {
                                     return (
-                                        <div key={index}>
-                                            <input type="text" name={index} onChange={e => handleOnAnswerChange(e, index)} required />
+                                        <div className="question-answers-added-item" key={index}>
+                                            <input className="question-answers-added-item-input" type="text" name={index} onChange={e => handleOnAnswerChange(e, index)} required />
                                             {
                                                 'true' === payload.hasMultipleAnswers ?
                                                     <input type="checkbox" name={index} onChange={e => handleCheckbox(e, index)} checked={answersPayload.correctAnswers[index]} /> :
@@ -308,16 +320,16 @@ export function Details({ location: { state } }) {
                                             }
                                             {
                                                 params.action === 'edit' &&
-                                                <SaveIcon onClick={e => handleAnswerSave(e, index)} />
+                                                <SaveIcon className="question-answers-added-item-icon question-answers-added-item-icon--save" onClick={e => handleAnswerSave(e, index)} />
                                             }
-                                            <RemoveCircleOutlineIcon onClick={e => handleRemoveAnswer(e, index)} />
+                                            <RemoveCircleOutlineIcon className="question-answers-added-item-icon question-answers-added-item-icon--delete" onClick={e => handleRemoveAnswer(e, index)} />
                                         </div>
                                     );
                                 })
                             }
                         </div>
                     }
-                    <Button type="submit">Submit</Button>
+                    <Button className="btn btn-success question-form-submit" type="submit">Submit</Button>
                 </Form.Group>
             </Form>
         </Container>
