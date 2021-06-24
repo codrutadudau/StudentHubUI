@@ -1,6 +1,12 @@
 @import './colors.scss';
+@import './breakpoints.scss';
 
 .auth {
+    padding: 70px 0;
+    
+    @media #{$tablet}, #{$desktop} {
+        padding: 100px;
+    }
 
     &-error {
         top: 50px !important;
