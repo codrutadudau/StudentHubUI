@@ -15,6 +15,10 @@ body {
   color: #f9f9f9;
 }
 
+#root {
+  background: $background-admin;
+}
+
 .layout {
   display: flex;
   flex: 1 1 auto;
@@ -63,12 +67,21 @@ body {
   }
 }
 
-
 .auth {
-  min-height: 100vh;
+  min-height: calc(100vh - 40px);
 
   &-inner {
-    max-width: 400px;
+    max-width: 520px;
+
+    &-card {
+      padding: 50px;
+      border: none !important;
+      box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
+
+      @media #{$mobile}, #{$tablet}, #{$mobile-landscape} {
+        padding: 20px !important;
+      }
+    }
 
     &-submit {
       background-color: $light-green !important;

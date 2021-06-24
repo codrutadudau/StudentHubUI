@@ -13,13 +13,14 @@ export const signIn = (email, password) => (dispatch) => {
         .then(data => {
             dispatch({
                 type: LOGIN_SUCCESS,
-                payload: { token: data },
+                payload: { token: data, loginError: null },
             });
         })
         .catch(error => {
-            const message = error.response.data.message; // TODO: dispatch and display on login form
+            const message = error.response.data.message;
             dispatch({
                 type: LOGIN_FAIL,
+                payload: { loginError: error.response.data }
             });
         }
     );
@@ -30,13 +31,14 @@ export const signUp = (firstName, lastName, email, password, passwordConfirm, ph
         .then(data => {
             dispatch({
                 type: SIGNUP_SUCCESS,
-                payload: { token: data },
+                payload: { token: data, registerError: null },
             });
         })
         .catch(error => {
-            const message = error.response.data.message; // TODO: dispatch and display on signup form
+            const message = error.response.data.message;
             dispatch({
                 type: SIGNUP_FAIL,
+                payload: { registerError: error.response.data }
             });
         }
     );

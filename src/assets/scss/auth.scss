@@ -1,0 +1,13 @@
+@import './colors.scss';
+
+.auth {
+
+    &-error {
+        top: 50px !important;
+    }
+
+    &-register-successful {
+        margin-top: 20px;
+        color: $bright-green;
+    }
+}

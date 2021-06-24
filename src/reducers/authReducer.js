@@ -1,6 +1,8 @@
 import {
     LOGIN_SUCCESS,
-    LOGIN_FAIL
+    LOGIN_FAIL,
+    SIGNUP_SUCCESS,
+    SIGNUP_FAIL,
 } from '../actions/types';
 
 const initialState = { isLoggedIn: false };
@@ -14,11 +16,23 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 isLoggedIn: true,
                 token: payload.token,
+                loginError: null,
             };
         case LOGIN_FAIL:
             return {
                 ...state,
                 isLoggedIn: false,
+                loginError: payload.loginError,
+            };
+        case SIGNUP_SUCCESS:
+            return {
+                ...state,
+                registerError: null,
+            };
+        case SIGNUP_FAIL:
+            return {
+                ...state,
+                registerError: payload.registerError,
             };
         default:
             return state;
