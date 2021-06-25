@@ -2,6 +2,10 @@
 import {
     GET_COURSES,
     GET_COURSES_WITH_TEACHER_NAME,
+    CREATE_COURSE_SUCCESS,
+    CREATE_COURSE_FAIL,
+    GET_COURSE_BY_ID,
+    DELETE_COURSE,
 } from "./types";
 
 import { courseApi } from '../api';
@@ -26,6 +30,49 @@ export const getAllCoursesWithTeacherName = () => (dispatch) => {
             dispatch({
                 type: GET_COURSES_WITH_TEACHER_NAME,
                 payload: { coursesWithTeacherName: response.data },
+            });
+        })
+        .catch(error => {
+            const message = error.response.data.message;
+        }
+    );
+};
+
+export const createCourse = (payload) => (dispatch) => {
+    return courseApi.createCourse(payload)
+        .then(() => {
+            dispatch({
+                type: CREATE_COURSE_SUCCESS,
+            });
+        })
+        .catch(error => {
+            const message = error.response.data.message;
+            dispatch({
+                type: CREATE_COURSE_FAIL,
+            });
+        }
+    );
+};
+
+export const getCourseById = (id) => (dispatch) => {
+    return courseApi.getCourseById(id)
+        .then(response => {
+            dispatch({
+                type: GET_COURSE_BY_ID,
+                payload: { course: response.data },
+            });
+        })
+        .catch(error => {
+            const message = error.response.data.message;
+        }
+    );
+};
+
+export const deleteCourse = (id) => (dispatch) => {
+    return courseApi.deleteCourse(id)
+        .then(() => {
+            dispatch({
+                type: DELETE_COURSE,
             });
         })
         .catch(error => {

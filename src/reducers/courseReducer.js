@@ -1,6 +1,7 @@
 import {
     GET_COURSES,
     GET_COURSES_WITH_TEACHER_NAME,
+    GET_COURSE_BY_ID,
 } from '../actions/types';
 
 const initialState = {
@@ -21,6 +22,11 @@ const courseReducer = (state = initialState, action) => {
             return {
                 ...state,
                 coursesWithTeacherName: payload.coursesWithTeacherName
+            }
+        case GET_COURSE_BY_ID:
+            return {
+                ...state,
+                course: payload.course
             }
         default:
             return state;
