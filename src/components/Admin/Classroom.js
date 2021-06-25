@@ -7,21 +7,21 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EnableUser from '../Modals/EnableUser';
 
-import { getAllTeachersWithName } from '../../actions/teacher';
+import { getClassrooms } from '../../actions/classroom';
 
 import '../../assets/scss/user.scss';
 
-export default function Teacher() {
+export default function Classroom() {
     const dispatch = useDispatch();
     const history = useHistory();
     const [modalShow, setModalShow] = useState(false);
     const [modalData, setModalData] = useState(false);
     
     useEffect(() => {
-        dispatch(getAllTeachersWithName());
+        dispatch(getClassrooms());
     }, []);
     
-    const teacherUsers = useSelector(state => state.teacherReducer.teachersWithName);
+    const classrooms = useSelector(state => state.classroomReducer.classrooms);
 
     const columns = [
         {
@@ -51,7 +51,7 @@ export default function Teacher() {
     ];
 
     return (
-        teacherUsers &&
+        classrooms &&
         <Container className="d-flex justify-content-center users">
             <EnableUser
                 show={modalShow} 
@@ -60,8 +60,8 @@ export default function Teacher() {
             />
             <MUIDataTable
                 className="user-table"
-                title={"Teachers list"}
-                data={teacherUsers}
+                title={"Classrooms list"}
+                data={classrooms}
                 columns={columns}
                 options={{
                     selectableRows: false,

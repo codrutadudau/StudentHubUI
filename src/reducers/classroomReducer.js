@@ -1,11 +1,13 @@
 import {
     GET_CLASSROOM_STUDENTS,
     GET_STUDENT_CLASSROOM,
+    GET_CLASSROOMS,
 } from '../actions/types';
 
 const initialState = {
     classroom: null,
     classroomStudents: null,
+    classrooms: null,
 };
 
 const classroomReducer = (state = initialState, action) => {
@@ -21,6 +23,11 @@ const classroomReducer = (state = initialState, action) => {
             return {
                 ...state,
                 classroom: payload.classroom
+            };
+        case GET_CLASSROOMS:
+            return {
+                ...state,
+                classrooms: payload.classrooms
             };
         default:
             return state;

@@ -7,26 +7,34 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EnableUser from '../Modals/EnableUser';
 
-import { getAllTeachersWithName } from '../../actions/teacher';
+import { getAllCoursesWithTeacherName } from '../../actions/course';
 
 import '../../assets/scss/user.scss';
 
-export default function Teacher() {
+export default function Course() {
     const dispatch = useDispatch();
     const history = useHistory();
     const [modalShow, setModalShow] = useState(false);
     const [modalData, setModalData] = useState(false);
     
     useEffect(() => {
-        dispatch(getAllTeachersWithName());
+        dispatch(getAllCoursesWithTeacherName());
     }, []);
     
-    const teacherUsers = useSelector(state => state.teacherReducer.teachersWithName);
+    const courses = useSelector(state => state.courseReducer.coursesWithTeacherName);
 
     const columns = [
         {
             name: "name",
             label: "Name",
+            options: {
+                filter: true,
+                sort: true,
+            }
+        },
+        {
+            name: "teacherName",
+            label: "Teacher",
             options: {
                 filter: true,
                 sort: true,
@@ -51,7 +59,7 @@ export default function Teacher() {
     ];
 
     return (
-        teacherUsers &&
+        courses &&
         <Container className="d-flex justify-content-center users">
             <EnableUser
                 show={modalShow} 
@@ -60,8 +68,8 @@ export default function Teacher() {
             />
             <MUIDataTable
                 className="user-table"
-                title={"Teachers list"}
-                data={teacherUsers}
+                title={"Courses list"}
+                data={courses}
                 columns={columns}
                 options={{
                     selectableRows: false,

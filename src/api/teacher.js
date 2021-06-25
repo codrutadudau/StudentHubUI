@@ -10,6 +10,10 @@ export const getAllTeachers = (id = null) => {
     return axios.get(API_URL + "/user_teachers");
 };
 
+export const getAllTeachersWithName = () => {
+    return axios.get(API_URL + "/user_teachers/name");
+};
+
 export const getTeacherCourses = (id) => {
     return axios.get(API_URL + "/user_teachers/" + id + "/courses");
 };

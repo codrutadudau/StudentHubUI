@@ -8,6 +8,7 @@ import * as classroomApi from './classroom';
 import * as quizInstanceApi from './quizInstance';
 import * as answerOptionApi from './answerOption';
 import * as courseApi from './course';
+import * as studentApi from './student';
 
 export {
     authApi,
@@ -20,4 +21,5 @@ export {
     quizInstanceApi,
     courseApi,
     answerOptionApi,
+    studentApi,
 };

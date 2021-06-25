@@ -10,6 +10,7 @@ import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import AccessibilityIcon from '@material-ui/icons/Accessibility';
+import GroupIcon from '@material-ui/icons/Group';
 
 import '../../assets/scss/sidebar.scss';
 
@@ -43,6 +44,18 @@ export default function Sidebar() {
                 title: 'Questions',
                 path: '/questions',
                 icon: <QuestionAnswerIcon className="navbar-menu-items-item-icon" />,
+                cName: 'navbar-menu-items-item'
+            },
+            {
+                title: 'Courses',
+                path: '/courses',
+                icon: <MenuBookIcon className="navbar-menu-items-item-icon" />,
+                cName: 'navbar-menu-items-item'
+            },
+            {
+                title: 'Classrooms',
+                path: '/classrooms',
+                icon: <GroupIcon className="navbar-menu-items-item-icon" />,
                 cName: 'navbar-menu-items-item'
             },
             {

@@ -1,7 +1,8 @@
 import {
     GET_USERS,
     GET_USER,
-    GET_ME_USER
+    GET_ME_USER,
+    GET_TEACHER_USERS,
 } from '../actions/types';
 
 const initialState = {
@@ -28,6 +29,11 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 me: payload.me
+            };
+        case GET_TEACHER_USERS:
+            return {
+                ...state,
+                teacherUsers: payload.teacherUsers
             };
         default:
             return state;

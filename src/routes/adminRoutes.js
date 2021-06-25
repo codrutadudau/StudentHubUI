@@ -7,6 +7,12 @@ import QuizView from '../components/Quiz/View';
 import QuestionDetails from '../components/Question/Details';
 import Student from '../components/Admin/Student';
 import Teacher from '../components/Admin/Teacher';
+import Course from '../components/Admin/Course';
+import Classroom from '../components/Admin/Classroom';
+import EditTeacher from '../components/Admin/EditTeacher';
+import EditCourse from '../components/Admin/EditCourse';
+import EditClassroom from '../components/Admin/EditClassroom';
+import EditStudent from '../components/Admin/EditStudent';
 
 export const adminRoutes = [
     {
@@ -63,5 +69,35 @@ export const adminRoutes = [
         path:"/students",
         exact: true,
         component: Student,
+    },
+    {
+        path:"/classrooms",
+        exact: true,
+        component: Classroom,
+    },
+    {
+        path:"/courses",
+        exact: true,
+        component: Course,
+    },
+    {
+        path:"/teachers/:id/edit",
+        exact: true,
+        component: EditTeacher,
+    },
+    {
+        path:"/students/:id/edit",
+        exact: true,
+        component: EditStudent,
+    },
+    {
+        path:"/classrooms/:id/edit",
+        exact: true,
+        component: EditClassroom,
+    },
+    {
+        path:"/courses/:id/edit",
+        exact: true,
+        component: EditCourse,
     },
 ];

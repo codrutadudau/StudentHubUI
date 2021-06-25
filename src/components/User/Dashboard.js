@@ -118,11 +118,7 @@ export default function Dashboard() {
                     filter: false,
                     print: false,
                 }}
-            >
-                <div className="user-table-tag">
-                    aaa
-                </div>
-            </MUIDataTable>
+            />
         </Container>
     );
 }

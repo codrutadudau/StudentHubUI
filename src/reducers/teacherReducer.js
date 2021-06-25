@@ -1,11 +1,13 @@
 import {
     GET_TEACHERS,
-    GET_TEACHER_COURSES
+    GET_TEACHER_COURSES,
+    GET_TEACHERS_WITH_NAME,
 } from '../actions/types';
 
 const initialState = {
     teachers: null,
-    teacherCourses: null
+    teacherCourses: null,
+    teachersWithName: null,
 };
 
 const teacherReducer = (state = initialState, action) => {
@@ -21,6 +23,11 @@ const teacherReducer = (state = initialState, action) => {
             return {
                 ...state,
                 teacherCourses: payload.teacherCourses
+            };
+        case GET_TEACHERS_WITH_NAME:
+            return {
+                ...state,
+                teachersWithName: payload.teachersWithName
             };
         default:
             return state;

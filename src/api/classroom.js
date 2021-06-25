@@ -9,3 +9,7 @@ export const getClassroomStudents = (id) => {
 export const getStudentClassroomByUserId = (id) => {
     return axios.get(API_URL + "/classrooms?user=" + id);
 };
+
+export const getClassrooms = () => {
+    return axios.get(API_URL + "/classrooms");
+};

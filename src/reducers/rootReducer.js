@@ -7,6 +7,7 @@ import teacherReducer from './teacherReducer';
 import classroomReducer from './classroomReducer';
 import quizInstanceReducer from './quizInstanceReducer';
 import courseReducer from './courseReducer';
+import studentReducer from './studentReducer';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
     classroomReducer,
     quizInstanceReducer,
     courseReducer,
+    studentReducer,
 });
 
 export default (state, action) => rootReducer(action.type === LOGOUT ? undefined : state, action);

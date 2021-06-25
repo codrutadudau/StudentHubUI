@@ -9,3 +9,7 @@ export const getAllCourses = (id = null) => {
     
     return axios.get(API_URL + "/courses");
 };
+
+export const getAllCoursesWithTeacherName = () => {
+    return axios.get(API_URL + "/courses/teacher");
+};
