@@ -22,10 +22,13 @@ export default function AddStudent(props) {
     useEffect(() => {
         if (props.data && props.data.action === 'edit') {
             dispatch(getAllUsers());
-            dispatch(getClassrooms());
             dispatch(getStudentById(props.data.id));
         }
     }, [props.data]);
+
+    useEffect(() => {
+        dispatch(getClassrooms());
+    });
 
     useEffect(() => {
         if (student && props.data && props.data.action === 'edit') {
