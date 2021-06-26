@@ -1,5 +1,11 @@
+@import './colors.scss';
+
 .courses {
     flex-direction: column;
+
+    &-item {
+        margin-top: 30px;
+    }
 
     &-list {
         width: 100%;
@@ -32,6 +38,18 @@
                 padding: 10px 10px 0 0;
                 position: relative;
                 top: 5px;
+            }
+
+            &-icon {
+                cursor: pointer;
+
+                &--green {
+                    color: #198754;
+                }
+
+                &--blue {
+                    color: blue;
+                }
             }
 
             &-assign-button {

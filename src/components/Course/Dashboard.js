@@ -10,6 +10,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 
 import AssignQuiz from '../Modals/AssignQuiz';
+import SendQuizReminder from '../Modals/SendQuizReminder';
 
 import '../../assets/scss/teacher.scss';
 
@@ -20,8 +21,10 @@ export default function Dashboard(props) {
     const dispatch = useDispatch();
     const history = useHistory();
     const [classroomStudents, setClassroomStudents] = useState();
-    const [modalShow, setModalShow] = useState();
-    const [modalData, setModalData] = useState();
+    const [modalShow, setModalShow] = useState(false);
+    const [modalData, setModalData] = useState(false);
+    const [modalReminderShow, setModalReminderShow] = useState(false);
+    const [modalReminderData, setModalReminderData] = useState(false);
     const [activeClassroom, setActiveClassroom] = useState();
 
     const me = useSelector(state => state.userReducer.me);
@@ -62,7 +65,7 @@ export default function Dashboard(props) {
         }
     }, [classroomReducer.classroomStudents]);
 
-    const handleClick = (e, classroom) => {
+    const handleClick = (e, classroom, course) => {
         e.preventDefault();
         setActiveClassroom(classroom);
     }
@@ -76,6 +79,16 @@ export default function Dashboard(props) {
             courseId: course.id
         });
         setModalShow(true);
+    }
+
+    const handleQuizReminderClick = (e, student, course) => {
+        e.preventDefault();
+        setModalReminderData({
+            ...modalReminderData,
+            email: student.email,
+            course: course,
+        });
+        setModalReminderShow(true);
     }
 
     const handleClassroomQuizAssignment = (e, classroom, course) => {
@@ -97,10 +110,15 @@ export default function Dashboard(props) {
                 onHide={() => setModalShow(false)}
                 data={modalData}
             />
+            <SendQuizReminder 
+                show={modalReminderShow} 
+                onHide={() => setModalReminderShow(false)}
+                data={modalReminderData}
+            />
             {
                 map(teacherReducer.teacherCourses, (course, index) => {
                     return (
-                        <>
+                        <div key={index} className="courses-item">
                             <h3 className="courses-title">{course.course.name}</h3>
                             <div className="courses-list" key={index}>
                                 <div className="courses-classrooms">
@@ -113,7 +131,7 @@ export default function Dashboard(props) {
                                                     {
                                                         classroomStudents && `${classroom.name}` in classroomStudents && classroomStudents[`show-${classroom.name}`] ?
                                                         null : 
-                                                        <ExpandMoreIcon onClick={e => handleClick(e, classroom)}/>
+                                                        <ExpandMoreIcon onClick={e => handleClick(e, classroom, course.course)}/>
                                                     }
                                                     <div className="courses-classrooms-item-students">
                                                         {
@@ -121,7 +139,7 @@ export default function Dashboard(props) {
                                                             map(classroomStudents[classroom.name], (student, index) => {
                                                                 return (
                                                                     <p key={index}>
-                                                                        {student.firstName} {student.lastName} {student.hasInProgressQuizzes === 0 && <FiberNewIcon onClick={e => handleAssignQuizClick(e, student, course.course)} />} <MailIcon />
+                                                                        {student.firstName} {student.lastName} {student.hasInProgressQuizzes === 0 && <FiberNewIcon className="courses-classrooms-item-icon courses-classrooms-item-icon--green" onClick={e => handleAssignQuizClick(e, student, course.course)} />} <MailIcon onClick={e => handleQuizReminderClick(e, student, course)} className="courses-classrooms-item-icon courses-classrooms-item-icon--blue"/>
                                                                     </p>
                                                                 );
                                                             })
@@ -133,7 +151,7 @@ export default function Dashboard(props) {
                                     }
                                 </div>
                             </div>
-                        </>
+                        </div>
                     );
                 })
             }
