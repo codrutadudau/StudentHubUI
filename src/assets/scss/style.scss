@@ -39,11 +39,12 @@ body {
   }
 
   footer {
-    background: #FED0D1;
+    background: transparent;
+    display: none;
   }
 
   &-right-sidebar{
-    background: #060b26;
+    // background: #060b26;
   }
 
   .sidebar {
@@ -129,10 +130,6 @@ body {
 
 .MuiSnackbar-root {
   position: absolute !important;
-}
-
-.layout footer {
-  background: #060b26;
 }
 
 footer {

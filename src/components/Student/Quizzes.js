@@ -44,7 +44,7 @@ export default function Quizzes() {
             <div className="student-quizzes-assigned">
                 <h3 className="student-quizzes-taken-title">Quizzes assigned</h3>
                 {
-                    quizzes && quizzes[quizzes.findIndex(x => x.finishedAt == null)] ?
+                    quizzes && quizzes[quizzes.findIndex(x => x.finishedAt == null && (new Date()) > (new Date(x.quiz.timeOpen)) && (new Date()) <= (new Date(x.quiz.timeClose)))] ?
                     <div className="student-quizzes-taken-items">
                         {
                             map(quizzes, (quizInstance, index) => {
