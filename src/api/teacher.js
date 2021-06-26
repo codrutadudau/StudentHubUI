@@ -21,3 +21,11 @@ export const getTeacherCourses = (id) => {
 export const deleteTeacherById = (id) => {
     return axios.delete(API_URL + "/user_teachers/" + id);
 };
+
+export const createTeacher = (payload) => {
+    return axios.post(API_URL + "/user_teachers", { ...payload });
+};
+
+export const deleteTeacher = (id) => {
+    return axios.delete(API_URL + "/user_teachers/" + id);
+};

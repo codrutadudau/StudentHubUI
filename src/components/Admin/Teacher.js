@@ -5,23 +5,49 @@ import { Container } from 'react-bootstrap';
 import MUIDataTable from "mui-datatables";
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
-import EnableUser from '../Modals/EnableUser';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+
+import AddTeacher from '../Modals/AddTeacher';
+import DeleteTeacher from '../Modals/DeleteTeacher';
 
 import { getAllTeachersWithName } from '../../actions/teacher';
 
 import '../../assets/scss/user.scss';
 
-export default function Teacher() {
+export default function Course() {
     const dispatch = useDispatch();
     const history = useHistory();
     const [modalShow, setModalShow] = useState(false);
-    const [modalData, setModalData] = useState(false);
+    const [modalData, setModalData] = useState();
+    const [deleteModalShow, setDeleteModalShow] = useState(false);
+    const [deleteModalData, setDeleteModalData] = useState();
+
+    const teacherUsers = useSelector(state => state.teacherReducer.teachersWithName);
     
     useEffect(() => {
         dispatch(getAllTeachersWithName());
     }, []);
-    
-    const teacherUsers = useSelector(state => state.teacherReducer.teachersWithName);
+
+    const handleClick = (e, id, action) => {
+        e.preventDefault();
+
+        if (action === 'create') {
+            setModalData({
+                action,
+            });
+        }
+
+        setModalShow(true);
+    };
+
+    const handleDeleteClick = (e, id) => {
+        e.preventDefault();
+        
+        setDeleteModalData({
+            id
+        });
+        setDeleteModalShow(true);
+    };
 
     const columns = [
         {
@@ -41,8 +67,7 @@ export default function Teacher() {
                 customBodyRender: (id) => {
                     return (
                         <div>
-                            <EditIcon  className="user-table-icon user-table-icon--orange" onClick={e => handleClick(e, id)}/>
-                            <DeleteIcon className="user-table-icon user-table-icon--red" />
+                            <DeleteIcon className="user-table-icon user-table-icon--red" onClick={e => handleDeleteClick(e, id)}/>
                         </div>
                     );
                 }
@@ -53,11 +78,20 @@ export default function Teacher() {
     return (
         teacherUsers &&
         <Container className="d-flex justify-content-center users">
-            <EnableUser
+            <AddTeacher
                 show={modalShow} 
                 onHide={() => setModalShow(false)}
                 data={modalData}
             />
+            <DeleteTeacher
+                show={deleteModalShow} 
+                onHide={() => setDeleteModalShow(false)}
+                data={deleteModalData}
+            />
+            <div onClick={e => handleClick(e, null, 'create')} className="btn btn-success quizzes-new">
+                <AddCircleOutlineIcon className="quizzes-new-icon" />
+                <span className="quizzes-new-button">Add new teacher</span>
+            </div>
             <MUIDataTable
                 className="user-table"
                 title={"Teachers list"}
