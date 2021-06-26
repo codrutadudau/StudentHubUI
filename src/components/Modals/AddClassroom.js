@@ -114,7 +114,7 @@ export default function AddClassroom(props) {
                 <div className="add-classroom-modal-classroom-courses">
                     {
                         <>
-                            <div>
+                            <div className="add-classroom-modal-classroom-courses-existing">
                                 {
                                     !isEmpty(classroomCourses) &&
                                     <div>
@@ -122,7 +122,7 @@ export default function AddClassroom(props) {
                                         {
                                             map(classroomCourses, (course, index) => {
                                                 return (
-                                                    <div key={index}>
+                                                    <div className="add-classroom-modal-classroom-courses-existing-item" key={index}>
                                                         {course.courseName} <DeleteIcon className="user-table-icon user-table-icon--red" onClick={e => handleDeleteClassroomCourse(e, classroom.id, course.courseId)} />
                                                     </div>
                                                 );
@@ -131,12 +131,12 @@ export default function AddClassroom(props) {
                                     </div>
                                 }
                             </div>
-                            <div>
+                            <div  className="add-classroom-modal-classroom-courses-add">
                                 <h4>Add Course</h4>
                                 {
                                     map(courses, (course, index) => {
                                         return (
-                                            <div key={index}>
+                                            <div className="add-classroom-modal-classroom-courses-add-item" key={index}>
                                                 {course.name} <AddCircleOutlineIcon onClick={e => handleAddClassroomCourse(e, classroom.id, course.id)}/>
                                             </div>
                                         );

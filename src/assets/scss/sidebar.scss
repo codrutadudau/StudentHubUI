@@ -2,7 +2,7 @@
 @import './breakpoints.scss';
 
 .sidebar {
-    background-color: transparent;
+    // background-color: transparent;
 }
 
 .layout-left-sidebar {
@@ -107,7 +107,7 @@
         
         &-items-item {
             
-            @media #{$mobile} {
+            @media #{$mobile}, #{$mobile-landscape} {
                 padding: 0 3px;
                 font-size: 10px;
             }

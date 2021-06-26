@@ -91,14 +91,7 @@ export default function Dashboard() {
                 </div>
             </div>
             <div className="dashboard-graph">
-                <div className="dashboard-graph-container">
-                    <ChartistGraph
-                        className="dashboard-graph-container-users"
-                        data={data}
-                        options={options}
-                        type={type}
-                    />
-                </div>
+                
             </div>
         </Container>
     );

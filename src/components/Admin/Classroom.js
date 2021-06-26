@@ -94,7 +94,7 @@ export default function Course() {
                 onHide={() => setDeleteModalShow(false)}
                 data={deleteModalData}
             />
-            <div onClick={e => handleClick(e, null, 'create')} className="btn btn-success quizzes-new">
+            <div onClick={e => handleClick(e, null, 'create')} className="btn btn-success quizzes-new add-new-course-min-width">
                 <AddCircleOutlineIcon className="quizzes-new-icon" />
                 <span className="quizzes-new-button">Add new classroom</span>
             </div>

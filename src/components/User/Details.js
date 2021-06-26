@@ -26,24 +26,7 @@ export default function Details() {
         me &&
         <Container className="d-flex justify-content-center profile">
             <div className="profile-container-first">
-                <Card className="profile-container-first-info">
-                    <Card.Body className="profile-container-first-info-card">
-                        {/* <img className="avatar" src={avatar} /> */}
-                        <ImageUploader 
-                            withIcon={false}
-                            withPreview={true}
-                            label=""
-                            buttonText="Upload Image"
-                            onChange={handleOnChange}
-                            imgExtension={[".jpg", ".gif", ".png", ".gif", ".svg"]}
-                            maxFileSize={1048576}
-                            fileSizeError=" file size is too big"
-                        />
-                        {/* <span className="profile-container-first-info-card-text">{me.firstName} {me.lastName}</span> */}
-                        {/* <span className="profile-container-first-info-card-text">Full Stack Developer</span>
-                        <span className="profile-container-first-info-card-text">Bay Area, San Francisco, CA</span> */}
-                    </Card.Body>
-                </Card>
+                
                 <Card className="profile-container-first-data">
                     <Card.Body className="profile-container-first-data-card">
                         <Form className="profile-container-first-data-card-edit-profile">
