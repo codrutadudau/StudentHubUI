@@ -137,7 +137,7 @@ export default function AddClassroom(props) {
                                     map(courses, (course, index) => {
                                         return (
                                             <div className="add-classroom-modal-classroom-courses-add-item" key={index}>
-                                                {course.name} <AddCircleOutlineIcon onClick={e => handleAddClassroomCourse(e, classroom.id, course.id)}/>
+                                                {course.name} <AddCircleOutlineIcon className="add-classroom-modal-classroom-courses-add-item-icon add-classroom-modal-classroom-courses-add-item-icon--green" onClick={e => handleAddClassroomCourse(e, classroom.id, course.id)}/>
                                             </div>
                                         );
                                     })

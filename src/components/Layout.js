@@ -17,7 +17,7 @@ const Layout = ({ component: Component, sidebar: Sidebar }) => {
                 </div>
             </div>
             <footer>
-               Footer
+               
             </footer>
         </div>
     )

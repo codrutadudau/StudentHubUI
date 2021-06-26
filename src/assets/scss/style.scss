@@ -130,3 +130,22 @@ body {
 .MuiSnackbar-root {
   position: absolute !important;
 }
+
+.layout footer {
+  background: #060b26;
+}
+
+footer {
+  height: 20px;
+}
+
+.add-classroom-modal-classroom-courses-add-item {
+
+  &-icon {
+    cursor: pointer;
+
+    &--green {
+      color: #198754;
+    }
+  }
+}

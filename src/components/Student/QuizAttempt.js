@@ -60,7 +60,7 @@ export function QuizAttempt({ location: { state } }) {
     useEffect(() => {
         if (quizInstance && quizInstance.startedAt) {
             const startedAt = new Date(quizInstance.startedAt);
-            startedAt.setSeconds(startedAt.getSeconds() + 60 * 100);
+            startedAt.setSeconds(startedAt.getSeconds() + 60 * quizInstance.quiz.duration);
             setTime(startedAt);
         }
     }, [quizInstance]);
