@@ -1,9 +1,11 @@
 import {
     GET_STUDENTS_WITH_NAME,
+    GET_STUDENT_BY_ID,
 } from '../actions/types';
 
 const initialState = {
     studentsWithName: null,
+    student: null,
 };
 
 const studentReducer = (state = initialState, action) => {
@@ -14,6 +16,11 @@ const studentReducer = (state = initialState, action) => {
             return {
                 ...state,
                 studentsWithName: payload.studentsWithName
+            };
+        case GET_STUDENT_BY_ID:
+            return {
+                ...state,
+                student: payload.student,
             };
         default:
             return state;
