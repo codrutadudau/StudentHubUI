@@ -229,13 +229,13 @@ export function Details({ location: { state } }) {
                         timeFormat="HH:mm"
                         utc={true}
                     />
-                    <Form.Label className="quiz-form-label">Password</Form.Label>
+                    {/* <Form.Label className="quiz-form-label">Password</Form.Label>
                     <Form.Control
                         type="text"
                         name="password"
                         onChange={handleOnChange}
                         value={payload.password}
-                    />
+                    /> */}
                     <Form.Label className="quiz-form-label">Course</Form.Label>
                     <Form.Control as="select" name="course" onChange={handleOnChange} value={payload.course}>
                         <option value="">Select a course</option>
