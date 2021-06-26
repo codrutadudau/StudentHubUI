@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import map from 'lodash/map';
 
 import { getAllTeachersWithName } from '../../actions/teacher';
-import { createCourse, getAllCoursesWithTeacherName, getCourseById } from '../../actions/course';
+import { createCourse, editCourse, getAllCoursesWithTeacherName, getCourseById } from '../../actions/course';
 
 export default function AddCourse(props) {
     const dispatch = useDispatch();
@@ -41,9 +41,15 @@ export default function AddCourse(props) {
     }, [course, props.data]);
 
     const handleSubmit = e => {
-        dispatch(createCourse(payload)).then(() => {
-            dispatch(getAllCoursesWithTeacherName());
-        });
+        if (props.data.action === 'create') {
+            dispatch(createCourse(payload)).then(() => {
+                dispatch(getAllCoursesWithTeacherName());
+            });
+        } else {
+            dispatch(editCourse(course.id, payload)).then(() => {
+                dispatch(getAllCoursesWithTeacherName());
+            });
+        }
 
         props.onHide();
     }

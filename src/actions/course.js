@@ -6,6 +6,8 @@ import {
     CREATE_COURSE_FAIL,
     GET_COURSE_BY_ID,
     DELETE_COURSE,
+    EDIT_COURSE_SUCCESS,
+    EDIT_COURSE_FAIL,
 } from "./types";
 
 import { courseApi } from '../api';
@@ -49,6 +51,22 @@ export const createCourse = (payload) => (dispatch) => {
             const message = error.response.data.message;
             dispatch({
                 type: CREATE_COURSE_FAIL,
+            });
+        }
+    );
+};
+
+export const editCourse = (id, payload) => (dispatch) => {
+    return courseApi.editCourse(id, payload)
+        .then(() => {
+            dispatch({
+                type: EDIT_COURSE_SUCCESS,
+            });
+        })
+        .catch(error => {
+            const message = error.response.data.message;
+            dispatch({
+                type: EDIT_COURSE_FAIL,
             });
         }
     );

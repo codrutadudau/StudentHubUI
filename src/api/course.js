@@ -25,3 +25,7 @@ export const getCourseById = (id) => {
 export const deleteCourse = (id) => {
     return axios.delete(API_URL + "/courses/" + id);
 };
+
+export const editCourse = (id, payload) => {
+    return axios.put(API_URL + "/courses/" + id, { ...payload });
+};
