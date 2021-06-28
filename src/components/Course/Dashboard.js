@@ -8,6 +8,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FiberNewIcon from '@material-ui/icons/FiberNew';
 import MailIcon from '@material-ui/icons/Mail';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
 import AssignQuiz from '../Modals/AssignQuiz';
 import SendQuizReminder from '../Modals/SendQuizReminder';
@@ -102,6 +103,10 @@ export default function Dashboard(props) {
         setModalShow(true);
     }
 
+    const handleViewSolved = (e, quizInstance) => {
+        history.push(`/quizzes/${quizInstance}/view`);
+    }
+
     return (
         teacherReducer.teacherCourses &&
         <Container className="d-flex justify-content-center courses">
@@ -139,7 +144,28 @@ export default function Dashboard(props) {
                                                             map(classroomStudents[classroom.name], (student, index) => {
                                                                 return (
                                                                     <p key={index}>
-                                                                        {student.firstName} {student.lastName} {student.hasInProgressQuizzes === 0 && <FiberNewIcon className="courses-classrooms-item-icon courses-classrooms-item-icon--green" onClick={e => handleAssignQuizClick(e, student, course.course)} />} <MailIcon onClick={e => handleQuizReminderClick(e, student, course)} className="courses-classrooms-item-icon courses-classrooms-item-icon--blue"/>
+                                                                        {student.firstName} {student.lastName} 
+                                                                            {
+                                                                                student.hasInProgressQuizzes === 0 && student.finishedQuizInstance === 0 &&
+                                                                                <FiberNewIcon 
+                                                                                    className="courses-classrooms-item-icon courses-classrooms-item-icon--green" 
+                                                                                    onClick={e => handleAssignQuizClick(e, student, course.course)} 
+                                                                                />
+                                                                            } 
+                                                                            {
+                                                                                student.finishedQuizInstance == 0 &&
+                                                                                <MailIcon 
+                                                                                    onClick={e => handleQuizReminderClick(e, student, course)} 
+                                                                                    className="courses-classrooms-item-icon courses-classrooms-item-icon--blue"
+                                                                                />
+                                                                            }
+                                                                            {
+                                                                                student.finishedQuizInstance !== 0 &&
+                                                                                <VisibilityIcon
+                                                                                    onClick={e => handleViewSolved(e, student.finishedQuizInstance)}
+                                                                                    className="courses-classrooms-item-icon courses-classrooms-item-icon--view"
+                                                                                />
+                                                                            }
                                                                     </p>
                                                                 );
                                                             })

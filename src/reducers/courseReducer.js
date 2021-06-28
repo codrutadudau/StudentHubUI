@@ -2,11 +2,13 @@ import {
     GET_COURSES,
     GET_COURSES_WITH_TEACHER_NAME,
     GET_COURSE_BY_ID,
+    GET_AVERAGE_GRADES_PER_CLASSROOM,
 } from '../actions/types';
 
 const initialState = {
     courses: null,
     coursesWithTeacherName: null,
+    averageGrades: null,
 };
 
 const courseReducer = (state = initialState, action) => {
@@ -27,6 +29,11 @@ const courseReducer = (state = initialState, action) => {
             return {
                 ...state,
                 course: payload.course
+            }
+        case GET_AVERAGE_GRADES_PER_CLASSROOM:
+            return {
+                ...state,
+                averageGrades: payload.averageGrades
             }
         default:
             return state;

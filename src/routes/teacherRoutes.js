@@ -4,6 +4,7 @@ import QuizDetails from '../components/Quiz/Details';
 import QuizView from '../components/Quiz/View';
 import QuestionDetails from '../components/Question/Details';
 import QuestionDashboard from '../components/Question/Dashboard';
+import QuizReview from '../components/Student/QuizReview';
 
 export const teacherRoutes = [
     {
@@ -45,5 +46,10 @@ export const teacherRoutes = [
         path:"/questions",
         exact: true,
         component: QuestionDashboard,
+    },
+    {
+        path:"/quizzes/:id/view",
+        exact: true,
+        component: QuizReview,
     },
 ];

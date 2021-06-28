@@ -8,6 +8,7 @@ import {
     DELETE_COURSE,
     EDIT_COURSE_SUCCESS,
     EDIT_COURSE_FAIL,
+    GET_AVERAGE_GRADES_PER_CLASSROOM,
 } from "./types";
 
 import { courseApi } from '../api';
@@ -18,6 +19,20 @@ export const getAllCourses = (id = null) => (dispatch) => {
             dispatch({
                 type: GET_COURSES,
                 payload: { courses: response.data },
+            });
+        })
+        .catch(error => {
+            const message = error.response.data.message;
+        }
+    );
+};
+
+export const getAverageGradePerClassroom = (id = null) => (dispatch) => {
+    return courseApi.getAverageGradePerClassroom(id)
+        .then((response) => {
+            dispatch({
+                type: GET_AVERAGE_GRADES_PER_CLASSROOM,
+                payload: { averageGrades: response.data },
             });
         })
         .catch(error => {

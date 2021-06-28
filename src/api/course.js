@@ -22,6 +22,10 @@ export const getCourseById = (id) => {
     return axios.get(API_URL + "/courses/" + id);
 };
 
+export const getAverageGradePerClassroom = () => {
+    return axios.get(API_URL + "/courses/averageGradePerClassroom");
+};
+
 export const deleteCourse = (id) => {
     return axios.delete(API_URL + "/courses/" + id);
 };

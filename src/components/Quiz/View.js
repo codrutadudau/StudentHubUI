@@ -61,7 +61,7 @@ export default function Details() {
                         map(questions, (question, index) => {
                             return (
                                 <div className="quiz-view-questions-question" key={index}>
-                                    <p key={index}>{question.question.description}</p>
+                                    <p key={index}>{question.question.description} ({question.question.defaultGrade}p)</p>
                                     <div className="quiz-view-questions-question-answers">
                                         {
                                             map(question.answers, (answer, index) => {

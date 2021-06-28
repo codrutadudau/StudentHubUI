@@ -42,6 +42,7 @@
 
             &-icon {
                 cursor: pointer;
+                padding: 0 3px;
 
                 &--green {
                     color: #198754;
@@ -49,6 +50,10 @@
 
                 &--blue {
                     color: blue;
+                }
+
+                &--view {
+                    color: yellowgreen;
                 }
             }
 
@@ -59,6 +64,46 @@
             &-students {
                 padding: 10px 30px 15px 40px;
             }
+        }
+    }
+}
+
+.teacher-dashboard {
+    flex-direction: column;
+
+    &-title {
+        box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
+        width: 100%;
+        background: white;
+        border-radius: 5px;
+        padding: 10px 20px;
+        text-align: left;
+    }
+
+    &-course {
+        padding: 10px 20px;
+        background: white;
+        box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
+        width: 48%;
+
+        &-title {
+            text-align: left;
+        }
+    }
+
+    &-courses-item {
+        margin-bottom: 15px;
+        position: relative;
+        text-align: left;
+
+        &-classname {
+            display: block;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        &-quizzes-taken {
+            display: block;
         }
     }
 }
